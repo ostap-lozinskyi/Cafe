@@ -1,0 +1,609 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Segoe UI, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.weight {
+    font-weight: 400;
+    font-style: italic
+}
+
+.hide {
+    display: none
+}
+
+a {
+    -webkit-transition: all .3s ease 0s;
+    transition: all .3s ease 0s;
+    color: #361b08;
+}
+
+a:focus, a:active, a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto
+}
+
+img, img:focus {
+    outline: none
+}
+
+h1, h2, h3, h4 {
+    color: #361b08;
+    font-weight: normal;
+}
+
+.btnCafe {
+    padding: 0.8125rem 2rem 0.875rem;
+    border: none;
+    background: #76ad00;
+    border-radius: 1.5625rem;
+    box-shadow: inset 0 -1px 0 rgba(54, 27, 8, 0.2);
+    font-size: 1.125rem;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-style: italic;
+    min-width: 9.375rem;
+}
+
+.btnCafe:hover, .btnCafe:focus {
+    color: #fff
+}
+
+.btnCafe:hover {
+    opacity: 0.75
+}
+
+button {
+    height: 51px;
+}
+
+.transparentButton {
+    display: inline-block;
+    padding: 0.75rem 2.25rem 0.8125rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    border-radius: 1.5625rem;
+    box-shadow: none;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: Segoe UI, Arial, sans-serif;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+
+}
+
+.transparentButton:hover, .transparentButton:focus {
+    color: #fff;
+    opacity: 0.75
+}
+
+.mealsContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.itemContainer {
+    text-align: center;
+    padding-bottom: 2em;
+    width: 30%;
+}
+
+.item {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 13.8rem;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(153, 148, 123, 0.46);
+    overflow: hidden;
+    text-align: center
+}
+
+.item .price, .item .weight {
+    background: transparent
+}
+
+.item .itemPriceRow {
+    padding-top: 0.25rem;
+    min-width: 65%
+}
+
+.item .itemPriceRow:before, .item .itemPriceRow:after {
+    width: 3.375rem
+}
+
+.item .priceValue, .item .priceText {
+    display: block
+}
+
+.item .itemOrderRow {
+    padding-top: 0.625rem
+}
+
+.item .itemWeight {
+    min-width: 10rem;
+    margin-top: 1.5625rem
+}
+
+.item .rating {
+    padding-top: 0.225rem
+}
+
+.item .itemShortDescription {
+    padding-top: 0.5375rem;
+    height: 6.875rem
+}
+
+.item .hover {
+    position: absolute;
+    padding: 0;
+    left: 0;
+    bottom: 1em;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 99
+}
+
+.item .hide {
+    display: block;
+    max-height: 0;
+    transition: max-height 0.15s ease-out;
+    overflow: hidden
+}
+
+.item:hover .hide {
+    max-height: 500px;
+    transition: max-height 0.25s ease-in
+}
+
+.itemImage {
+    position: relative;
+    padding: 1px 1px 0;
+    margin-bottom: 0.25rem;
+    height: 220px
+}
+
+.itemImage img {
+    float: left
+}
+
+.itemMealName {
+    padding-top: 1em;
+    height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 20px
+}
+
+.circle {
+    position: relative;
+    display: inline-block;
+    width: 6.25rem;
+    height: 6.25rem;
+    background: #fff;
+    border-radius: 50%;
+    overflow: hidden
+}
+
+.circle:before {
+    content: '';
+    position: absolute;
+    top: 0.125rem;
+    left: 0.125rem;
+    width: 5.875rem;
+    height: 5.875rem;
+    border: 1px solid #d7d1ce;
+    border-radius: 50%;
+    background: inherit
+}
+
+.circle:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45%;
+    background: inherit
+}
+
+.itemWeight {
+    position: relative;
+    display: inline-block
+}
+
+.weight {
+    position: relative;
+    display: inline-block;
+    padding: 0 0.625rem;
+    font-size: 14px;
+    line-height: 1.42;
+    letter-spacing: 0.025em;
+    color: #361b08;
+    background-color: #fff;
+    z-index: 2
+}
+
+.itemPriceRow {
+    position: relative;
+    display: inline-block
+}
+
+.itemPriceRow:before {
+    content: '';
+    position: absolute;
+    top: 32%;
+    left: 0;
+    width: 6.625rem;
+    height: 1px;
+    background: #d7d1ce
+}
+
+.itemPriceRow:after {
+    content: '';
+    position: absolute;
+    top: 32%;
+    right: 0;
+    width: 6.625rem;
+    height: 1px;
+    background: #d7d1ce
+}
+
+.price {
+    position: relative;
+    display: inline-block;
+    font-size: 1.875rem;
+    line-height: 1;
+    color: #361b08;
+    font-weight: bold;
+    background-color: #fff;
+    z-index: 2
+}
+
+.priceValue, .priceText {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.priceText {
+    font-size: 0.875rem;
+    line-height: 1.42;
+    opacity: 0.56
+}
+
+footer {
+    font-size: 20px;
+    color: black;
+    background-color: #f6f6f6;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    margin-top: -6px;
+}
+
+.footerFirstRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.footerText {
+    font-size: 16px;
+    text-align: right;
+    padding-right: 2%;
+    width: 50%;
+}
+
+.footerFollow {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding-left: 2%;
+    width: 50%;
+}
+
+.footerDevelopedBy {
+    font-size: 12px;
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+.footerLogo {
+    width: 30px;
+    margin-top: 3px;
+    margin-left: 20px;
+}
+
+.containerResize {
+    position: relative;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    background-size: cover !important;
+    overflow: hidden;
+    background-position: center !important
+}
+
+.shadowBlock {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 2
+}
+
+.scroll {
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    margin-left: -50px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    background: url("/resources/img/mouse.png") no-repeat 50% 50%;
+    z-index: 2;
+    overflow: hidden;
+    cursor: pointer
+}
+
+.content {
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    padding-top: 1rem
+}
+
+.headerRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerButtonsContainer {
+    width: 30%;
+}
+
+.buttonContainerWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonContainer {
+    margin-top: 30px;
+    background-color: transparent;
+    border: 1px solid #e8e6e7;
+    border-radius: 1.5625rem;
+    padding: 2px 0;
+    width: 17%;
+    height: auto;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 49%;
+    margin-right: 0;
+    margin-left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    color: #000;
+    font-weight: 400;
+    font-size: 1.125rem;
+    height: 27px;
+}
+
+.buttonLeft {
+    border-radius: 1.5625rem 0 0 1.5625rem
+}
+
+.buttonLeft:hover {
+    background-color: white
+}
+
+.buttonRight {
+    border-radius: 0 1.5625rem 1.5625rem 0;
+    margin-left: 2px;
+}
+
+.buttonRight:hover {
+    background-color: white
+}
+
+.btn-outline-secondary, .btn-outline-success {
+    border-color: #76ad00;
+}
+
+.menuHeadline {
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    color: black;
+    font-size: 40px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-bottom: 0;
+}
+
+.phoneLink {
+    font-size: 1.65rem;
+    line-height: 1;
+    letter-spacing: -1.8px;
+    color: white !important;
+    text-decoration: none;
+    border-bottom: 1px dashed #ffffff !important;
+}
+
+.phoneLink:hover {
+    color: #ffffff;
+    border-bottom-color: transparent !important
+}
+
+.contactUsContainer {
+    width: 20%;
+    text-align: center;
+    margin-left: 20%;
+}
+
+.contactUsLink {
+    color: white !important;
+    border-bottom: none;
+    opacity: .6;
+    text-align: left
+}
+
+.contactUsLink:hover {
+    color: white !important;
+    opacity: 1
+}
+
+.point {
+    position: relative;
+    bottom: 0.1875rem;
+    vertical-align: middle;
+    font-size: 0.75rem;
+    color: #ffffff;
+    opacity: 0.6
+}
+
+.mainLogoContainer {
+    width: 16%;
+    margin-top: 15px;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.mainLogo {
+    width: 100%;
+}
+
+.headerButtonsContainer {
+    flex-direction: column;
+    text-align: center;
+    width: 20%;
+    margin-right: 20%;
+}
+
+.horizontalButtons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.headerLeftButton {
+    width: 30%;
+    margin-right: 5%;
+}
+
+.headerRightButton {
+    width: 40%;
+    margin-left: 5%;
+}
+
+.comment {
+    border: solid 1px #76ad00;
+    border-radius: 20px;
+    margin: 1em;
+    padding: 0.5em;
+}
+
+.newsSection {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 70px;
+    padding-bottom: 50px;
+    background: url(/resources/img/backgroundImage2.jpg);
+
+}
+
+.newsContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.newsItem {
+    border: solid 1px;
+    border-color: black;
+    box-shadow: 7px 7px 5px #361b08;
+    height: 400px;
+    width: 17%;
+    margin-right: 12px;
+    margin-left: 12px;
+    padding: 15px;
+    background-color: #afa196;
+    text-align: center;
+    color: #361b08;
+}
+
+.newsDate {
+    margin-bottom: 50px;
+    font-style: italic;
+}
+
+.newsText {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.map {
+    width: 100%;
+    height: 700px;
+}
+
+@media screen and (max-width: 768px) {
+    .headerRow {
+        flex-direction: column;
+    }
+
+    .contactUsContainer {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .mainLogoContainer {
+        width: 50%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .headerButtonsContainer {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .buttonContainer {
+        width: 50%;
+    }
+}
