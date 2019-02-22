@@ -71,7 +71,7 @@ public class AdminOrderController {
             }
         }
         if (!hasUnpaidOrders) {
-            placeService.updatePlaceUserId(placeId, principal);
+            placeService.updatePlaceUserId(placeId);
         }
         boolean hasContent = service.findAll(pageable, filter).hasContent();
         return "redirect:/admin/adminOrder" + buildParams(hasContent, pageable, Strings.EMPTY);

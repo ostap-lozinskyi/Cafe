@@ -84,12 +84,12 @@ public class IngredientIdController {
     public String ingredientIdComment(@PathVariable Integer id, @ModelAttribute("comment") @Validated(CommentFlag.class)
             CommentRequest commentRequest, Principal principal) {
         if (userService.findUserByEmail(principal.getName()).getRole() == Role.ROLE_ADMIN) {
-            saveComment(id, commentRequest, principal);
+            saveComment(id, commentRequest);
             return REDIRECT_INGREDIENT_ID;
         }
         if (mealViews != null) {
             if (userService.findMealInUserOrders(mealViews, principal)) {
-                saveComment(id, commentRequest, principal);
+                saveComment(id, commentRequest);
             } else {
                 error = "Taste the ingredient before the evaluation";
             }
@@ -102,8 +102,8 @@ public class IngredientIdController {
     /**
      * Saving comment
      */
-    private void saveComment(Integer id, CommentRequest commentRequest, Principal principal) {
-        Integer commentId = commentService.save(commentRequest, principal);
+    private void saveComment(Integer id, CommentRequest commentRequest) {
+        Integer commentId = commentService.saveComment(commentRequest);
         Comment comment = commentService.findById(commentId);
         ingredientService.updateCommentsList(id, comment);
     }

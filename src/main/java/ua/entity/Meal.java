@@ -1,16 +1,11 @@
 package ua.entity;
 
+import ua.model.request.MealRequest;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Index;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "meal", indexes = @Index(columnList = "name", unique = true))
@@ -164,4 +159,18 @@ public class Meal extends AbstractEntityName {
         this.comments = comments;
     }
 
+    public static Meal of(MealRequest mealRequest) {
+        Meal meal = new Meal();
+        meal.setCuisine(mealRequest.getCuisine());
+        meal.setFullDescription(mealRequest.getFullDescription());
+        meal.setShortDescription(mealRequest.getShortDescription());
+        meal.setId(mealRequest.getId());
+        meal.setName(mealRequest.getName());
+        meal.setPrice(new BigDecimal(mealRequest.getPrice()));
+        meal.setWeight(Integer.valueOf(mealRequest.getWeight()));
+        meal.setComponents(mealRequest.getComponents());
+        meal.setPhotoUrl(mealRequest.getPhotoUrl());
+        meal.setVersion(mealRequest.getVersion());
+        return meal;
+    }
 }

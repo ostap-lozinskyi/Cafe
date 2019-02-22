@@ -17,9 +17,9 @@ public interface ComponentService {
 
 	Page<ComponentView> findAllView(Pageable pageable, ComponentFilter filter);
 
-	void save(ComponentRequest request);
+	void saveComponent(ComponentRequest request);
 
-	ComponentRequest findOneRequest(Integer id);
+	ComponentRequest findOneComponentRequest(Integer id);
 
 	void delete(Integer id);
 }

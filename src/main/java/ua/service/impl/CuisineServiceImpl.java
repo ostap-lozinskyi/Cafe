@@ -29,9 +29,10 @@ public class CuisineServiceImpl extends CrudServiceImpl<Cuisine, Integer> implem
 	
 	private Specification<Cuisine> filter(SimpleFilter filter){
 		return (root, query, cb) -> {
-			if(filter.getSearch().isEmpty()) return null;
+			if(filter.getSearch().isEmpty()){
+				return null;
+			}
 			return cb.like(root.get("name"), filter.getSearch()+"%");
 		};
 	}
-
 }

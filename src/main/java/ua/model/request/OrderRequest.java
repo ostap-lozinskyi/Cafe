@@ -13,7 +13,6 @@ public class OrderRequest {
 
 	private Integer id;
 
-	@NotNull(message = "This field cannot be blank", groups = { OrderFlag.class })
 	private Place place;
 	
 	@NotNull(message = "This field cannot be blank", groups = { OrderFlag.class })

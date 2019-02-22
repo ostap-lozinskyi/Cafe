@@ -85,7 +85,7 @@
 									</a>
 								</sec:authorize>
 								
-								<form:form action="/meal/${meal.id}" method="POST" modelAttribute="comment">
+								<form:form action="/menuItem/${meal.id}" method="POST" modelAttribute="comment">
 									<custom:hiddenInputs excludeParams="text, _csrf"/>
 									<br>
 									<div class="row">

@@ -34,4 +34,6 @@ public interface UserService extends CrudService<User, Integer> {
 	List<Integer> findUserMealsIds(Principal principal);
 	
 	List<Integer> findUserMealViews(Principal principal);
+
+    User findCurrentUser();
 }

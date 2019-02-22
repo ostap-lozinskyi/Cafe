@@ -80,40 +80,20 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public void saveMeal(MealRequest request) {
+    public void saveMeal(MealRequest mealRequest) {
         LOG.info("In 'saveMeal' method");
-        Meal meal = new Meal();
-        meal.setCuisine(request.getCuisine());
-        meal.setFullDescription(request.getFullDescription());
-        meal.setShortDescription(request.getShortDescription());
-        meal.setId(request.getId());
-        meal.setName(request.getName());
-        meal.setPrice(new BigDecimal(request.getPrice()));
-        meal.setWeight(Integer.valueOf(request.getWeight()));
-        meal.setComponents(request.getComponents());
-        meal.setPhotoUrl(request.getPhotoUrl());
-        meal.setVersion(request.getVersion());
-        mealRepository.save(meal);
+        Meal newMeal = Meal.of(mealRequest);
+        mealRepository.save(newMeal);
         LOG.info("Exit from 'saveMeal' method");
     }
 
     @Override
     public MealRequest findOneRequest(Integer id) {
-        LOG.info("In 'findOneRequest' method. Id = {}", id);
+        LOG.info("In 'findOneCommentRequest' method. Id = {}", id);
         Meal meal = mealRepository.findOneRequest(id);
-        MealRequest request = new MealRequest();
-        request.setCuisine(meal.getCuisine());
-        request.setFullDescription(meal.getFullDescription());
-        request.setShortDescription(meal.getShortDescription());
-        request.setId(meal.getId());
-        request.setName(meal.getName());
-        request.setPrice(meal.getPrice().toString());
-        request.setWeight(String.valueOf(meal.getWeight()));
-        request.setComponents(meal.getComponents());
-        request.setPhotoUrl(meal.getPhotoUrl());
-        request.setVersion(meal.getVersion());
-        LOG.info("Exit from 'findOneRequest' method. Request = {}", request);
-        return request;
+        MealRequest mealRequest = MealRequest.of(meal);
+        LOG.info("Exit from 'findOneCommentRequest' method. Request = {}", mealRequest);
+        return mealRequest;
     }
 
     @Override

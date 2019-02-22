@@ -22,10 +22,10 @@ public interface PlaceService {
 	
 	void savePlace(PlaceRequest request);
 
-	PlaceRequest findOneRequest(Integer id);
+	PlaceRequest findOnePlaceRequest(Integer id);
 
 	void deletePlace(Integer id);
 
-	void updatePlaceUserId(Integer placeId, Principal principal);
+	void updatePlaceUserId(Integer placeId);
 	
 }

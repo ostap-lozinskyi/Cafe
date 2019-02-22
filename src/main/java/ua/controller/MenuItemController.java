@@ -1,23 +1,18 @@
 package ua.controller;
 
-import java.security.Principal;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
 import ua.entity.Comment;
 import ua.model.request.CommentRequest;
 import ua.model.view.MealView;
 import ua.service.CommentService;
 import ua.service.MealService;
 import ua.service.UserService;
+
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/menuItem/{id}")
@@ -65,7 +60,7 @@ public class MenuItemController {
         List<Integer> userMealsIds = userService.findUserMealsIds(principal);
         if (userMealsIds.contains(id)) {
             if (commentRequest.getRate() != null) {
-                Integer commentId = commentService.save(commentRequest, principal);
+                Integer commentId = commentService.saveComment(commentRequest);
                 Comment comment = commentService.findById(commentId);
                 if (!commentRequest.getText().isEmpty()) {
                     service.updateComments(id, comment);

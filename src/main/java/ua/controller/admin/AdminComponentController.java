@@ -80,14 +80,14 @@ public class AdminComponentController {
                        @ModelAttribute("componentFilter") ComponentFilter filter) {
         if (br.hasErrors())
             return show(model, pageable, filter);
-        service.save(request);
+        service.saveComponent(request);
         return cancel(status, pageable, filter);
     }
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
                          @ModelAttribute("componentFilter") ComponentFilter filter) {
-        model.addAttribute("component", service.findOneRequest(id));
+        model.addAttribute("component", service.findOneComponentRequest(id));
         return show(model, pageable, filter);
     }
 

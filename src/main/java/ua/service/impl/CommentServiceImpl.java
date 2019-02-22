@@ -1,52 +1,44 @@
 package ua.service.impl;
 
-import java.security.Principal;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import ua.entity.Comment;
 import ua.entity.User;
 import ua.model.request.CommentRequest;
 import ua.repository.CommentRepository;
-import ua.repository.UserRepository;
 import ua.service.CommentService;
+import ua.service.UserService;
 
 @Service
 public class CommentServiceImpl implements CommentService {
 
-	private final CommentRepository repository;
-	
-	private final UserRepository userRepository;
+    private static final Logger LOG = LoggerFactory.getLogger(CommentServiceImpl.class);
+    private final CommentRepository repository;
+    private final UserService userService;
 
-	@Autowired
-	public CommentServiceImpl(CommentRepository repository, UserRepository userRepository) {
-		this.repository = repository;
-		this.userRepository = userRepository;
-	}	
+    @Autowired
+    public CommentServiceImpl(CommentRepository repository, UserService userService) {
+        this.repository = repository;
+        this.userService = userService;
+    }
 
-	@Override
-	public Integer save(CommentRequest request, Principal principal) {
-		User user = userRepository.findUserByEmail(principal.getName());
-		Comment comment = new Comment();
-		comment.setText(request.getText());
-		comment.setUser(user);
-		repository.save(comment);
-		return comment.getId();
-	}
+    @Override
+    public Integer saveComment(CommentRequest commentRequest) {
+        LOG.info("In 'saveComment' method");
+        User user = userService.findCurrentUser();
+        Comment comment = new Comment();
+        comment.setText(commentRequest.getText());
+        comment.setUser(user);
+        repository.save(comment);
+        LOG.info("Exit from 'saveComment' method");
+        return comment.getId();
+    }
 
-	@Override
-	public CommentRequest findOneRequest(Integer id) {
-		Comment comment = repository.findOneCommentRequest(id);
-		CommentRequest request = new CommentRequest();
-		request.setId(comment.getId());
-		request.setText(comment.getText());
-		return request;
-	}
-	
-	@Override
-	public Comment findById(Integer id) {
-		return repository.findCommentById(id);
-	}
+    @Override
+    public Comment findById(Integer id) {
+        return repository.findCommentById(id);
+    }
 
 }

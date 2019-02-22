@@ -2,6 +2,7 @@ package ua.model.request;
 
 import ua.entity.Component;
 import ua.entity.Cuisine;
+import ua.entity.Meal;
 import ua.validation.annotation.UniqueMeal;
 import ua.validation.flag.MealFlag;
 
@@ -131,4 +132,18 @@ public class MealRequest {
         this.version = version;
     }
 
+    public static MealRequest of(Meal meal) {
+        MealRequest mealRequest = new MealRequest();
+        mealRequest.setCuisine(meal.getCuisine());
+        mealRequest.setFullDescription(meal.getFullDescription());
+        mealRequest.setShortDescription(meal.getShortDescription());
+        mealRequest.setId(meal.getId());
+        mealRequest.setName(meal.getName());
+        mealRequest.setPrice(meal.getPrice().toString());
+        mealRequest.setWeight(String.valueOf(meal.getWeight()));
+        mealRequest.setComponents(meal.getComponents());
+        mealRequest.setPhotoUrl(meal.getPhotoUrl());
+        mealRequest.setVersion(meal.getVersion());
+        return mealRequest;
+    }
 }
