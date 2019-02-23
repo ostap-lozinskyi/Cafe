@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +20,9 @@ import ua.model.view.MealView;
 import ua.repository.UserRepository;
 import ua.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.*;
 
 @Service
@@ -30,6 +30,7 @@ public class UserServiceImpl extends CrudServiceImpl<User, Integer> implements U
     private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
+    private final HttpServletRequest httpServletRequest;
 
     @Value("${cloudinary.url}")
     Cloudinary cloudinary = new Cloudinary();
@@ -37,10 +38,12 @@ public class UserServiceImpl extends CrudServiceImpl<User, Integer> implements U
     @Value("${user.default.photoUrl}")
     private String defaultPhotoUrl;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder encoder) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder encoder,
+                           HttpServletRequest httpServletRequest) {
         super(userRepository);
         this.userRepository = userRepository;
         this.encoder = encoder;
+        this.httpServletRequest = httpServletRequest;
     }
 
     @Override
@@ -158,9 +161,10 @@ public class UserServiceImpl extends CrudServiceImpl<User, Integer> implements U
     @Override
     public User findCurrentUser() {
         LOG.info("In 'findCurrentUser' method");
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User foundUser = userRepository.findUserByEmail(auth.getPrincipal().toString());
-        LOG.info("Exit from 'findCurrentUser' method");
-        return foundUser;
+        Principal principal = httpServletRequest.getUserPrincipal();
+        if (Objects.nonNull(principal)) {
+            return userRepository.findUserByEmail(principal.getName());
+        }
+        return null;
     }
 }

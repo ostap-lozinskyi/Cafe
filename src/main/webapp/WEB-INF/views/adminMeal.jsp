@@ -271,7 +271,7 @@
                         <c:forEach var="meal" items="${meals.content}">
                             <tr>
                                 <td>${meal.name}</td>
-                                <%--<td>${meal.fullDescription}</td>--%>
+                                <td>${meal.fullDescription}</td>
                                 <td>${meal.price}</td>
                                 <td>${meal.weight}</td>
                                 <td>${meal.cuisine}</td>

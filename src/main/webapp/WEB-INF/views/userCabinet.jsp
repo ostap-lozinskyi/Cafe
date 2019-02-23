@@ -62,7 +62,7 @@
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Name</th>
-						<th class="text-center">Description</th>
+						<th class="text-center">Full Description</th>
 						<th class="text-center">Price</th>
 						<th class="text-center">Cuisine</th>
 						<th class="text-center">Photo</th>
