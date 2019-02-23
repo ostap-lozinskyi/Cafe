@@ -98,9 +98,9 @@ public class AdminPlaceController {
         return REDIRECT_ADMIN_ADMIN_PLACE + buildParams(hasContent, pageable, Strings.EMPTY);
     }
 
-    @GetMapping("/setUserAdmin/{id}")
-    public String setUserAdmin(@PathVariable Integer id, Principal principal) {
-        service.updatePlaceUserId(id);
+    @GetMapping("/makeFree/{id}")
+    public String makePlaceFree(@PathVariable Integer id) {
+        service.makePlaceFree(id);
         return REDIRECT_ADMIN_ADMIN_PLACE;
     }
 }

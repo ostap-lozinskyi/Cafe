@@ -97,12 +97,16 @@ public class PlaceServiceImpl implements PlaceService {
         Place place = repository.findPlaceById(placeId);
         User user = userService.findCurrentUser();
         place.setUser(user);
-        if (Objects.isNull(place.getUser())) {
-            place.setFree(true);
-        } else {
-            place.setFree(false);
-        }
+        place.setFree(false);
         repository.save(place);
         LOG.info("Exit from 'updatePlaceUserId' method");
+    }
+
+    @Override
+    public void makePlaceFree(Integer placeId){
+        Place place = repository.findPlaceById(placeId);
+        place.setFree(true);
+        place.setUser(null);
+        repository.save(place);
     }
 }

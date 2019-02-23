@@ -27,5 +27,6 @@ public interface PlaceService {
 	void deletePlace(Integer id);
 
 	void updatePlaceUserId(Integer placeId);
-	
+
+	void makePlaceFree(Integer placeId);
 }

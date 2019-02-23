@@ -183,7 +183,7 @@
                                        class="btn btn-outline-warning btn-sm margin">Update</a>
                                     <a href="/admin/adminPlace/delete/${place.id}<custom:allParams/>"
                                        class="btn btn-outline-danger btn-sm margin">Delete</a>
-                                    <a href="/admin/adminPlace/setUserAdmin/${place.id}<custom:allParams/>"
+                                    <a href="/admin/adminPlace/makeFree/${place.id}<custom:allParams/>"
                                        class="btn btn-outline-warning btn-sm margin">Make free</a>
                                 </td>
                             </tr>

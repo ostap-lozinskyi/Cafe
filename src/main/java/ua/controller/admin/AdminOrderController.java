@@ -13,7 +13,6 @@ import ua.model.request.OrderRequest;
 import ua.service.OrderService;
 import ua.service.PlaceService;
 
-import java.security.Principal;
 import java.util.List;
 
 import static ua.controller.ControllerUtils.buildParams;
@@ -58,20 +57,19 @@ public class AdminOrderController {
     }
 
     @GetMapping("/updateStatus/{id}/{status}")
-    public String update(@PathVariable Integer id, @PathVariable String status, Model model,
-                         @PageableDefault Pageable pageable, @ModelAttribute("orderFilter") OrderFilter filter,
-                         Principal principal) {
+    public String update(@PathVariable Integer id, @PathVariable String status,
+                         @PageableDefault Pageable pageable, @ModelAttribute("orderFilter") OrderFilter filter) {
         Integer placeId = service.findOrderById(id).getPlace().getId();
         service.updateOrderStatus(id, status);
         List<Order> tableOrders = service.findOrderByPlaceId(placeId);
         boolean hasUnpaidOrders = false;
         for (Order order : tableOrders) {
-            if (!order.getStatus().equals("Is paid")) {
+            if (!"Is paid".equals(order.getStatus())) {
                 hasUnpaidOrders = true;
             }
         }
         if (!hasUnpaidOrders) {
-            placeService.updatePlaceUserId(placeId);
+            placeService.makePlaceFree(placeId);
         }
         boolean hasContent = service.findAll(pageable, filter).hasContent();
         return "redirect:/admin/adminOrder" + buildParams(hasContent, pageable, Strings.EMPTY);
