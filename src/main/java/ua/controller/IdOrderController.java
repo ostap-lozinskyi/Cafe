@@ -55,8 +55,7 @@ public class IdOrderController {
         request.setPlace(place);
         request.setStatus("Accepted");
         if (!request.getMeals().isEmpty())
-            service.saveOrder(request, principal);
+            service.saveOrder(request);
         return "redirect:/place/{id}/order";
     }
-
 }

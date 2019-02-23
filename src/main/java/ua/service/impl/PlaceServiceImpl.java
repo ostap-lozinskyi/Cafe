@@ -16,7 +16,6 @@ import ua.repository.PlaceViewRepository;
 import ua.service.PlaceService;
 import ua.service.UserService;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -52,10 +51,10 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public List<PlaceView> findPlaceIdByUserId(Principal principal) {
+    public List<PlaceView> findPlaceIdByUserId() {
         LOG.info("In 'findPlaceIdByUserId' method");
-        if (principal != null) {
-            User user = userService.findCurrentUser();
+        User user = userService.findCurrentUser();
+        if (Objects.nonNull(user)) {
             return repository.findPlaceIdByUserId(user.getId());
         }
         LOG.info("Exit from 'findPlaceIdByUserId' method");
@@ -87,8 +86,10 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public void deletePlace(Integer id) {
-        repository.deleteById(id);
+    public void deletePlace(Integer placeId) {
+        LOG.info("In 'deletePlace' method. PlaceId = {}", placeId);
+        repository.deleteById(placeId);
+        LOG.info("Exit from 'deletePlace' method");
     }
 
     @Override
@@ -103,10 +104,12 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public void makePlaceFree(Integer placeId){
+    public void makePlaceFree(Integer placeId) {
+        LOG.info("In 'makePlaceFree' method. PlaceId = {}", placeId);
         Place place = repository.findPlaceById(placeId);
         place.setFree(true);
         place.setUser(null);
         repository.save(place);
+        LOG.info("Exit from 'makePlaceFree' method");
     }
 }

@@ -142,15 +142,11 @@ public class MealServiceImpl implements MealService {
     public MealRequest uploadPhotoToCloudinary(MealRequest mealRequest, MultipartFile toUpload) throws IOException {
         LOG.info("In 'uploadPhotoToCloudinary' method. FilePath = {}", toUpload);
         @SuppressWarnings("rawtypes")
-        Map uploadResult = cloudinary.uploader().upload(toUpload.getBytes(),
-                ObjectUtils.asMap("use_filename", "true", "unique_filename", "false"));
+        Map uploadResult = cloudinary.uploader().upload(toUpload.getBytes(), ObjectUtils.asMap("use_filename",
+                "true", "unique_filename", "false"));
         String cloudinaryUrl = (String) uploadResult.get("url");
-        String oldPhotoUrl = mealRequest.getPhotoUrl();
-        if (cloudinaryUrl.equals(oldPhotoUrl)) {
-            mealRequest.setVersion(mealRequest.getVersion() + 1);
-        } else {
-            mealRequest.setVersion(0);
-        }
+        int version = cloudinaryUrl.equals(mealRequest.getPhotoUrl()) ? mealRequest.getVersion() + 1 : 0;
+        mealRequest.setVersion(version);
         mealRequest.setPhotoUrl(cloudinaryUrl);
         LOG.info("Exit from uploadPhotoToCloudinary method. MealRequest = {}", mealRequest);
         return mealRequest;

@@ -1,12 +1,9 @@
 package ua.controller;
 
-import java.security.Principal;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import ua.service.PlaceService;
 
 @Controller
@@ -20,9 +17,9 @@ public class PlaceController {
     }
 
     @GetMapping("/place")
-    public String place(Model model, Principal principal) {
+    public String place(Model model) {
         model.addAttribute("places", service.findAllPlaceViews());
-        model.addAttribute("myPlaces", service.findPlaceIdByUserId(principal));
+        model.addAttribute("myPlaces", service.findPlaceIdByUserId());
         return "place";
     }
 
@@ -31,5 +28,4 @@ public class PlaceController {
         service.updatePlaceUserId(id);
         return "redirect:/place/{id}/order";
     }
-
 }

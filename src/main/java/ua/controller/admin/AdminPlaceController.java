@@ -16,7 +16,6 @@ import ua.model.request.PlaceRequest;
 import ua.service.PlaceService;
 import ua.validation.flag.PlaceFlag;
 
-import java.security.Principal;
 import java.sql.SQLException;
 
 import static ua.controller.ControllerUtils.buildParams;

@@ -1,5 +1,7 @@
 package ua.service.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,31 +16,30 @@ import ua.model.view.OrderView;
 import ua.model.view.PlaceView;
 import ua.repository.*;
 import ua.service.OrderService;
+import ua.service.UserService;
 
-import java.security.Principal;
 import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-
+    private static final Logger LOG = LoggerFactory.getLogger(OrderServiceImpl.class);
     private final OrderRepository repository;
-
     private final OrderViewRepository orderViewRepository;
-
     private final MealRepository mealRepository;
-
     private final PlaceRepository placeRepository;
-
     private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
     public OrderServiceImpl(OrderRepository repository, OrderViewRepository orderViewRepository,
-                            MealRepository mealRepository, PlaceRepository placeRepository, UserRepository userRepository) {
+                            MealRepository mealRepository, PlaceRepository placeRepository,
+                            UserRepository userRepository, UserService userService) {
         this.repository = repository;
         this.orderViewRepository = orderViewRepository;
         this.mealRepository = mealRepository;
         this.placeRepository = placeRepository;
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -73,6 +74,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<OrderView> findAll(Pageable pageable, OrderFilter filter) {
+        LOG.info("In 'findAll' method");
         Page<OrderView> ordersPage = orderViewRepository.findAllView(filter, pageable);
         for (OrderView orderView : ordersPage) {
             orderView.setMealViews(findMealViewsForOrder(orderView.getId()));
@@ -82,6 +84,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderView> findOrderViewsForTable(Integer tableId) {
+        LOG.info("In 'findOrderViewsForTable' method. Id = {}", tableId);
         List<OrderView> ordersPage = repository.findOrderViewsForTable(tableId);
         for (OrderView orderView : ordersPage) {
             orderView.setMealViews(findMealViewsForOrder(orderView.getId()));
@@ -95,41 +98,44 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void saveOrder(OrderRequest request, Principal principal) {
+    public void saveOrder(OrderRequest request) {
+        LOG.info("In 'saveOrder' method");
         Order order = new Order();
         order.setId(request.getId());
         order.setPlace(request.getPlace());
         order.setMeals(request.getMeals());
         order.setStatus(request.getStatus());
 
-        String email = principal.getName();
-        User user = userRepository.findUserByEmail(email);
+        User user = userService.findCurrentUser();
         List<Meal> userMeals = user.getMeals();
-        List<Meal> orderMeals = order.getMeals();
-        for (Meal meal : orderMeals) {
+        for (Meal meal : order.getMeals()) {
             if (!userMeals.contains(meal))
                 userMeals.add(meal);
         }
         user.setMeals(userMeals);
         userRepository.save(user);
         repository.save(order);
+        LOG.info("Exit from 'saveOrder' method");
     }
 
     @Override
-    public OrderRequest findOneRequest(Integer id) {
+    public OrderRequest findOneOrderRequest(Integer id) {
+        LOG.info("In 'findOneOrderRequest' method. Id = {}", id);
         Order order = repository.findOneRequest(id);
         OrderRequest request = new OrderRequest();
         request.setId(order.getId());
         request.setPlace(order.getPlace());
         request.setMeals(order.getMeals());
+        LOG.info("Exit from 'findOneOrderRequest' method");
         return request;
     }
 
     @Override
     public void updateOrderStatus(Integer id, String newStatus) {
+        LOG.info("In 'updateOrderStatus' method. Id = {}, NewStatus = {}", id, newStatus);
         Order order = repository.findOrderById(id);
         order.setStatus(newStatus);
         repository.save(order);
+        LOG.info("Exit from 'updateOrderStatus' method");
     }
-
 }

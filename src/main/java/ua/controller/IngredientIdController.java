@@ -22,8 +22,6 @@ import ua.service.IngredientService;
 import ua.service.UserService;
 import ua.validation.flag.CommentFlag;
 
-import java.security.Principal;
-
 import static ua.controller.ControllerUtils.buildParams;
 
 @Controller
@@ -82,13 +80,13 @@ public class IngredientIdController {
      */
     @PostMapping("/ingredient/{id}")
     public String ingredientIdComment(@PathVariable Integer id, @ModelAttribute("comment") @Validated(CommentFlag.class)
-            CommentRequest commentRequest, Principal principal) {
-        if (userService.findUserByEmail(principal.getName()).getRole() == Role.ROLE_ADMIN) {
+            CommentRequest commentRequest) {
+        if (userService.findCurrentUser().getRole() == Role.ROLE_ADMIN) {
             saveComment(id, commentRequest);
             return REDIRECT_INGREDIENT_ID;
         }
         if (mealViews != null) {
-            if (userService.findMealInUserOrders(mealViews, principal)) {
+            if (userService.findMealInUserOrders(mealViews)) {
                 saveComment(id, commentRequest);
             } else {
                 error = "Taste the ingredient before the evaluation";

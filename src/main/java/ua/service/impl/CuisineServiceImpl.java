@@ -23,11 +23,11 @@ public class CuisineServiceImpl extends CrudServiceImpl<Cuisine, Integer> implem
 	}	
 
 	@Override
-	public Page<Cuisine> findAll(Pageable pageable, SimpleFilter filter) {
-		return repository.findAll(filter(filter), pageable);
+	public Page<Cuisine> findAll(Pageable pageable, SimpleFilter simpleFilter) {
+		return repository.findAll(filterCuisines(simpleFilter), pageable);
 	}
 	
-	private Specification<Cuisine> filter(SimpleFilter filter){
+	private Specification<Cuisine> filterCuisines(SimpleFilter filter){
 		return (root, query, cb) -> {
 			if(filter.getSearch().isEmpty()){
 				return null;

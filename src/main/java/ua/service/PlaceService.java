@@ -1,32 +1,30 @@
 package ua.service;
 
-import java.security.Principal;
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 import ua.model.filter.PlaceFilter;
 import ua.model.request.PlaceRequest;
 import ua.model.view.PlaceView;
 
+import java.util.List;
+
 public interface PlaceService {
 
-	Page<PlaceView> findAllView(Pageable pageable, PlaceFilter filter);
-	
-	List<PlaceView> findAllPlaceViews();
-	
-	List<String> findAllPlacesCountOfPeople();
-	
-	List<PlaceView> findPlaceIdByUserId (Principal principal);
-	
-	void savePlace(PlaceRequest request);
+    Page<PlaceView> findAllView(Pageable pageable, PlaceFilter filter);
 
-	PlaceRequest findOnePlaceRequest(Integer id);
+    List<PlaceView> findAllPlaceViews();
 
-	void deletePlace(Integer id);
+    List<String> findAllPlacesCountOfPeople();
 
-	void updatePlaceUserId(Integer placeId);
+    List<PlaceView> findPlaceIdByUserId();
 
-	void makePlaceFree(Integer placeId);
+    void savePlace(PlaceRequest request);
+
+    PlaceRequest findOnePlaceRequest(Integer id);
+
+    void deletePlace(Integer id);
+
+    void updatePlaceUserId(Integer placeId);
+
+    void makePlaceFree(Integer placeId);
 }

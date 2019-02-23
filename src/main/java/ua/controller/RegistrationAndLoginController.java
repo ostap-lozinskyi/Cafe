@@ -23,7 +23,6 @@ import ua.service.UserService;
 import ua.validation.flag.UserFlag;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -76,7 +75,7 @@ public class RegistrationAndLoginController {
      * Show Login page
      */
     @GetMapping("/login")
-    public String showLogin(Principal principal) {
+    public String showLogin() {
         return "login";
     }
 

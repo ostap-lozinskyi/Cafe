@@ -11,7 +11,6 @@ import ua.service.CommentService;
 import ua.service.MealService;
 import ua.service.UserService;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -55,9 +54,9 @@ public class MenuItemController {
      * Commenting and setting rate
      */
     @PostMapping
-    public String mealIdCommentAndRate(Model model, @PathVariable Integer id,
-                                       @ModelAttribute("comment") CommentRequest commentRequest, Principal principal) {
-        List<Integer> userMealsIds = userService.findUserMealsIds(principal);
+    public String mealIdCommentAndRate(@PathVariable Integer id,
+                                       @ModelAttribute("comment") CommentRequest commentRequest) {
+        List<Integer> userMealsIds = userService.findUserMealsIds();
         if (userMealsIds.contains(id)) {
             if (commentRequest.getRate() != null) {
                 Integer commentId = commentService.saveComment(commentRequest);

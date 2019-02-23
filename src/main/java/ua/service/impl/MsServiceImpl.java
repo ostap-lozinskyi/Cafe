@@ -23,11 +23,11 @@ public class MsServiceImpl extends CrudServiceImpl<Ms, Integer> implements MsSer
 	}
 
 	@Override
-	public Page<Ms> findAll(Pageable pageable, SimpleFilter filter) {
-		return msRepository.findAll(filter(filter), pageable);
+	public Page<Ms> findAll(Pageable pageable, SimpleFilter simpleFilter) {
+		return msRepository.findAll(filterMss(simpleFilter), pageable);
 	}
 	
-	private Specification<Ms> filter(SimpleFilter filter){
+	private Specification<Ms> filterMss(SimpleFilter filter){
 		return (root, query, cb) -> {
 			if(filter.getSearch().isEmpty()) return null;
 			return cb.like(root.get("name"), filter.getSearch()+"%");

@@ -10,7 +10,6 @@ import ua.model.request.FileRequest;
 import ua.service.UserService;
 
 import java.io.IOException;
-import java.security.Principal;
 
 @Controller
 public class UserCabinetController {
@@ -30,11 +29,10 @@ public class UserCabinetController {
      * Show User cabinet page
      */
     @GetMapping("/userCabinet")
-    public String userCabinet(Model model, Principal principal) {
-        String email = principal.getName();
-        User user = userService.findUserByEmail(email);
+    public String userCabinet(Model model) {
+        User user = userService.findCurrentUser();
         model.addAttribute("user", user);
-        model.addAttribute("meals", userService.findUserMealViews(principal));
+        model.addAttribute("meals", userService.findUserMealViews());
         return "userCabinet";
     }
 
@@ -42,10 +40,9 @@ public class UserCabinetController {
      * Attaching photo to User
      */
     @PostMapping("/userCabinet")
-    public String saveFile(@ModelAttribute("fileRequest") FileRequest fileRequest,
-                           Principal principal) {
+    public String saveFile(@ModelAttribute("fileRequest") FileRequest fileRequest) {
         try {
-            userService.uploadPhotoToCloudinary(fileRequest.getFile(), principal);
+            userService.uploadPhotoToCloudinary(fileRequest.getFile());
         } catch (IOException e) {
             e.printStackTrace();
         }
