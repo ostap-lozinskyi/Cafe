@@ -145,7 +145,7 @@
     </div>
     <div class="newsSection">
         <div>
-            <h2 class="menuHeadline">News</h2>
+            <h2 class="menuHeadline">The latest news</h2>
         </div>
         <div class="newsContent">
             <div class="newsItem">
@@ -153,17 +153,32 @@
                 <div class="newsText">
                     Project migrated to Spring Boot version 2.0.6
                 </div>
+                <div class="newsDetails">
+                    <button type="button" class="newsDetailsButton" onclick="location.href='/registration'">
+                        See details
+                    </button>
+                </div>
             </div>
             <div class="newsItem">
                 <div class="newsDate">15.11.2018</div>
                 <div class="newsText">
                     Bugs fixed
                 </div>
+                <div class="newsDetails">
+                    <button type="button" class="newsDetailsButton" onclick="location.href='/registration'">
+                        See details
+                    </button>
+                </div>
             </div>
             <div class="newsItem">
                 <div class="newsDate">03.11.2018</div>
                 <div class="newsText">
                     Section 'News' added.
+                </div>
+                <div class="newsDetails">
+                    <button type="button" class="newsDetailsButton" onclick="location.href='/registration'">
+                        See details
+                    </button>
                 </div>
             </div>
         </div>

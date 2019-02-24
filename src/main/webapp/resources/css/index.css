@@ -88,6 +88,25 @@ button {
     opacity: 0.75
 }
 
+.newsDetailsButton {
+    width: 120px;
+    border: 1px solid #361b08;
+    background: rgba(255,255,255,0.4);
+    border-radius: 1.5625rem;
+    box-shadow: none;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: Segoe UI, Arial, sans-serif;
+    color: #361b08;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.newsDetailsButton:hover, .newsDetailsButton:focus {
+    background: rgba(255,255,255,0.6);
+}
+
 .mealsContainer {
     display: flex;
     justify-content: center;
@@ -524,20 +543,24 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .newsItem {
-    border: solid 1px;
-    border-color: black;
+    border: 1px solid black;
     box-shadow: 7px 7px 5px #361b08;
     height: 400px;
     width: 17%;
     margin-right: 12px;
     margin-left: 12px;
     padding: 15px;
-    background-color: #afa196;
+    background: url(/resources/img/detailsBackground.jpg);
+    /*background-color: #afa196;*/
     text-align: center;
     color: #361b08;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .newsDate {
@@ -548,6 +571,10 @@ footer {
 .newsText {
     font-size: 30px;
     font-weight: bold;
+}
+
+.newsDetails {
+    width: 100%;
 }
 
 .map {
