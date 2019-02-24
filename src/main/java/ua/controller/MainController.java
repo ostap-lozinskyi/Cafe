@@ -23,8 +23,6 @@ public class MainController {
     public String index(Model model, Principal principal) {
         if (principal != null) {
             model.addAttribute("message", "Hello " + principal.getName());
-        } else {
-            model.addAttribute("message", "Hello guest");
         }
         model.addAttribute("meals", service.find5MealIndexViewsByRate());
         return "index";

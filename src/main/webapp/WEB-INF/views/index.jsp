@@ -35,8 +35,7 @@
         <div class="headerRow">
             <div class="contactUsContainer">
                 <a class="contactUsLink">Contact us</a>
-                <br><a class="phoneLink"> +380 <span class="point">•</span> 67 <span class="point">•</span> 67 <span
-                    class="point">•</span> 55 <span class="point">•</span> 230</a>
+                <br><a class="phoneLink"> +380 67 67 55 230</a>
             </div>
             <div class="mainLogoContainer">
                 <img class="mainLogo" src="/resources/img/cafe-logo.png" alt="Cafe" title="Cafe">
@@ -44,35 +43,31 @@
             <div class="headerButtonsContainer">
                 <h2>${message}</h2>
                 <div class="horizontalButtons">
-                    <div class="headerLeftButton">
-                        <sec:authorize access="isAnonymous()">
-                                <button type="button" class="transparentButton" onclick="location.href='/registration'">
-                                    Register
-                                </button>
-                        </sec:authorize>
-                        <sec:authorize access="hasRole('ROLE_CLIENT')">
-                            <button type="button" class="transparentButton" onclick="location.href='/userCabinet'">
-                                Cabinet
-                            </button>
-                        </sec:authorize>
-                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <button type="button" class="transparentButton" onclick="location.href='/admin'">
-                                Admin
-                            </button>
-                        </sec:authorize>
-                    </div>
-                    <div class="headerRightButton">
-                        <sec:authorize access="isAnonymous()">
-                            <button type="button" class="transparentButton" onclick="location.href='/login'">
-                                Login
-                            </button>
-                        </sec:authorize>
-                        <sec:authorize access="isAuthenticated()">
-                            <form:form action="/logout">
-                                <button class="transparentButton">Logout</button>
-                            </form:form>
-                        </sec:authorize>
-                    </div>
+                    <sec:authorize access="isAnonymous()">
+                        <button type="button" class="transparentButton" onclick="location.href='/registration'">
+                            Register
+                        </button>
+                    </sec:authorize>
+                    <sec:authorize access="hasRole('ROLE_CLIENT')">
+                        <button type="button" class="transparentButton" onclick="location.href='/userCabinet'">
+                            Cabinet
+                        </button>
+                    </sec:authorize>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <button type="button" class="transparentButton" onclick="location.href='/admin'">
+                            Admin
+                        </button>
+                    </sec:authorize>
+                    <sec:authorize access="isAnonymous()">
+                        <button type="button" class="transparentButton" onclick="location.href='/login'">
+                            Login
+                        </button>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <form:form action="/logout">
+                            <button class="transparentButton">Logout</button>
+                        </form:form>
+                    </sec:authorize>
                 </div>
             </div>
         </div>

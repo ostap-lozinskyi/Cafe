@@ -69,8 +69,6 @@ button {
 }
 
 .transparentButton {
-    /*display: inline-block;*/
-    /*padding: 0.75rem 2.25rem 0.8125rem;*/
     width: 120px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     background: transparent;
@@ -82,7 +80,7 @@ button {
     color: #fff;
     text-align: center;
     text-decoration: none;
-
+    margin: 10px;
 }
 
 .transparentButton:hover, .transparentButton:focus {
@@ -363,7 +361,7 @@ footer {
     margin-left: -50px;
     width: 100px;
     height: 100px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 50%;
     background: url("/resources/img/mouse.png") no-repeat 50% 50%;
     z-index: 2;
@@ -385,7 +383,12 @@ footer {
 }
 
 .headerButtonsContainer {
-    width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 20%;
+    margin-right: 20%;
+    text-align: center;
 }
 
 .buttonContainerWrapper {
@@ -454,15 +457,14 @@ footer {
 .phoneLink {
     font-size: 1.65rem;
     line-height: 1;
-    letter-spacing: -1.8px;
-    color: white !important;
+    letter-spacing: 1.8px;
+    color: white;
     text-decoration: none;
-    border-bottom: 1px dashed #ffffff !important;
 }
 
 .phoneLink:hover {
     color: #ffffff;
-    border-bottom-color: transparent !important
+    border-bottom-color: transparent
 }
 
 .contactUsContainer {
@@ -472,42 +474,26 @@ footer {
 }
 
 .contactUsLink {
-    color: white !important;
+    color: white;
     border-bottom: none;
     opacity: .6;
     text-align: left
 }
 
 .contactUsLink:hover {
-    color: white !important;
+    color: white;
     opacity: 1
-}
-
-.point {
-    position: relative;
-    bottom: 0.1875rem;
-    vertical-align: middle;
-    font-size: 0.75rem;
-    color: #ffffff;
-    opacity: 0.6
 }
 
 .mainLogoContainer {
     width: 300px;
     margin-top: 10%;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 4%;
+    margin-right: 4%;
 }
 
 .mainLogo {
     width: 100%;
-}
-
-.headerButtonsContainer {
-    flex-direction: column;
-    text-align: center;
-    width: 20%;
-    margin-right: 20%;
 }
 
 .horizontalButtons {
@@ -516,16 +502,6 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 5px;
-}
-
-.headerLeftButton {
-    width: 30%;
-    margin-right: 5%;
-}
-
-.headerRightButton {
-    width: 40%;
-    margin-left: 5%;
 }
 
 .comment {
@@ -542,7 +518,6 @@ footer {
     padding-top: 70px;
     padding-bottom: 50px;
     background: url(/resources/img/backgroundImage2.jpg);
-
 }
 
 .newsContent {
@@ -580,7 +555,7 @@ footer {
     height: 700px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
     .headerRow {
         flex-direction: column;
     }
