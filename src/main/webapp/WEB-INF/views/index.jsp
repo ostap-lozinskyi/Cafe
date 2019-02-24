@@ -87,11 +87,7 @@
 </div>
 
 <div style="background: url(/resources/img/backgroundImage2.jpg);">
-    <div class="row">
-        <div class="col-12 center">
-            <h1 class="menuHeadline">Top rated meals</h1>
-        </div>
-    </div>
+    <h1 class="menuHeadline">Top rated meals</h1>
     <div class="mealsContainer">
         <c:forEach var="meal" items="${meals}" end="4">
             <div class="itemContainer">

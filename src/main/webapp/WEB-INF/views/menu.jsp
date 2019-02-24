@@ -41,25 +41,14 @@
     <title>Menu</title>
 </head>
 <body style="background: url(/resources/img/backgroundImage2.jpg)">
+<h1 class="menuHeadline">Menu</h1>
+<header>
+    <a class="btnCafe" href="/">Main page</a>
+    <a class="btnCafe" href="/ingredient">Ingredients</a>
+    <a class="btnCafe" href="/place">Tables</a>
+</header>
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <h1 class="menuHeadline">Menu</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-2 col-sm-4 text-center">
-            <br>
-            <a class="btnCafe " href="/">Main page</a>
-        </div>
-        <div class="col-lg-2 col-sm-4 text-center">
-            <br>
-            <a class="btnCafe " href="/ingredient">Ingredients</a>
-        </div>
-        <div class="col-lg-2 col-sm-4 text-center">
-            <br>
-            <a class="btnCafe " href="/place">Tables</a>
-        </div>
         <div class="col-12">
             <br>
             <p>
