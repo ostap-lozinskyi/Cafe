@@ -40,6 +40,8 @@ img, img:focus {
 h1, h2, h3, h4 {
     color: #361b08;
     font-weight: normal;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .btnCafe {
