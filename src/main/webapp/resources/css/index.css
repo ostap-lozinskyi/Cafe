@@ -40,6 +40,9 @@ img, img:focus {
 h1, h2, h3, h4 {
     color: #361b08;
     font-weight: normal;
+}
+
+h3 {
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -312,6 +315,17 @@ header {
     justify-content: center;
     background-color: #76ad00;
     height: 55px;
+    margin-bottom: 10px;
+}
+
+.pageTitle {
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    background-color: white;
+    font-size: 40px;
+    padding-bottom: 10px;
+    margin-bottom: -5px;
 }
 
 footer {
@@ -476,10 +490,8 @@ footer {
     text-align: center;
     text-decoration: underline;
     color: black;
-    background-color: white;
     font-size: 40px;
     padding-bottom: 10px;
-    margin-bottom: -5px;
 }
 
 .phoneLink {

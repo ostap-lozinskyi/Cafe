@@ -41,7 +41,7 @@
     <title>Menu</title>
 </head>
 <body style="background: url(/resources/img/backgroundImage2.jpg)">
-<h1 class="menuHeadline">Menu</h1>
+<h1 class="pageTitle">Menu</h1>
 <header>
     <button type="button" class="btnCafe" onclick="location.href='/'">
         Main page
@@ -169,7 +169,7 @@
     </div>
     <div class="footerDevelopedBy">
         Developed by <a href="https://ua.linkedin.com/in/ostap-lozinskyj" target="_blank" class="underlined">Ostap
-        Lozinskyj</a>
+        Lozinskyi</a>
     </div>
 </footer>
 </body>

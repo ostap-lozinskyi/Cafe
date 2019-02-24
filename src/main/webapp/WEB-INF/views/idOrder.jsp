@@ -30,24 +30,19 @@
 <title>Order</title>
 </head>
 <body style="background: url(/resources/img/backgroundImage2.jpg)">
+<h1 class="pageTitle">Order meals</h1>
+<header>
+    <button type="button" class="btnCafe" onclick="location.href='/'">
+        Main page
+    </button>
+    <button type="button" class="btnCafe" onclick="location.href='/menu'">
+        Menu
+    </button>
+    <button type="button" class="btnCafe" onclick="location.href='/place'">
+        Tables
+    </button>
+</header>
 	<div class="container" class="container" style="background-color: white;">
-		<div class="row">
-			<div class="col-12">
-				<h1 class="text-center">Order</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<div class="text-center">
-				<div class="btn-group text-center" role="group" aria-label="Basic example">
-					<a class="btn btn-outline-success" href="/">Main Page</a>
-					<a class="btn btn-outline-success" href="/menu">Menu</a>
-					<a class="btn btn-outline-success" href="/place">Tables</a>
-				</div>
-				</div>				
-			</div>
-		</div>
-		<br>
 		<div class="row">
 			<div class="col-12">
 				<form:form action="/place/${placeCurrent.id}/order" method="POST" modelAttribute="order">
@@ -107,7 +102,7 @@
 													${orderedMeal.name}
 												</div>
 											</div>
-										
+
 										</div>
 									</c:forEach>
 								</div>
@@ -119,7 +114,7 @@
 			</div>
 		</div>
 	</div>
-	<footer>
+	<footer class="fixed-bottom">
 		<div class="footerFirstRow">
 			<div class="footerText">
 				© Cafe 2017
@@ -133,7 +128,7 @@
 		</div>
 		<div class="footerDevelopedBy">
 			Developed by <a href="https://ua.linkedin.com/in/ostap-lozinskyj" target="_blank" class="underlined">Ostap
-			Lozinskyj</a>
+			Lozinskyi</a>
 		</div>
 	</footer>
 </body>

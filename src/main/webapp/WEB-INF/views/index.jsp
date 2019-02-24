@@ -201,7 +201,7 @@
     </div>
     <div class="footerDevelopedBy">
         Developed by <a href="https://ua.linkedin.com/in/ostap-lozinskyj" target="_blank" class="underlined">Ostap
-        Lozinskyj</a>
+        Lozinskyi</a>
     </div>
 </footer>
 </body>
