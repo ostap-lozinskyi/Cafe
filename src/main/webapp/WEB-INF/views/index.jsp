@@ -46,18 +46,26 @@
                 <div class="horizontalButtons">
                     <div class="headerLeftButton">
                         <sec:authorize access="isAnonymous()">
-                            <a class="transparentButton" href="/registration">Register</a>
+                                <button type="button" class="transparentButton" onclick="location.href='/registration'">
+                                    Register
+                                </button>
                         </sec:authorize>
                         <sec:authorize access="hasRole('ROLE_CLIENT')">
-                            <a class="transparentButton" href="/userCabinet">Cabinet</a>
+                            <button type="button" class="transparentButton" onclick="location.href='/userCabinet'">
+                                Cabinet
+                            </button>
                         </sec:authorize>
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <a class="transparentButton" href="/admin">Admin</a>
+                            <button type="button" class="transparentButton" onclick="location.href='/admin'">
+                                Admin
+                            </button>
                         </sec:authorize>
                     </div>
                     <div class="headerRightButton">
                         <sec:authorize access="isAnonymous()">
-                            <a class="transparentButton" href="/login">Login</a>
+                            <button type="button" class="transparentButton" onclick="location.href='/login'">
+                                Login
+                            </button>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
                             <form:form action="/logout">

@@ -69,8 +69,9 @@ button {
 }
 
 .transparentButton {
-    display: inline-block;
-    padding: 0.75rem 2.25rem 0.8125rem;
+    /*display: inline-block;*/
+    /*padding: 0.75rem 2.25rem 0.8125rem;*/
+    width: 120px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     background: transparent;
     border-radius: 1.5625rem;
@@ -492,8 +493,8 @@ footer {
 }
 
 .mainLogoContainer {
-    width: 16%;
-    margin-top: 15px;
+    width: 300px;
+    margin-top: 10%;
     margin-left: 2%;
     margin-right: 2%;
 }
@@ -598,6 +599,7 @@ footer {
     .headerButtonsContainer {
         display: flex;
         flex-direction: column;
+        flex-wrap: wrap;
         text-align: center;
         width: 100%;
         margin-right: 0;
