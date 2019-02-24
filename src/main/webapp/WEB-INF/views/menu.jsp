@@ -43,72 +43,66 @@
 <body style="background: url(/resources/img/backgroundImage2.jpg)">
 <h1 class="menuHeadline">Menu</h1>
 <header>
-    <a class="btnCafe" href="/">Main page</a>
-    <a class="btnCafe" href="/ingredient">Ingredients</a>
-    <a class="btnCafe" href="/place">Tables</a>
+    <button type="button" class="btnCafe" onclick="location.href='/'">
+        Main page
+    </button>
+    <button type="button" class="btnCafe" onclick="location.href='/ingredient'">
+        Ingredients
+    </button>
+    <button type="button" class="btnCafe" onclick="location.href='/place'">
+        Tables
+    </button>
+    <button class="btnCafe " type="button"
+            data-toggle="collapse" data-target="#firstCollapse"
+            aria-expanded="false" aria-controls="firstCollapse">
+        Search meal
+    </button>
 </header>
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <br>
-            <p>
-                <button class="btnCafe " type="button"
-                        data-toggle="collapse" data-target="#firstCollapse"
-                        aria-expanded="false" aria-controls="firstCollapse">
-                    Search meal
-                </button>
-            </p>
-            <div class="collapse" id="firstCollapse">
-                <div class="card card-body">
-                    <form:form action="/menu" method="GET" modelAttribute="mealFilter">
-                        <div class="form-group row">
-                            <div class="col-lg-2 col-sm-4 margin">
-                                <form:input path="minRate" class="form-control" placeholder="Min rate"/>
-                            </div>
-                            <div class="col-lg-2 col-sm-4 margin">
-                                <form:input path="maxRate" class="form-control" placeholder="Max rate"/>
-                            </div>
-                            <div class="col-lg-2 col-sm-4 margin">
-                                <form:input path="minPrice" class="form-control" placeholder="Min price"/>
-                            </div>
-                            <div class="col-lg-2 col-sm-4 margin">
-                                <form:input path="maxPrice" class="form-control" placeholder="Max price"/>
-                            </div>
-                            <div class="col-lg-2 col-sm-4 margin">
-                                <form:input path="minWeight" class="form-control" placeholder="Min weight"/>
-                            </div>
-                            <div class="col-lg-2 col-sm-4 margin">
-                                <form:input path="maxWeight" class="form-control" placeholder="Max weight"/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-lg-2 col-sm-4 margin">
-                                <form:input path="search" class="form-control" placeholder="By name"/>
-                            </div>
-                            <div class="col-lg-2 col-sm-4 margin">
-                                <p>
-                                    <button class="btn btn-outline-secondary" type="button"
-                                            data-toggle="collapse" data-target="#secondCollapse"
-                                            aria-expanded="false" aria-controls="secondCollapse">
-                                        Select cuisine
-                                    </button>
-                                </p>
-                                <div class="collapse" id="secondCollapse">
-                                    <div class="card card-body">
-                                        <form:checkboxes items="${cuisines}" path="cuisineName" element="div"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btnCafe ">Search</button>
+    <div class="collapse" id="firstCollapse">
+        <div class="card card-body">
+            <form:form action="/menu" method="GET" modelAttribute="mealFilter">
+                <div class="form-group searchContainer">
+                    <div class="searchItem">
+                        <form:input path="minRate" class="form-control" placeholder="Min rate"/>
+                    </div>
+                    <div class="searchItem">
+                        <form:input path="maxRate" class="form-control" placeholder="Max rate"/>
+                    </div>
+                    <div class="searchItem">
+                        <form:input path="minPrice" class="form-control" placeholder="Min price"/>
+                    </div>
+                    <div class="searchItem">
+                        <form:input path="maxPrice" class="form-control" placeholder="Max price"/>
+                    </div>
+                    <div class="searchItem">
+                        <form:input path="minWeight" class="form-control" placeholder="Min weight"/>
+                    </div>
+                    <div class="searchItem">
+                        <form:input path="maxWeight" class="form-control" placeholder="Max weight"/>
+                    </div>
+                    <div class="searchItem">
+                        <form:input path="search" class="form-control" placeholder="By name"/>
+                    </div>
+                    <div class="searchItem">
+                        <button class="selectButton" type="button"
+                                data-toggle="collapse" data-target="#secondCollapse"
+                                aria-expanded="false" aria-controls="secondCollapse">
+                            Cuisine
+                        </button>
+                        <div class="collapse" id="secondCollapse">
+                            <div class="card card-body">
+                                <form:checkboxes items="${cuisines}" path="cuisineName" element="div"/>
                             </div>
                         </div>
-                    </form:form>
+                    </div>
+                    <div class="searchItem">
+                        <button type="submit" class="btnCafe ">Search</button>
+                    </div>
                 </div>
-            </div>
+            </form:form>
         </div>
     </div>
-    <br>
 </div>
 <div class="text-center">
     <c:if test="${empty meals.content}">
