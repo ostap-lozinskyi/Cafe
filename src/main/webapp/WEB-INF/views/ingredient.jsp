@@ -31,17 +31,19 @@
 <title>Menu</title>
 </head>
 <body style="background: url(/resources/img/backgroundImage2.jpg)">
-<h1 class="pageTitle">Ingredients</h1>
 <header>
-	<button type="button" class="btnCafe" onclick="location.href='/'">
+	<a class="headerButton" href="/">
 		Main page
-	</button>
-	<button type="button" class="btnCafe" onclick="location.href='/menu'">
+	</a>
+	<a class="headerButton" href="/menu">
 		Menu
-	</button>
-	<button type="button" class="btnCafe" onclick="location.href='/place'">
+	</a>
+	<a class="headerButtonActive" href="/ingredient">
+		Ingredients
+	</a>
+	<a class="headerButton" href="/place">
 		Tables
-	</button>
+	</a>
 </header>
 	<div class="container" style="background-color: white;">
 		<div class="row">

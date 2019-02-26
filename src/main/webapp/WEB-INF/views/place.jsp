@@ -41,14 +41,19 @@
     <title>ReserveTable</title>
 </head>
 <body style="background: url(/resources/img/backgroundImage2.jpg)">
-<h1 class="pageTitle">Reserve Table</h1>
 <header>
-    <button type="button" class="btnCafe" onclick="location.href='/'">
+    <a class="headerButton" href="/">
         Main page
-    </button>
-    <button type="button" class="btnCafe" onclick="location.href='/menu'">
+    </a>
+    <a class="headerButton" href="/menu">
         Menu
-    </button>
+    </a>
+    <a class="headerButton" href="/ingredient">
+        Ingredients
+    </a>
+    <a class="headerButtonActive" href="/place">
+        Tables
+    </a>
 </header>
 <div class="container" style="background-color: white;">
     <div class="row">

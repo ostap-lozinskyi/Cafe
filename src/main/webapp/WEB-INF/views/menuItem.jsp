@@ -42,17 +42,19 @@
     <title>${meal.name}</title>
 </head>
 <body style="background: url(/resources/img/backgroundImage2.jpg)">
-<h1 class="pageTitle">${meal.name}</h1>
 <header>
-    <button type="button" class="btnCafe" onclick="location.href='/'">
+    <a class="headerButton" href="/">
         Main page
-    </button>
-    <button type="button" class="btnCafe" onclick="location.href='/menu'">
+    </a>
+    <a class="headerButton" href="/menu">
         Menu
-    </button>
-    <button type="button" class="btnCafe" onclick="location.href='/ingredient'">
+    </a>
+    <a class="headerButton" href="/ingredient">
         Ingredients
-    </button>
+    </a>
+    <a class="headerButton" href="/place">
+        Tables
+    </a>
 </header>
 <div class="container" style="background-color: white;">
     <div class="row">

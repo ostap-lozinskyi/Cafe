@@ -41,22 +41,24 @@
     <title>Menu</title>
 </head>
 <body style="background: url(/resources/img/backgroundImage2.jpg)">
-<h1 class="pageTitle">Menu</h1>
 <header>
-    <button type="button" class="btnCafe" onclick="location.href='/'">
+    <a class="headerButton" href="/">
         Main page
-    </button>
-    <button type="button" class="btnCafe" onclick="location.href='/ingredient'">
+    </a>
+    <a class="headerButtonActive" href="/menu">
+        Menu
+    </a>
+    <a class="headerButton" href="/ingredient">
         Ingredients
-    </button>
-    <button type="button" class="btnCafe" onclick="location.href='/place'">
+    </a>
+    <a class="headerButton" href="/place">
         Tables
-    </button>
-    <button class="btnCafe " type="button"
+    </a>
+    <a class="headerButton " href=""
             data-toggle="collapse" data-target="#firstCollapse"
             aria-expanded="false" aria-controls="firstCollapse">
         Search meal
-    </button>
+    </a>
 </header>
 <div class="container">
     <div class="collapse" id="firstCollapse">

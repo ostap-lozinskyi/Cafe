@@ -69,12 +69,9 @@ h3 {
     opacity: 0.75
 }
 
-button {
-    height: 51px;
-}
-
 .transparentButton {
     width: 120px;
+    height: 51px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     background: transparent;
     border-radius: 1.5625rem;
@@ -95,6 +92,7 @@ button {
 
 .newsDetailsButton {
     width: 120px;
+    height: 51px;
     border: 1px solid #361b08;
     background: rgba(255,255,255,0.4);
     border-radius: 1.5625rem;
@@ -310,6 +308,11 @@ button {
     opacity: 0.56
 }
 
+.beforeHeader {
+    display: flex;
+    background-color: white;
+}
+
 header {
     display: flex;
     justify-content: center;
@@ -318,14 +321,43 @@ header {
     margin-bottom: 10px;
 }
 
-.pageTitle {
-    font-weight: bold;
+.headerButton {
+    width: 120px;
+    border: 1px solid transparent;
+    background: transparent;
+    border-radius: 1.5625rem;
+    box-shadow: none;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: Segoe UI, Arial, sans-serif;
+    color: white;
     text-align: center;
-    color: black;
-    background-color: white;
-    font-size: 40px;
-    padding-bottom: 10px;
-    margin-bottom: -5px;
+    text-decoration: none;
+    margin: 12px;
+}
+
+.headerButton:hover, .headerButton:focus {
+    border: 1px solid yellowgreen;
+    color: white;
+}
+
+.headerButtonActive {
+    width: 120px;
+    border: 1px solid yellowgreen;
+    background: transparent;
+    border-radius: 1.5625rem;
+    box-shadow: none;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: Segoe UI, Arial, sans-serif;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin: 12px;
+}
+
+.headerButtonActive:hover, .headerButtonActive:focus {
+    color: white;
 }
 
 footer {
@@ -534,6 +566,10 @@ footer {
 
 .mainLogo {
     width: 100%;
+}
+
+.headerLogo {
+    width: 100px;
 }
 
 .horizontalButtons {
