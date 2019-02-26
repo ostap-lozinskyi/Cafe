@@ -57,15 +57,14 @@
 </header>
 <div class="container" style="background-color: white;">
     <div class="row">
-        <div class="col-lg-10 col-sm-12">
-            <img src="/resources/img/tables.jpg">
-        </div>
-        <div class="col-lg-2 col-sm-12 placesList">
+        <div class="col-12 placesList">
             <c:if test="${not empty myPlaces}">
-                <h3 class="text-center">My tables:</h3>
+                <h3 class="whiteColor">My tables:</h3>
             </c:if>
             <c:forEach var="myPlace" items="${myPlaces}">
-                <a class="headerButtonActive " href="/place/${myPlace.id}/order">My table ${myPlace.number}</a>
+                <div class="row">
+                    <a class="headerButtonActive" href="/place/${myPlace.id}/order">My table ${myPlace.number}</a>
+                </div>
             </c:forEach>
             <h3 class="whiteColor">Free tables</h3>
             <c:forEach var="place" items="${places}">

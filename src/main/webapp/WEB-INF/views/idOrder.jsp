@@ -30,17 +30,19 @@
 <title>Order</title>
 </head>
 <body style="background: url(/resources/img/backgroundImage2.jpg)">
-<h1 class="pageTitle">Order meals</h1>
 <header>
-    <button type="button" class="btnCafe" onclick="location.href='/'">
-        Main page
-    </button>
-    <button type="button" class="btnCafe" onclick="location.href='/menu'">
-        Menu
-    </button>
-    <button type="button" class="btnCafe" onclick="location.href='/place'">
-        Tables
-    </button>
+	<a class="headerButton" href="/">
+		Main page
+	</a>
+	<a class="headerButton" href="/menu">
+		Menu
+	</a>
+	<a class="headerButton" href="/ingredient">
+		Ingredients
+	</a>
+	<a class="headerButton" href="/place">
+		Tables
+	</a>
 </header>
 	<div class="container" class="container" style="background-color: white;">
 		<div class="row">
@@ -78,8 +80,8 @@
 			<div class="col-12">
 				<table class="table table-bordered">
 					<tr>
-						<th class="text-center">Meal</th>
-						<th class="text-center" style="width:20%">Status</th>
+						<th class="text-center">Meals</th>
+						<th class="text-center" style="width:20%">Order status</th>
 					</tr>
 					<c:if test="${empty orders}">
 		    			<tr>
