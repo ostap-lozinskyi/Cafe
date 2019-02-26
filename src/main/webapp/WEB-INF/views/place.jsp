@@ -60,26 +60,22 @@
         <div class="col-lg-10 col-sm-12">
             <img src="/resources/img/tables.jpg">
         </div>
-        <div class="col-lg-2 col-sm-12">
+        <div class="col-lg-2 col-sm-12 placesList">
             <c:if test="${not empty myPlaces}">
                 <h3 class="text-center">My tables:</h3>
             </c:if>
             <c:forEach var="myPlace" items="${myPlaces}">
-                <a class="btnCafe " href="/place/${myPlace.id}/order">My table ${myPlace.number}</a>
+                <a class="headerButtonActive " href="/place/${myPlace.id}/order">My table ${myPlace.number}</a>
             </c:forEach>
-            <h3>Free tables</h3>
+            <h3 class="whiteColor">Free tables</h3>
             <c:forEach var="place" items="${places}">
                 <c:if test="${place.isFree() == 'true'}">
                     <div class="row">
                         <sec:authorize access="isAnonymous()">
-                            <div class="col-12">
-                                <a class="btnCafe " href="/login">${place.number}</a>
-                            </div>
+                            <a class="headerButtonActive" href="/login">${place.number}</a>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
-                            <div class="col-12">
-                                <a class="btnCafe " href="/place/setUser/${place.id}">${place.number}</a>
-                            </div>
+                            <a class="headerButtonActive" href="/place/setUser/${place.id}">${place.number}</a>
                         </sec:authorize>
                     </div>
                     <br>
