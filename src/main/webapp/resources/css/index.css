@@ -91,7 +91,7 @@ h3 {
 
 .transparentButton:hover, .transparentButton:focus {
     color: #fff;
-    opacity: 0.75
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .newsDetailsButton {
@@ -464,6 +464,10 @@ footer {
     z-index: 2;
     overflow: hidden;
     cursor: pointer
+}
+
+.scroll:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .content {

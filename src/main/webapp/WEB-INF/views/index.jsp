@@ -48,14 +48,14 @@
                             Register
                         </button>
                     </sec:authorize>
-                    <sec:authorize access="hasRole('ROLE_CLIENT')">
+                    <sec:authorize access="hasRole('ROLE_CLIENT') or hasRole('ROLE_ADMIN')">
                         <button type="button" class="transparentButton" onclick="location.href='/userCabinet'">
                             Cabinet
                         </button>
                     </sec:authorize>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <button type="button" class="transparentButton" onclick="location.href='/admin'">
-                            Admin
+                            Admin page
                         </button>
                     </sec:authorize>
                     <sec:authorize access="isAnonymous()">
