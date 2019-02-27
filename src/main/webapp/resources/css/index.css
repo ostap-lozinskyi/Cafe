@@ -98,7 +98,7 @@ h3 {
     width: 120px;
     height: 51px;
     border: 1px solid #361b08;
-    background: rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.4);
     border-radius: 1.5625rem;
     box-shadow: none;
     font-size: 18px;
@@ -111,7 +111,7 @@ h3 {
 }
 
 .newsDetailsButton:hover, .newsDetailsButton:focus {
-    background: rgba(255,255,255,0.6);
+    background: rgba(255, 255, 255, 0.6);
 }
 
 .mealsContainer {
@@ -362,6 +362,25 @@ header {
 
 .headerButtonActive:hover, .headerButtonActive:focus {
     color: white;
+}
+
+.placeButton {
+    width: 120px;
+    border: 1px solid #361b08;
+    background: rgba(255,255,255,0.3);
+    border-radius: 1.5625rem;
+    box-shadow: none;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: Segoe UI, Arial, sans-serif;
+    color: #361b08;
+    text-align: center;
+    text-decoration: none;
+    margin: 12px;
+}
+
+.placeButton:hover {
+    background: rgba(255,255,255,0.7);
 }
 
 footer {
@@ -657,15 +676,45 @@ footer {
 .selectButton {
     background-color: transparent;
     height: 38px;
-    border: 1px solid rgba(0,0,0,.15);
+    border: 1px solid rgba(0, 0, 0, .15);
     border-radius: 4px;
     width: 110px;
-    color: rgba(0,0,0,.50);
+    color: rgba(0, 0, 0, .50);
+}
+
+.placeRow {
+    display: flex;
+    justify-content: center;
 }
 
 .placesList {
-    background-color: #76ad00;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background: url(/resources/img/detailsBackground.jpg);
+    width: 60%;
+    padding-bottom: 100px;
 }
+
+.freePlacesList {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.freePlaceItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-content {
+    text-align: center;
+    align-items: center;
+}
+
 @media screen and (max-width: 1200px) {
     .headerRow {
         flex-direction: column;

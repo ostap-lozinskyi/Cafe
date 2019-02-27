@@ -55,31 +55,112 @@
         Tables
     </a>
 </header>
-<div class="container" style="background-color: white;">
-    <div class="row">
-        <div class="col-12 placesList">
-            <c:if test="${not empty myPlaces}">
-                <h3 class="whiteColor">My tables:</h3>
-            </c:if>
-            <c:forEach var="myPlace" items="${myPlaces}">
-                <div class="row">
-                    <a class="headerButtonActive" href="/place/${myPlace.id}/order">My table ${myPlace.number}</a>
-                </div>
-            </c:forEach>
-            <h3 class="whiteColor">Free tables</h3>
-            <c:forEach var="place" items="${places}">
-                <c:if test="${place.isFree() == 'true'}">
-                    <div class="row">
-                        <sec:authorize access="isAnonymous()">
-                            <a class="headerButtonActive" href="/login">${place.number}</a>
-                        </sec:authorize>
-                        <sec:authorize access="isAuthenticated()">
-                            <a class="headerButtonActive" href="/place/setUser/${place.id}">${place.number}</a>
-                        </sec:authorize>
-                    </div>
-                    <br>
-                </c:if>
-            </c:forEach>
+<div class="placeRow">
+    <div class="placesList">
+        <c:if test="${not empty myPlaces}">
+            <h3>Your tables:</h3>
+        </c:if>
+        <c:forEach var="myPlace" items="${myPlaces}">
+            <a class="placeButton" href="/place/${myPlace.id}/order">Your table ${myPlace.number}</a>
+        </c:forEach>
+        <h3>Free tables</h3>
+        <div class="freePlacesList">
+            <div class="freePlaceItem">
+                <h3>For 2 person</h3>
+                <c:forEach var="place" items="${places}">
+                    <c:if test="${place.free && place.countOfPeople == 2}">
+                        <button type="button" class="placeButton" data-toggle="modal"
+                                data-target="#exampleModalCenter${place.number}">
+                                ${place.number}
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter${place.number}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Table #${place.number} is free for now</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        You can order this table
+                                    </div>
+                                    <sec:authorize access="isAnonymous()">
+                                        <a class="placeButton" href="/login">Order</a>
+                                    </sec:authorize>
+                                    <sec:authorize access="isAuthenticated()">
+                                        <a class="placeButton" href="/place/setUser/${place.id}">Order</a>
+                                    </sec:authorize>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </c:if>
+                </c:forEach>
+            </div>
+            <div class="freePlaceItem">
+                <h3>For 4 person</h3>
+                <c:forEach var="place" items="${places}">
+                    <c:if test="${place.free && place.countOfPeople == 4}">
+                        <button type="button" class="placeButton" data-toggle="modal"
+                                data-target="#exampleModalCenter${place.number}">
+                                ${place.number}
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter${place.number}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Table #${place.number} is free for now</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        You can order this table
+                                    </div>
+                                    <sec:authorize access="isAnonymous()">
+                                        <a class="placeButton" href="/login">Order</a>
+                                    </sec:authorize>
+                                    <sec:authorize access="isAuthenticated()">
+                                        <a class="placeButton" href="/place/setUser/${place.id}">Order</a>
+                                    </sec:authorize>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </c:if>
+                </c:forEach>
+            </div>
+            <div class="freePlaceItem">
+                <h3>For 6 person</h3>
+                <c:forEach var="place" items="${places}">
+                    <c:if test="${place.free && place.countOfPeople == 6}">
+                        <button type="button" class="placeButton" data-toggle="modal"
+                                data-target="#exampleModalCenter${place.number}">
+                                ${place.number}
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter${place.number}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Table #${place.number} is free for now</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        You can order this table
+                                    </div>
+                                    <sec:authorize access="isAnonymous()">
+                                        <a class="placeButton" href="/login">Order</a>
+                                    </sec:authorize>
+                                    <sec:authorize access="isAuthenticated()">
+                                        <a class="placeButton" href="/place/setUser/${place.id}">Order</a>
+                                    </sec:authorize>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </c:if>
+                </c:forEach>
+            </div>
         </div>
     </div>
 </div>
@@ -100,5 +181,7 @@
         Lozinskyi</a>
     </div>
 </footer>
+
+
 </body>
 </html>

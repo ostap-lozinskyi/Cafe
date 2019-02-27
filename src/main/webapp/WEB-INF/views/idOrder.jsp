@@ -55,7 +55,7 @@
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label" for="meal">Meals:</label>
-						<div class="col-6">
+						<div class="col-5">
 							<div class="side-by-side clearfix">
 								<form:select data-placeholder="Select meals" class="chosen-select" id="meal" path="meals">
 									<option value=""></option>
@@ -66,6 +66,9 @@
 								<script src="/resources/chosen/chosen.jquery.js" type="text/javascript"></script>
 								<script src="/resources/chosen/init.js" type="text/javascript" charset="utf-8"></script>
 							</div>
+						</div>
+						<div class="col-5">
+							Table #${placeCurrent.number}
 						</div>
 					</div>
 					<div class="form-group row">
