@@ -33,7 +33,7 @@ public interface OrderService {
 
     void saveOrder(OrderRequest request);
 
-    OrderRequest findOneOrderRequest(Integer id);
+    OrderRequest findOrderRequestByUserId(Integer userId);
 
     void updateOrderStatus(Integer id, String newStatus);
 

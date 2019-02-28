@@ -1,55 +1,64 @@
 package ua.model.request;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.validation.constraints.NotNull;
-
 import ua.entity.Meal;
 import ua.entity.Place;
 import ua.validation.flag.OrderFlag;
 
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
+
 public class OrderRequest {
 
-	private Integer id;
+    private Integer id;
 
-	private Place place;
-	
-	@NotNull(message = "This field cannot be blank", groups = { OrderFlag.class })
-	private List<Meal> meals = new ArrayList<>();
-	
-	private String status;
+    private Integer userId;
 
-	public Integer getId() {
-		return id;
-	}
+    private Place place;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @NotNull(message = "This field cannot be blank", groups = {OrderFlag.class})
+    private List<Meal> meals = new ArrayList<>();
 
-	public Place getPlace() {
-		return place;
-	}
+    private String status;
 
-	public void setPlace(Place place) {
-		this.place = place;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public List<Meal> getMeals() {
-		return meals;
-	}
+    public Integer getUserId() {
+        return userId;
+    }
 
-	public void setMeals(List<Meal> meals) {
-		this.meals = meals;
-	}
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
+    }
+
+    public List<Meal> getMeals() {
+        return meals;
+    }
+
+    public void setMeals(List<Meal> meals) {
+        this.meals = meals;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
 }

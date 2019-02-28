@@ -127,7 +127,7 @@
                                 </a>
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
-                                <a href="/place">
+                                <a href="/addMealToOrder/${meal.id}">
                                     <button type="button" class="btnCafe">
                                         Order
                                     </button>

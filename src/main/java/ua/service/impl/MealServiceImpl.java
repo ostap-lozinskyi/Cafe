@@ -135,8 +135,8 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public List<Integer> findMealIdByUserId(Integer id) {
-        return userRepository.findMealIdByUserId(id);
+    public Meal findMealById(Integer id){
+        return mealRepository.findMealById(id);
     }
 
     public MealRequest uploadPhotoToCloudinary(MealRequest mealRequest, MultipartFile toUpload) throws IOException {

@@ -1,22 +1,35 @@
 package ua.controller;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import ua.entity.Meal;
+import ua.model.request.OrderRequest;
 import ua.service.MealService;
+import ua.service.OrderService;
+import ua.service.PlaceService;
+import ua.service.UserService;
+
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class MainController {
 
-    private final MealService service;
+    private final MealService mealService;
+    private final OrderService orderService;
+    private final UserService userService;
+    private final PlaceService placeService;
 
     @Autowired
-    public MainController(MealService service) {
-        this.service = service;
+    public MainController(MealService mealService, OrderService orderService, UserService userService,
+                          PlaceService placeService) {
+        this.mealService = mealService;
+        this.orderService = orderService;
+        this.userService = userService;
+        this.placeService = placeService;
     }
 
     @GetMapping("/")
@@ -24,7 +37,7 @@ public class MainController {
         if (principal != null) {
             model.addAttribute("message", "Hello " + principal.getName());
         }
-        model.addAttribute("meals", service.find5MealIndexViewsByRate());
+        model.addAttribute("meals", mealService.find5MealIndexViewsByRate());
         return "index";
     }
 
@@ -32,4 +45,22 @@ public class MainController {
     public String admin() {
         return "admin";
     }
+
+    @GetMapping("/addMealToOrder/{mealId}")
+    public String addMealToOrder(@PathVariable Integer mealId) {
+        Integer userId = userService.findCurrentUser().getId();
+        OrderRequest orderRequest = orderService.findOrderRequestByUserId(userId);
+
+        Meal newOrderedMeal = mealService.findMealById(mealId);
+        List<Meal> alreadyOrderedMeals = orderRequest.getMeals();
+        alreadyOrderedMeals.add(newOrderedMeal);
+        orderRequest.setMeals(alreadyOrderedMeals);
+
+        orderRequest.setUserId(userId);
+        orderRequest.setStatus("Ordered");
+        orderRequest.setPlace(placeService.findPlaceById(4));
+        orderService.saveOrder(orderRequest);
+        return "redirect:/";
+    }
+
 }

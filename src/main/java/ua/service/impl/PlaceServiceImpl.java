@@ -112,4 +112,9 @@ public class PlaceServiceImpl implements PlaceService {
         repository.save(place);
         LOG.info("Exit from 'makePlaceFree' method");
     }
+
+    @Override
+    public Place findPlaceById(Integer placeId) {
+        return repository.findPlaceById(placeId);
+    }
 }

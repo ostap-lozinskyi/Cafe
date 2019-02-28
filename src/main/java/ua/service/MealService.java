@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 import ua.entity.Comment;
+import ua.entity.Meal;
 import ua.model.filter.MealFilter;
 import ua.model.request.MealRequest;
 import ua.model.view.ComponentView;
@@ -37,7 +38,7 @@ public interface MealService {
 
     MealView findMealViewById(Integer id);
 
-    List<Integer> findMealIdByUserId(Integer id);
+    Meal findMealById(Integer id);
 
     MealRequest uploadPhotoToCloudinary(MealRequest request, MultipartFile toUpload) throws IOException;
 

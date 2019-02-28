@@ -2,6 +2,7 @@ package ua.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import ua.entity.Place;
 import ua.model.filter.PlaceFilter;
 import ua.model.request.PlaceRequest;
 import ua.model.view.PlaceView;
@@ -27,4 +28,6 @@ public interface PlaceService {
     void updatePlaceUserId(Integer placeId);
 
     void makePlaceFree(Integer placeId);
+
+    Place findPlaceById(Integer placeId);
 }

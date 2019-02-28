@@ -19,6 +19,7 @@ import ua.service.OrderService;
 import ua.service.UserService;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -105,6 +106,7 @@ public class OrderServiceImpl implements OrderService {
         order.setPlace(request.getPlace());
         order.setMeals(request.getMeals());
         order.setStatus(request.getStatus());
+        order.setUserId(request.getUserId());
 
         User user = userService.findCurrentUser();
         List<Meal> userMeals = user.getMeals();
@@ -119,14 +121,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderRequest findOneOrderRequest(Integer id) {
-        LOG.info("In 'findOneOrderRequest' method. Id = {}", id);
-        Order order = repository.findOneRequest(id);
+    public OrderRequest findOrderRequestByUserId(Integer userId) {
+        LOG.info("In 'findOrderRequestByUserId' method. UserId = {}", userId);
+        Order order = repository.findRequestByUserId(userId);
         OrderRequest request = new OrderRequest();
-        request.setId(order.getId());
-        request.setPlace(order.getPlace());
-        request.setMeals(order.getMeals());
-        LOG.info("Exit from 'findOneOrderRequest' method");
+        if (Objects.nonNull(order)) {
+            request.setId(order.getId());
+            request.setUserId(order.getUserId());
+            request.setPlace(order.getPlace());
+            request.setMeals(order.getMeals());
+        }
+        LOG.info("Exit from 'findOrderRequestByUserId' method");
         return request;
     }
 

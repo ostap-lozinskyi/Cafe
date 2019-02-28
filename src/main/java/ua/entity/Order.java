@@ -1,17 +1,14 @@
 package ua.entity;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "_order")
 public class Order extends AbstractEntity {
+
+    private Integer userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Place place;
@@ -27,6 +24,14 @@ public class Order extends AbstractEntity {
     public Order(List<Meal> meals, Place place) {
         this.meals = meals;
         this.place = place;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public List<Meal> getMeals() {
