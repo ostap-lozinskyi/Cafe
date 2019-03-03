@@ -6,7 +6,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import ua.entity.AbstractEntityName;
 
 @NoRepositoryBean
-public interface JpaNameRepository<T extends AbstractEntityName> extends JpaRepository<T, Integer>{
+public interface JpaNameRepository<T extends AbstractEntityName> extends JpaRepository<T, String>{
 
 	T findByName(String name);
 	

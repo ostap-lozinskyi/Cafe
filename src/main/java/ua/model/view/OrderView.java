@@ -7,13 +7,13 @@ public class OrderView {
 	
 	private String id;
 
-	private Integer place;
+	private String place;
 	
 	private String status;
 	
 	private List<MealView> mealViews = new ArrayList<>();
 	
-	public OrderView(String id, Integer place, String status) {
+	public OrderView(String id, String place, String status) {
 		this.id = id;
 		this.place = place;
 		this.status = status;
@@ -35,11 +35,11 @@ public class OrderView {
 		this.id = id;
 	}
 
-	public Integer getPlace() {
+	public String getPlace() {
 		return place;
 	}
 
-	public void setPlace(Integer place) {
+	public void setPlace(String place) {
 		this.place = place;
 	}
 

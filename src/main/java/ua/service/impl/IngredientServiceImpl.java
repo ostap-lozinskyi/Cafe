@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ua.entity.Comment;
 import ua.entity.Ingredient;
+import ua.exception.CafeException;
 import ua.model.filter.MealFilter;
 import ua.model.filter.SimpleFilter;
 import ua.model.view.ComponentView;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> implements IngredientService {
+public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, String> implements IngredientService {
     private static final Logger LOG = LoggerFactory.getLogger(IngredientServiceImpl.class);
     private final IngredientRepository ingredientRepository;
     private final ComponentRepository componentRepository;
@@ -99,6 +100,17 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
     @Override
     public List<Comment> findCommentList(String id) {
         return ingredientRepository.findCommentList(id);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        ingredientRepository.deleteById(id);
+    }
+
+    @Override
+    public Ingredient findById(String id) {
+        return ingredientRepository.findById(id)
+                .orElseThrow(() -> new CafeException(String.format("Ingredient with id [%s} not found", id)));
     }
 
 }

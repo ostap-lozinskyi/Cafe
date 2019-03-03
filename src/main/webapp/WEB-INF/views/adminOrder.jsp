@@ -72,8 +72,8 @@
                                                 <c:forEach var="place" items="${places}">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <form:checkbox path="placeNumber"
-                                                                           value="${place.number}"/> ${place.number}
+                                                            <form:checkbox path="placeName"
+                                                                           value="${place.name}"/> ${place.name}
                                                             (${place.countOfPeople} people)
                                                         </div>
                                                     </div>

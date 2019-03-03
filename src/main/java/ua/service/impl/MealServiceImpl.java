@@ -12,12 +12,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ua.entity.Comment;
 import ua.entity.Meal;
+import ua.exception.CafeException;
 import ua.model.filter.MealFilter;
 import ua.model.request.MealRequest;
 import ua.model.view.ComponentView;
 import ua.model.view.MealIndexView;
 import ua.model.view.MealView;
-import ua.repository.*;
+import ua.repository.ComponentRepository;
+import ua.repository.CuisineRepository;
+import ua.repository.MealRepository;
+import ua.repository.MealViewRepository;
 import ua.service.MealService;
 
 import java.io.IOException;
@@ -102,7 +106,8 @@ public class MealServiceImpl implements MealService {
     @Override
     public void updateMealRate(String id, Integer newRate) {
         LOG.info("In 'updateMealRate method'. Id = {}, NewRate = {}", id, newRate);
-        Meal meal = mealRepository.findMealById(id);
+        Meal meal = mealRepository.findMealById(id)
+                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", id)));
         meal.setVotesCount(meal.getVotesCount() + 1);
         meal.setVotesAmount(meal.getVotesAmount() + newRate);
         mealRepository.save(meal);
@@ -117,7 +122,8 @@ public class MealServiceImpl implements MealService {
     @Override
     public void updateComments(String id, Comment comment) {
         LOG.info("In 'updateComments method'. Id = {}, Comment = {}", id, comment);
-        Meal meal = mealRepository.findMealById(id);
+        Meal meal = mealRepository.findMealById(id)
+                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", id)));
         List<Comment> comments = meal.getComments();
         comments.add(comment);
         meal.setComments(comments);
@@ -132,7 +138,8 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public Meal findMealById(String id) {
-        return mealRepository.findMealById(id);
+        return mealRepository.findMealById(id)
+                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", id)));
     }
 
     public MealRequest uploadPhotoToCloudinary(MealRequest mealRequest, MultipartFile toUpload) throws IOException {

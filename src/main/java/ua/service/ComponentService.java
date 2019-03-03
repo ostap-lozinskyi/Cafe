@@ -19,7 +19,7 @@ public interface ComponentService {
 
 	void saveComponent(ComponentRequest request);
 
-	ComponentRequest findOneComponentRequest(Integer id);
+	ComponentRequest findOneComponentRequest(String id);
 
-	void delete(Integer id);
+	void deleteById(String id);
 }

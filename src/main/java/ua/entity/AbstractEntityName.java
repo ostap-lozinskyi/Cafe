@@ -21,8 +21,6 @@ public abstract class AbstractEntityName extends AbstractEntity {
     @Pattern(regexp = "^[A-Z][A-Za-z0-9]+| *$",
             message = "The 'Name' should begin with a capital letter and have at least 2 letters",
             groups = {IngredientFlag.class, CuisineFlag.class})
-    @Pattern(regexp = "^[a-z][a-z]*| *$",
-            message = "The 'Name' should consists of lowercase letters", groups = {MsFlag.class})
     private String name;
 
     AbstractEntityName(String name) {

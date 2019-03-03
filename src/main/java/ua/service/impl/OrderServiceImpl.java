@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import ua.entity.Meal;
 import ua.entity.Order;
 import ua.entity.User;
+import ua.exception.CafeException;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.model.view.MealView;
@@ -65,7 +66,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order findOrderById(String id) {
-        return repository.findOrderById(id);
+        return repository.findOrderById(id)
+                .orElseThrow(() -> new CafeException(String.format("Order with id [%s} not found", id)));
     }
 
     @Override
@@ -138,7 +140,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void updateOrderStatus(String id, String newStatus) {
         LOG.info("In 'updateOrderStatus' method. Id = {}, NewStatus = {}", id, newStatus);
-        Order order = repository.findOrderById(id);
+        Order order = repository.findOrderById(id)
+                .orElseThrow(() -> new CafeException(String.format("Order with id [%s} not found", id)));
         order.setStatus(newStatus);
         repository.save(order);
         LOG.info("Exit from 'updateOrderStatus' method");

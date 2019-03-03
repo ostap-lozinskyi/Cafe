@@ -12,7 +12,7 @@ import ua.entity.Ingredient;
 import ua.entity.Ms;
 import ua.model.view.ComponentView;
 
-public interface ComponentRepository extends JpaRepository<Component, Integer>, JpaSpecificationExecutor<Component> {
+public interface ComponentRepository extends JpaRepository<Component, String>, JpaSpecificationExecutor<Component> {
 
 	@Query("SELECT new ua.model.view.ComponentView(c.id, c.amount, i.name, ms.name) FROM Component c JOIN c.ingredient i JOIN c.ms ms")
 	List<ComponentView> findAllComponentsView();
@@ -21,9 +21,11 @@ public interface ComponentRepository extends JpaRepository<Component, Integer>, 
 	List<ComponentView> findComponentViewByIngredientId(String id);
 	
 	@Query("SELECT c FROM Component c JOIN FETCH c.ingredient JOIN FETCH c.ms WHERE c.id=?1")
-	Component findOneRequest(Integer id);
+	Component findOneRequest(String id);
 	
 	@Query("SELECT c FROM Component c WHERE c.ingredient=?1 AND c.amount=?2 AND c.ms=?3")
-	Component existsComponent(Ingredient ingredient, BigDecimal amount, Ms ms);	
+	Component existsComponent(Ingredient ingredient, BigDecimal amount, Ms ms);
+
+	void deleteById(String id);
 	
 }

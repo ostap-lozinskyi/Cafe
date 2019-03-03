@@ -64,7 +64,7 @@ public class ComponentServiceImpl implements ComponentService {
     }
 
     @Override
-    public ComponentRequest findOneComponentRequest(Integer id) {
+    public ComponentRequest findOneComponentRequest(String id) {
         LOG.info("In 'findOneComponentRequest' method. Id = {}", id);
         Component component = repository.findOneRequest(id);
         ComponentRequest request = new ComponentRequest();
@@ -77,7 +77,7 @@ public class ComponentServiceImpl implements ComponentService {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteById(String id) {
         repository.deleteById(id);
     }
 

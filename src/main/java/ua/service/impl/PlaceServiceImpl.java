@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ua.entity.Place;
 import ua.entity.User;
+import ua.exception.CafeException;
 import ua.model.filter.PlaceFilter;
 import ua.model.request.PlaceRequest;
 import ua.model.view.PlaceView;
@@ -65,9 +66,9 @@ public class PlaceServiceImpl implements PlaceService {
     public void savePlace(PlaceRequest request) {
         LOG.info("In 'savePlace' method");
         Place place = new Place();
-        place.setCountOfPeople(Integer.valueOf(request.getCountOfPeople()));
         place.setId(request.getId());
-        place.setNumber(Integer.valueOf(request.getNumber()));
+        place.setName(request.getName());
+        place.setCountOfPeople(Integer.valueOf(request.getCountOfPeople()));
         place.setFree(true);
         repository.save(place);
         LOG.info("Exit from 'savePlace' method");
@@ -80,7 +81,7 @@ public class PlaceServiceImpl implements PlaceService {
         PlaceRequest request = new PlaceRequest();
         request.setCountOfPeople(String.valueOf(place.getCountOfPeople()));
         request.setId(place.getId());
-        request.setNumber(String.valueOf(place.getNumber()));
+        request.setName(place.getName());
         LOG.info("Exit from 'findOnePlaceRequest' method");
         return request;
     }
@@ -95,7 +96,8 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public void updatePlaceUserId(String placeId) {
         LOG.info("In 'updatePlaceUserId' method. PlaceId = {}", placeId);
-        Place place = repository.findPlaceById(placeId);
+        Place place = repository.findPlaceById(placeId)
+                .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
         User user = userService.findCurrentUser();
         place.setUser(user);
         place.setFree(false);
@@ -106,7 +108,8 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public void makePlaceFree(String placeId) {
         LOG.info("In 'makePlaceFree' method. PlaceId = {}", placeId);
-        Place place = repository.findPlaceById(placeId);
+        Place place = repository.findPlaceById(placeId)
+                .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
         place.setFree(true);
         place.setUser(null);
         repository.save(place);
@@ -115,11 +118,12 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Override
     public Place findPlaceById(String placeId) {
-        return repository.findPlaceById(placeId);
+        return repository.findPlaceById(placeId)
+                .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
     }
 
     @Override
-    public Place findPlaceByNumber(String number) {
-        return repository.findPlaceByNumber(number);
+    public Place findPlaceByName(String name) {
+        return repository.findPlaceByName(name);
     }
 }

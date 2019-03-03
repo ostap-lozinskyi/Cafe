@@ -26,7 +26,7 @@ import java.security.Principal;
 import java.util.*;
 
 @Service
-public class UserServiceImpl extends CrudServiceImpl<User, Integer> implements UserService {
+public class UserServiceImpl extends CrudServiceImpl<User, String> implements UserService {
     private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
@@ -76,7 +76,12 @@ public class UserServiceImpl extends CrudServiceImpl<User, Integer> implements U
     }
 
     @Override
-    public void setDefaultPhoto(Integer userId) {
+    public void deleteById(String id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public void setDefaultPhoto(String userId) {
         LOG.info("In 'setDefaultPhoto' method. UserId = {}", userId);
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
@@ -90,7 +95,7 @@ public class UserServiceImpl extends CrudServiceImpl<User, Integer> implements U
     }
 
     @Override
-    public void updateRole(Integer userId, Role role) {
+    public void updateRole(String userId, Role role) {
         LOG.info("In 'updateRole' method. UserId = {}, Role = {}", userId, role);
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {

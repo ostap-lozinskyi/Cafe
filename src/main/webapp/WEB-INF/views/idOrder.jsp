@@ -68,7 +68,7 @@
 							</div>
 						</div>
 						<div class="col-5">
-							Table #${placeCurrent.number}
+							Table #${placeCurrent.name}
 						</div>
 					</div>
 					<div class="form-group row">

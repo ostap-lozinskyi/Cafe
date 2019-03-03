@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ua.entity.Meal;
 import ua.entity.Place;
+import ua.exception.CafeException;
 import ua.model.request.OrderRequest;
 import ua.service.MealService;
 import ua.service.OrderService;
@@ -15,6 +16,7 @@ import ua.service.UserService;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class MainController {
@@ -60,7 +62,10 @@ public class MainController {
         orderRequest.setUserId(userId);
         orderRequest.setStatus("Ordered");
 
-        Place place = placeService.findPlaceById("4");
+        Place place = placeService.findPlaceByName("Remote");
+        if (Objects.isNull(place)) {
+            throw new CafeException("Place with name 'Remote' not found");
+        }
         orderRequest.setPlace(place);
         orderService.saveOrder(orderRequest);
         return "redirect:/";

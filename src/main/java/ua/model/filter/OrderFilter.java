@@ -7,7 +7,7 @@ public class OrderFilter {
 
 	private List<String> mealName = new ArrayList<>();
 	
-	private List<String> placeNumber = new ArrayList<>();
+	private List<String> placeName = new ArrayList<>();
 	
 	private List<String> status = new ArrayList<>();
 
@@ -19,12 +19,12 @@ public class OrderFilter {
 		this.mealName = mealName;
 	}
 
-	public List<String> getPlaceNumber() {
-		return placeNumber;
+	public List<String> getPlaceName() {
+		return placeName;
 	}
 
-	public void setPlaceNumber(List<String> placeNumber) {
-		this.placeNumber = placeNumber;
+	public void setPlaceName(List<String> placeName) {
+		this.placeName = placeName;
 	}
 
 	public List<String> getStatus() {

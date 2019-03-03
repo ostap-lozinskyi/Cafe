@@ -38,7 +38,7 @@ public class OrderViewRepositoryImpl implements OrderViewRepository {
         CriteriaQuery<OrderView> cq = cb.createQuery(OrderView.class);
         Root<Order> root = cq.from(Order.class);
         Join<Order, Place> joinPlace = root.join(Order_.place);
-        cq.multiselect(root.get(Order_.id), joinPlace.get("number"), root.get(STATUS));
+        cq.multiselect(root.get(Order_.id), joinPlace.get("name"), root.get(STATUS));
         Predicate predicate = new PredicateBuilder(cb, root, filter).toPredicate();
         if (predicate != null) cq.where(predicate);
         cq.orderBy(cb.asc(root.get(STATUS)));
@@ -70,10 +70,10 @@ public class OrderViewRepositoryImpl implements OrderViewRepository {
             this.filter = filter;
         }
 
-        void findByPlacelId() {
-            if (!filter.getPlaceNumber().isEmpty()) {
+        void findByPlaceId() {
+            if (!filter.getPlaceName().isEmpty()) {
                 Join<Order, Place> join = root.join(Order_.place);
-                predicates.add(join.get("number").in(filter.getPlaceNumber()));
+                predicates.add(join.get("name").in(filter.getPlaceName()));
             }
         }
 
@@ -91,7 +91,7 @@ public class OrderViewRepositoryImpl implements OrderViewRepository {
         }
 
         Predicate toPredicate() {
-            findByPlacelId();
+            findByPlaceId();
             findByMealList();
             findByStatus();
             return predicates.isEmpty() ? null : cb.and(predicates.toArray(new Predicate[0]));

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.entity.Comment;
 import ua.entity.User;
+import ua.exception.CafeException;
 import ua.model.request.CommentRequest;
 import ua.repository.CommentRepository;
 import ua.service.CommentService;
@@ -38,7 +39,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Comment findById(String id) {
-        return repository.findCommentById(id);
+        return repository.findCommentById(id)
+                .orElseThrow(() -> new CafeException(String.format("Comment with id [%s} not found", id)));
     }
 
 }

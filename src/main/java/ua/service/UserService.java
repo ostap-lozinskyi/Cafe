@@ -12,15 +12,17 @@ import ua.model.view.MealView;
 import java.io.IOException;
 import java.util.List;
 
-public interface UserService extends CrudService<User, Integer> {
+public interface UserService extends CrudService<User, String> {
 
     Page<User> findAllUsers(Pageable pageable, UserFilter filter);
 
     void saveUser(RegistrationRequest request);
 
-    void setDefaultPhoto(Integer userId);
+    void deleteById(String id);
 
-    void updateRole(Integer userId, Role role);
+    void setDefaultPhoto(String userId);
+
+    void updateRole(String userId, Role role);
 
     User findUserByEmail(String email);
 
@@ -33,4 +35,5 @@ public interface UserService extends CrudService<User, Integer> {
     List<Integer> findUserMealViews();
 
     User findCurrentUser();
+
 }

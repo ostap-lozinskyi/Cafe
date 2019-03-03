@@ -31,5 +31,5 @@ public interface PlaceService {
 
     Place findPlaceById(String placeId);
 
-    Place findPlaceByNumber(String number);
+    Place findPlaceByName(String name);
 }

@@ -61,16 +61,16 @@ public class AdminComponentController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
+    public String delete(@PathVariable String id, @PageableDefault Pageable pageable,
                          @ModelAttribute("componentFilter") ComponentFilter filter) {
-        service.delete(id);
+        service.deleteById(id);
         boolean hasContent = service.findAllView(pageable, filter).hasContent();
         return REDIRECT_ADMIN_ADMIN_COMPONENT + buildParams(hasContent, pageable, Strings.EMPTY);
     }
 
     @ExceptionHandler({SQLException.class, DataAccessException.class})
     public String databaseError() {
-        error = "You can't delete this component because it is used!";
+        error = "You can't deleteById this component because it is used!";
         return REDIRECT_ADMIN_ADMIN_COMPONENT;
     }
 
@@ -85,7 +85,7 @@ public class AdminComponentController {
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
+    public String update(@PathVariable String id, Model model, @PageableDefault Pageable pageable,
                          @ModelAttribute("componentFilter") ComponentFilter filter) {
         model.addAttribute("component", service.findOneComponentRequest(id));
         return show(model, pageable, filter);

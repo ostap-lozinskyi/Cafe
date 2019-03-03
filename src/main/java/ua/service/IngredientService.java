@@ -13,7 +13,7 @@ import ua.model.view.ComponentView;
 import ua.model.view.IngredientView;
 import ua.model.view.MealView;
 
-public interface IngredientService extends CrudService<Ingredient, Integer> {
+public interface IngredientService extends CrudService<Ingredient, String> {
 
 	Page<Ingredient> findAll(Pageable pageable, SimpleFilter filter);
 	
@@ -28,5 +28,9 @@ public interface IngredientService extends CrudService<Ingredient, Integer> {
 	void updateCommentsList(String id, Comment comment);
 	
 	List<Comment> findCommentList(String id);
+
+	void deleteById(String id);
+
+	Ingredient findById(String id);
 
 }

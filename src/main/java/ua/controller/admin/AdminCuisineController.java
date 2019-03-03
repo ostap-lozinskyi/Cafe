@@ -25,13 +25,13 @@ import static ua.controller.ControllerUtils.buildParams;
 public class AdminCuisineController {
 
     private static final String REDIRECT_ADMIN_ADMIN_CUISINE = "redirect:/admin/adminCuisine";
-    private final CuisineService service;
+    private final CuisineService cuisineService;
 
     private String error = "";
 
     @Autowired
-    public AdminCuisineController(CuisineService service) {
-        this.service = service;
+    public AdminCuisineController(CuisineService cuisineService) {
+        this.cuisineService = cuisineService;
     }
 
     @ModelAttribute("cuisine")
@@ -47,10 +47,10 @@ public class AdminCuisineController {
     @GetMapping
     public String show(Model model, @PageableDefault Pageable pageable,
                        @ModelAttribute("filter") SimpleFilter filter) {
-        model.addAttribute("cuisines", service.findAll(pageable, filter));
+        model.addAttribute("cuisines", cuisineService.findAll(pageable, filter));
         model.addAttribute("error", error);
         error = "";
-        boolean hasContent = service.findAll(pageable, filter).hasContent();
+        boolean hasContent = cuisineService.findAll(pageable, filter).hasContent();
         if (hasContent || pageable.getPageNumber() == 0)
             return "adminCuisine";
         else
@@ -58,16 +58,16 @@ public class AdminCuisineController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
+    public String delete(@PathVariable String id, @PageableDefault Pageable pageable,
                          @ModelAttribute("filter") SimpleFilter filter) {
-        service.delete(id);
-        boolean hasContent = service.findAll(pageable, filter).hasContent();
+        cuisineService.deleteById(id);
+        boolean hasContent = cuisineService.findAll(pageable, filter).hasContent();
         return REDIRECT_ADMIN_ADMIN_CUISINE + buildParams(hasContent, pageable, filter.getSearch());
     }
 
     @ExceptionHandler({SQLException.class, DataAccessException.class})
     public String databaseError() {
-        error = "You can't delete this cuisine because it is used!";
+        error = "You can't deleteById this cuisine because it is used!";
         return REDIRECT_ADMIN_ADMIN_CUISINE;
     }
 
@@ -77,14 +77,14 @@ public class AdminCuisineController {
                        @ModelAttribute("filter") SimpleFilter filter) {
         if (br.hasErrors())
             return show(model, pageable, filter);
-        service.save(cuisine);
+        cuisineService.save(cuisine);
         return cancel(status, pageable, filter);
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
+    public String update(@PathVariable String id, Model model, @PageableDefault Pageable pageable,
                          @ModelAttribute("filter") SimpleFilter filter) {
-        model.addAttribute("cuisine", service.findOne(id));
+        model.addAttribute("cuisine", cuisineService.findById(id));
         return show(model, pageable, filter);
     }
 
@@ -92,7 +92,7 @@ public class AdminCuisineController {
     public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
                          @ModelAttribute("filter") SimpleFilter filter) {
         status.setComplete();
-        boolean hasContent = service.findAll(pageable, filter).hasContent();
+        boolean hasContent = cuisineService.findAll(pageable, filter).hasContent();
         return REDIRECT_ADMIN_ADMIN_CUISINE + buildParams(hasContent, pageable, filter.getSearch());
     }
 }

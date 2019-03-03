@@ -68,7 +68,7 @@ public class AdminPlaceController {
 
     @ExceptionHandler({SQLException.class, DataAccessException.class})
     public String databaseError() {
-        error = "You can't delete this place because it is used!";
+        error = "You can't deleteById this place because it is used!";
         return REDIRECT_ADMIN_ADMIN_PLACE;
     }
 

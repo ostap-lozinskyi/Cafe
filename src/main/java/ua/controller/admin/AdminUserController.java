@@ -63,15 +63,15 @@ public class AdminUserController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
+    public String delete(@PathVariable String id, @PageableDefault Pageable pageable,
                          @ModelAttribute("userFilter") UserFilter filter) {
-        userService.delete(id);
+        userService.deleteById(id);
         boolean hasContent = userService.findAllUsers(pageable, filter).hasContent();
         return REDIRECT_ADMIN_ADMIN_USER + buildParams(hasContent, pageable, filter.getSearch());
     }
 
     @GetMapping("/setDefaultPhoto/{id}")
-    public String setDefaultPhoto(@PathVariable Integer id, @PageableDefault Pageable pageable,
+    public String setDefaultPhoto(@PathVariable String id, @PageableDefault Pageable pageable,
                                   @ModelAttribute("userFilter") UserFilter filter) {
         userService.setDefaultPhoto(id);
         boolean hasContent = userService.findAllUsers(pageable, filter).hasContent();
@@ -80,7 +80,7 @@ public class AdminUserController {
 
     @ExceptionHandler({SQLException.class, DataAccessException.class})
     public String databaseError() {
-        error = "You can't delete this user because it is used!";
+        error = "You can't deleteById this user because it is used!";
         return REDIRECT_ADMIN_ADMIN_USER;
     }
 
@@ -96,7 +96,7 @@ public class AdminUserController {
     }
 
     @GetMapping("/updateRole/{id}/{role}")
-    public String updateRole(@PathVariable Integer id, @PathVariable Role role, Model model, @PageableDefault Pageable pageable,
+    public String updateRole(@PathVariable String id, @PathVariable Role role, Model model, @PageableDefault Pageable pageable,
                              @ModelAttribute("userFilter") UserFilter filter) {
         userService.updateRole(id, role);
         return show(model, pageable, filter);

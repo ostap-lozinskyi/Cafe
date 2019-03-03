@@ -8,19 +8,19 @@ public class PlaceFilter {
 
     private static final Pattern INT_PATTERN = Pattern.compile("^[0-9]{1,10}$");
 
-    private String number = "";
+    private String name = "";
 
     private List<String> countOfPeople = new ArrayList<>();
 
     private String isFree = "";
 
-    public String getNumber() {
-        return number;
+    public String getName() {
+        return name;
     }
 
-    public void setNumber(String number) {
-        if (INT_PATTERN.matcher(number).matches()) {
-            this.number = number;
+    public void setName(String name) {
+        if (INT_PATTERN.matcher(name).matches()) {
+            this.name = name;
         }
     }
 

@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import ua.model.filter.MealFilter;
 import ua.model.request.FileRequest;
 import ua.model.request.MealRequest;
@@ -18,6 +19,7 @@ import ua.validation.flag.MealFlag;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 import static ua.controller.ControllerUtils.buildParams;
 
@@ -74,7 +76,7 @@ public class AdminMealController {
 
     @ExceptionHandler({SQLException.class, DataAccessException.class})
     public String databaseError() {
-        error = "You can't delete this meal because it is used!";
+        error = "You can't deleteById this meal because it is used!";
         return REDIRECT_ADMIN_ADMIN_MEAL;
     }
 
@@ -86,11 +88,17 @@ public class AdminMealController {
             return show(model, pageable, filter);
         }
 
-        try {
-            service.saveMeal(service.uploadPhotoToCloudinary(request, fileRequest.getFile()));
-        } catch (IOException e) {
+        MultipartFile multipartFile = fileRequest.getFile();
+        if (!multipartFile.isEmpty()) {
+            try {
+                service.saveMeal(service.uploadPhotoToCloudinary(request, multipartFile));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
             service.saveMeal(request);
         }
+
         return cancel(status, pageable, filter);
     }
 

@@ -1,6 +1,7 @@
 package ua.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -24,8 +25,7 @@ public interface MealRepository extends JpaNameRepository<Meal>, JpaSpecificatio
 	@Query("SELECT m FROM Meal m JOIN FETCH m.cuisine WHERE m.id=?1")
 	Meal findOneRequest(String id);
 	
-	@Query("SELECT m FROM Meal m WHERE m.id=?1")
-	Meal findMealById(String id);
+	Optional<Meal> findMealById(String id);
 	
 	@Query("SELECT new ua.model.view.MealView(m.id, m.photoUrl, m.version, m.name, m.fullDescription, m.price, m.weight, c.name, m.rate) FROM Meal m JOIN m.cuisine c WHERE m.id=?1")
 	MealView findMealViewById(String id);

@@ -48,16 +48,16 @@
                 <div class="col-12">
                     <h3>Add new Place</h3>
                     <form:form action="/admin/adminPlace" method="POST" modelAttribute="place">
-                        <custom:hiddenInputs excludeParams="number, countOfPeople, _csrf"/>
+                        <custom:hiddenInputs excludeParams="name, countOfPeople, _csrf"/>
                         <div class="row">
                             <div class="col-10 ml-auto" style="color: red;">
-                                <form:errors path="number"/>
+                                <form:errors path="name"/>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-2 col-form-label" for="number">Number:</label>
+                            <label class="col-2 col-form-label" for="name">Name:</label>
                             <div class="col-10">
-                                <form:input class="form-control" id="number" path="number"/>
+                                <form:input class="form-control" id="name" path="name"/>
                             </div>
                         </div>
                         <div class="row">
@@ -96,7 +96,7 @@
                             <form:form action="/admin/adminPlace" method="GET" modelAttribute="placeFilter">
                                 <div class="form-group row">
                                     <div class="col-lg-3 col-sm-12 margin">
-                                        <form:input path="number" class="form-control" placeholder="By number"/>
+                                        <form:input path="name" class="form-control" placeholder="By name"/>
                                     </div>
                                     <div class="col-lg-3 col-sm-12 margin">
                                         <p>
@@ -139,8 +139,8 @@
                         Sort
                     </button>
                     <div class="dropdown-menu">
-                        <custom:sort innerHtml="Number asc" paramValue="number"/>
-                        <custom:sort innerHtml="Number desc" paramValue="number,desc"/>
+                        <custom:sort innerHtml="Number asc" paramValue="name"/>
+                        <custom:sort innerHtml="Number desc" paramValue="name,desc"/>
                     </div>
                 </div>
                 <div class="col-2">
@@ -156,7 +156,7 @@
                 <div class="col-12">
                     <table class="table table-bordered">
                         <tr>
-                            <th class="text-center">Number</th>
+                            <th class="text-center">Name</th>
                             <th class="text-center">Is free</th>
                             <th class="text-center">Count Of People</th>
                             <th class="text-center">Options</th>
@@ -168,7 +168,7 @@
                         </c:if>
                         <c:forEach var="place" items="${places.content}">
                             <tr>
-                                <td>${place.number}</td>
+                                <td>${place.name}</td>
                                 <td>
                                     <c:if test="${place.isFree() == true}">
                                         Free

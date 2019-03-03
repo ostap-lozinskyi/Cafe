@@ -1,36 +1,35 @@
 package ua.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
 import ua.entity.Place;
 import ua.model.view.PlaceView;
 
-public interface PlaceRepository extends JpaRepository<Place, Integer> {
+import java.util.List;
+import java.util.Optional;
 
-	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number, p.isFree) FROM Place p ORDER BY number")
-	List<PlaceView> findAllPlaceViews();
-	
-	@Query("SELECT distinct p.countOfPeople FROM Place p")
-	List<String> findAllPlacesCountOfPeople();
-	
-	@Query("SELECT p FROM Place p WHERE p.id=?1")
-	Place findOneRequest(String id);
-	
-	@Query("SELECT p FROM Place p WHERE p.id=?1")
-	Place findPlaceById(String id);
-	
-	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number, p.isFree) FROM Place p WHERE p.id=?1")
-	PlaceView findPlaceViewById(String id);
-	
-	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number, p.isFree) FROM Place p JOIN p.user u WHERE u.id=?1")
-	List<PlaceView> findPlaceIdByUserId (String id);
-	
-	boolean existsByNumber(Integer number);
+public interface PlaceRepository extends JpaRepository<Place, String> {
 
-	void deleteById(String id);
+    @Query("SELECT new ua.model.view.PlaceView(p.id, p.name, p.countOfPeople, p.isFree) FROM Place p ORDER BY name")
+    List<PlaceView> findAllPlaceViews();
 
-	Place findPlaceByNumber(String number);
+    @Query("SELECT distinct p.countOfPeople FROM Place p")
+    List<String> findAllPlacesCountOfPeople();
+
+    @Query("SELECT p FROM Place p WHERE p.id=?1")
+    Place findOneRequest(String id);
+
+    Optional<Place> findPlaceById(String id);
+
+    @Query("SELECT new ua.model.view.PlaceView(p.id, p.name, p.countOfPeople, p.isFree) FROM Place p WHERE p.id=?1")
+    PlaceView findPlaceViewById(String id);
+
+    @Query("SELECT new ua.model.view.PlaceView(p.id, p.name, p.countOfPeople, p.isFree) FROM Place p JOIN p.user u WHERE u.id=?1")
+    List<PlaceView> findPlaceIdByUserId(String id);
+
+    boolean existsByName(String name);
+
+    void deleteById(String id);
+
+    Place findPlaceByName(String name);
 }

@@ -25,13 +25,13 @@ import static ua.controller.ControllerUtils.buildParams;
 public class AdminMsController {
 
     private static final String REDIRECT_ADMIN_ADMIN_MS = "redirect:/admin/adminMs";
-    private final MsService service;
+    private final MsService msService;
 
     private String error = "";
 
     @Autowired
-    public AdminMsController(MsService service) {
-        this.service = service;
+    public AdminMsController(MsService msService) {
+        this.msService = msService;
     }
 
     @ModelAttribute("ms")
@@ -46,10 +46,10 @@ public class AdminMsController {
 
     @GetMapping
     public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
-        model.addAttribute("mss", service.findAll(pageable, filter));
+        model.addAttribute("mss", msService.findAll(pageable, filter));
         model.addAttribute("error", error);
         error = "";
-        boolean hasContent = service.findAll(pageable, filter).hasContent();
+        boolean hasContent = msService.findAll(pageable, filter).hasContent();
         if (hasContent || pageable.getPageNumber() == 0)
             return "adminMs";
         else
@@ -57,16 +57,16 @@ public class AdminMsController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
+    public String delete(@PathVariable String id, @PageableDefault Pageable pageable,
                          @ModelAttribute("filter") SimpleFilter filter) {
-        service.delete(id);
-        boolean hasContent = service.findAll(pageable, filter).hasContent();
+        msService.deleteById(id);
+        boolean hasContent = msService.findAll(pageable, filter).hasContent();
         return REDIRECT_ADMIN_ADMIN_MS + buildParams(hasContent, pageable, filter.getSearch());
     }
 
     @ExceptionHandler({SQLException.class, DataAccessException.class})
     public String databaseError() {
-        error = "You can't delete this measuring unit because it is used!";
+        error = "You can't deleteById this measuring unit because it is used!";
         return REDIRECT_ADMIN_ADMIN_MS;
     }
 
@@ -76,13 +76,13 @@ public class AdminMsController {
                        @ModelAttribute("filter") SimpleFilter filter) {
         if (br.hasErrors())
             return show(model, pageable, filter);
-        service.save(ms);
+        msService.save(ms);
         return cancel(status, pageable, filter);
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
-        model.addAttribute("ms", service.findOne(id));
+    public String update(@PathVariable String id, Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
+        model.addAttribute("ms", msService.findById(id));
         return show(model, pageable, filter);
     }
 
@@ -90,7 +90,7 @@ public class AdminMsController {
     public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
                          @ModelAttribute("filter") SimpleFilter filter) {
         status.setComplete();
-        boolean hasContent = service.findAll(pageable, filter).hasContent();
+        boolean hasContent = msService.findAll(pageable, filter).hasContent();
         return REDIRECT_ADMIN_ADMIN_MS + buildParams(hasContent, pageable, filter.getSearch());
     }
 }
