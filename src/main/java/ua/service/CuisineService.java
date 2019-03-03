@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import ua.entity.Cuisine;
 import ua.model.filter.SimpleFilter;
 
-public interface CuisineService extends CrudService<Cuisine, String> {
+public interface CuisineService {
 
     Page<Cuisine> findAll(Pageable pageable, SimpleFilter filter);
 
@@ -13,4 +13,5 @@ public interface CuisineService extends CrudService<Cuisine, String> {
 
     Cuisine findById(String id);
 
+    void save(Cuisine cuisine);
 }

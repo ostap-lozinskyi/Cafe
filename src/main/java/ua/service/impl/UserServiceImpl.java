@@ -26,7 +26,7 @@ import java.security.Principal;
 import java.util.*;
 
 @Service
-public class UserServiceImpl extends CrudServiceImpl<User, String> implements UserService {
+public class UserServiceImpl implements UserService {
     private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
@@ -40,7 +40,6 @@ public class UserServiceImpl extends CrudServiceImpl<User, String> implements Us
 
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder encoder,
                            HttpServletRequest httpServletRequest) {
-        super(userRepository);
         this.userRepository = userRepository;
         this.encoder = encoder;
         this.httpServletRequest = httpServletRequest;

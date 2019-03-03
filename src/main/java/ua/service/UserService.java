@@ -12,7 +12,7 @@ import ua.model.view.MealView;
 import java.io.IOException;
 import java.util.List;
 
-public interface UserService extends CrudService<User, String> {
+public interface UserService {
 
     Page<User> findAllUsers(Pageable pageable, UserFilter filter);
 

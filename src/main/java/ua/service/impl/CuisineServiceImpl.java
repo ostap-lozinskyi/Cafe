@@ -12,13 +12,12 @@ import ua.repository.CuisineRepository;
 import ua.service.CuisineService;
 
 @Service
-public class CuisineServiceImpl extends CrudServiceImpl<Cuisine, String> implements CuisineService {
+public class CuisineServiceImpl implements CuisineService {
 
     private final CuisineRepository cuisineRepository;
 
     @Autowired
     public CuisineServiceImpl(CuisineRepository cuisineRepository) {
-        super(cuisineRepository);
         this.cuisineRepository = cuisineRepository;
     }
 
@@ -45,5 +44,10 @@ public class CuisineServiceImpl extends CrudServiceImpl<Cuisine, String> impleme
     public Cuisine findById(String id) {
         return cuisineRepository.findById(id)
                 .orElseThrow(() -> new CafeException(String.format("Cuisine with id [%s} not found", id)));
+    }
+
+    @Override
+    public void save(Cuisine cuisine) {
+        cuisineRepository.save(cuisine);
     }
 }

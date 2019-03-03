@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import ua.entity.Ms;
 import ua.model.filter.SimpleFilter;
 
-public interface MsService extends CrudService<Ms, String> {
+public interface MsService {
 
 	Page<Ms> findAll(Pageable pageable, SimpleFilter filter);
 
@@ -14,4 +14,5 @@ public interface MsService extends CrudService<Ms, String> {
 
 	Ms findById(String id);
 
+	void save(Ms ms);
 }

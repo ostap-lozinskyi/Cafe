@@ -12,13 +12,12 @@ import ua.repository.MsRepository;
 import ua.service.MsService;
 
 @Service
-public class MsServiceImpl extends CrudServiceImpl<Ms, String> implements MsService {
+public class MsServiceImpl implements MsService {
 
     private final MsRepository msRepository;
 
     @Autowired
     public MsServiceImpl(MsRepository msRepository) {
-        super(msRepository);
         this.msRepository = msRepository;
     }
 
@@ -43,6 +42,11 @@ public class MsServiceImpl extends CrudServiceImpl<Ms, String> implements MsServ
     public Ms findById(String id) {
         return msRepository.findById(id)
                 .orElseThrow(() -> new CafeException(String.format("Ms with id [%s} not found", id)));
+    }
+
+    @Override
+    public void save(Ms ms) {
+        msRepository.save(ms);
     }
 
 }

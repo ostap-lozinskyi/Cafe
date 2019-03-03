@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, String> implements IngredientService {
+public class IngredientServiceImpl implements IngredientService {
     private static final Logger LOG = LoggerFactory.getLogger(IngredientServiceImpl.class);
     private final IngredientRepository ingredientRepository;
     private final ComponentRepository componentRepository;
@@ -33,7 +33,6 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, String> i
     @Autowired
     public IngredientServiceImpl(IngredientRepository ingredientRepository, ComponentRepository componentRepository,
                                  MealViewRepository mealViewRepository) {
-        super(ingredientRepository);
         this.ingredientRepository = ingredientRepository;
         this.componentRepository = componentRepository;
         this.mealViewRepository = mealViewRepository;
@@ -112,6 +111,11 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, String> i
     public Ingredient findById(String id) {
         return ingredientRepository.findById(id)
                 .orElseThrow(() -> new CafeException(String.format("Ingredient with id [%s} not found", id)));
+    }
+
+    @Override
+    public void save(Ingredient ingredient) {
+        ingredientRepository.save(ingredient);
     }
 
 }
