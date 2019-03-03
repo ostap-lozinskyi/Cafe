@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class ComponentView {
 	
-	private Integer id;
+	private String id;
 	
 	private BigDecimal amount;
 
@@ -12,7 +12,7 @@ public class ComponentView {
 	
 	private String ms;
 	
-	public ComponentView(Integer id, BigDecimal amount, String ingredient, String ms) {
+	public ComponentView(String id, BigDecimal amount, String ingredient, String ms) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -20,11 +20,11 @@ public class ComponentView {
 		this.ms = ms;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

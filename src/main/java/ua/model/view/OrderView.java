@@ -5,7 +5,7 @@ import java.util.List;
 
 public class OrderView {
 	
-	private Integer id;
+	private String id;
 
 	private Integer place;
 	
@@ -13,7 +13,7 @@ public class OrderView {
 	
 	private List<MealView> mealViews = new ArrayList<>();
 	
-	public OrderView(Integer id, Integer place, String status) {
+	public OrderView(String id, Integer place, String status) {
 		this.id = id;
 		this.place = place;
 		this.status = status;
@@ -27,11 +27,11 @@ public class OrderView {
 		this.mealViews = mealViews;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

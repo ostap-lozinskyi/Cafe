@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ua.entity.Meal;
+import ua.entity.Place;
 import ua.model.request.OrderRequest;
 import ua.service.MealService;
 import ua.service.OrderService;
@@ -47,8 +48,8 @@ public class MainController {
     }
 
     @GetMapping("/addMealToOrder/{mealId}")
-    public String addMealToOrder(@PathVariable Integer mealId) {
-        Integer userId = userService.findCurrentUser().getId();
+    public String addMealToOrder(@PathVariable String mealId) {
+        String userId = userService.findCurrentUser().getId();
         OrderRequest orderRequest = orderService.findOrderRequestByUserId(userId);
 
         Meal newOrderedMeal = mealService.findMealById(mealId);
@@ -58,7 +59,9 @@ public class MainController {
 
         orderRequest.setUserId(userId);
         orderRequest.setStatus("Ordered");
-        orderRequest.setPlace(placeService.findPlaceById(4));
+
+        Place place = placeService.findPlaceById("4");
+        orderRequest.setPlace(place);
         orderService.saveOrder(orderRequest);
         return "redirect:/";
     }

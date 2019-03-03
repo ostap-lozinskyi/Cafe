@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "_order")
 public class Order extends AbstractEntity {
 
-    private Integer userId;
+    private String userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Place place;
@@ -26,11 +26,11 @@ public class Order extends AbstractEntity {
         this.place = place;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

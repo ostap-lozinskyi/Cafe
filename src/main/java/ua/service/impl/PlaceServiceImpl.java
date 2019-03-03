@@ -74,7 +74,7 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public PlaceRequest findOnePlaceRequest(Integer id) {
+    public PlaceRequest findOnePlaceRequest(String id) {
         LOG.info("In 'findOnePlaceRequest' method. Id = {}", id);
         Place place = repository.findOneRequest(id);
         PlaceRequest request = new PlaceRequest();
@@ -86,14 +86,14 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public void deletePlace(Integer placeId) {
+    public void deletePlace(String placeId) {
         LOG.info("In 'deletePlace' method. PlaceId = {}", placeId);
         repository.deleteById(placeId);
         LOG.info("Exit from 'deletePlace' method");
     }
 
     @Override
-    public void updatePlaceUserId(Integer placeId) {
+    public void updatePlaceUserId(String placeId) {
         LOG.info("In 'updatePlaceUserId' method. PlaceId = {}", placeId);
         Place place = repository.findPlaceById(placeId);
         User user = userService.findCurrentUser();
@@ -104,7 +104,7 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public void makePlaceFree(Integer placeId) {
+    public void makePlaceFree(String placeId) {
         LOG.info("In 'makePlaceFree' method. PlaceId = {}", placeId);
         Place place = repository.findPlaceById(placeId);
         place.setFree(true);
@@ -114,7 +114,12 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public Place findPlaceById(Integer placeId) {
+    public Place findPlaceById(String placeId) {
         return repository.findPlaceById(placeId);
+    }
+
+    @Override
+    public Place findPlaceByNumber(String number) {
+        return repository.findPlaceByNumber(number);
     }
 }

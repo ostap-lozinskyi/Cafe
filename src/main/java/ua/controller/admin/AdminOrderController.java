@@ -57,9 +57,9 @@ public class AdminOrderController {
     }
 
     @GetMapping("/updateStatus/{id}/{status}")
-    public String update(@PathVariable Integer id, @PathVariable String status,
+    public String update(@PathVariable String id, @PathVariable String status,
                          @PageableDefault Pageable pageable, @ModelAttribute("orderFilter") OrderFilter filter) {
-        Integer placeId = service.findOrderById(id).getPlace().getId();
+        String placeId = service.findOrderById(id).getPlace().getId();
         service.updateOrderStatus(id, status);
         List<Order> tableOrders = service.findOrderByPlaceId(placeId);
         boolean hasUnpaidOrders = false;

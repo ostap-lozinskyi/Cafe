@@ -65,7 +65,7 @@ public class AdminMealController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
+    public String delete(@PathVariable String id, @PageableDefault Pageable pageable,
                          @ModelAttribute("mealFilter") MealFilter filter) {
         service.deleteMeal(id);
         boolean hasContent = service.findAllMealIndexView(filter, pageable).hasContent();
@@ -95,7 +95,7 @@ public class AdminMealController {
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
+    public String update(@PathVariable String id, Model model, @PageableDefault Pageable pageable,
                          @ModelAttribute("mealFilter") MealFilter filter) {
         model.addAttribute("meal", service.findOneRequest(id));
         return show(model, pageable, filter);

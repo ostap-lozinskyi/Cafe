@@ -59,7 +59,7 @@ public class AdminPlaceController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id, @PageableDefault Pageable pageable,
+    public String delete(@PathVariable String id, @PageableDefault Pageable pageable,
                          @ModelAttribute("placeFilter") PlaceFilter filter) {
         service.deletePlace(id);
         boolean hasContent = service.findAllView(pageable, filter).hasContent();
@@ -83,7 +83,7 @@ public class AdminPlaceController {
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable Integer id, Model model, @PageableDefault Pageable pageable,
+    public String update(@PathVariable String id, Model model, @PageableDefault Pageable pageable,
                          @ModelAttribute("placeFilter") PlaceFilter filter) {
         model.addAttribute("place", service.findOnePlaceRequest(id));
         return show(model, pageable, filter);
@@ -98,7 +98,7 @@ public class AdminPlaceController {
     }
 
     @GetMapping("/makeFree/{id}")
-    public String makePlaceFree(@PathVariable Integer id) {
+    public String makePlaceFree(@PathVariable String id) {
         service.makePlaceFree(id);
         return REDIRECT_ADMIN_ADMIN_PLACE;
     }

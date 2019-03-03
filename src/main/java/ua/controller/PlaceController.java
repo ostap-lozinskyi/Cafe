@@ -24,7 +24,7 @@ public class PlaceController {
     }
 
     @GetMapping("/place/setUser/{id}")
-    public String setUser(@PathVariable Integer id) {
+    public String setUser(@PathVariable String id) {
         service.updatePlaceUserId(id);
         return "redirect:/place/{id}/order";
     }

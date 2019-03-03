@@ -41,7 +41,7 @@ public class MenuItemController {
      * Show Menu Item page
      */
     @GetMapping
-    public String show(Model model, @PathVariable Integer id) {
+    public String show(Model model, @PathVariable String id) {
         MealView meal = service.findMealViewById(id);
         meal.setComments(service.findCommentList(id));
         model.addAttribute("meal", meal);
@@ -54,12 +54,12 @@ public class MenuItemController {
      * Commenting and setting rate
      */
     @PostMapping
-    public String mealIdCommentAndRate(@PathVariable Integer id,
+    public String mealIdCommentAndRate(@PathVariable String id,
                                        @ModelAttribute("comment") CommentRequest commentRequest) {
-        List<Integer> userMealsIds = userService.findUserMealsIds();
+        List<String> userMealsIds = userService.findUserMealsIds();
         if (userMealsIds.contains(id)) {
             if (commentRequest.getRate() != null) {
-                Integer commentId = commentService.saveComment(commentRequest);
+                String commentId = commentService.saveComment(commentRequest);
                 Comment comment = commentService.findById(commentId);
                 if (!commentRequest.getText().isEmpty()) {
                     service.updateComments(id, comment);

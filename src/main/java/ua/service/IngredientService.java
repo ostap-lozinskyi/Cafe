@@ -17,16 +17,16 @@ public interface IngredientService extends CrudService<Ingredient, Integer> {
 
 	Page<Ingredient> findAll(Pageable pageable, SimpleFilter filter);
 	
-	IngredientView findIngredientViewById(Integer id);
+	IngredientView findIngredientViewById(String id);
 	
-	List<ComponentView> findComponentViewByIngredientId(Integer id);
+	List<ComponentView> findComponentViewByIngredientId(String id);
 	
 	Page<MealView> findAllMealView(MealFilter filter, Pageable pageable);
 	
-	Page<MealView> searchMealsWithIngredient(Integer ingredientId, MealFilter mealFilter, Pageable pageable);
+	Page<MealView> searchMealsWithIngredient(String ingredientId, MealFilter mealFilter, Pageable pageable);
 	
-	void updateCommentsList(Integer id, Comment comment);
+	void updateCommentsList(String id, Comment comment);
 	
-	List<Comment> findCommentList(Integer id);
+	List<Comment> findCommentList(String id);
 
 }

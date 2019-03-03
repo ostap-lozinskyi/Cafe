@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class CommentRequest {
 
-    private Integer id;
+    private String id;
 
     @NotBlank(message = "This field cannot be blank", groups = {CommentFlag.class})
     private String text;
@@ -24,11 +24,11 @@ public class CommentRequest {
         return text;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

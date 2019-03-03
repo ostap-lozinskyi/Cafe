@@ -10,9 +10,9 @@ import java.util.List;
 
 public class OrderRequest {
 
-    private Integer id;
+    private String id;
 
-    private Integer userId;
+    private String userId;
 
     private Place place;
 
@@ -21,19 +21,19 @@ public class OrderRequest {
 
     private String status;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

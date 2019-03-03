@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MealRequest {
 
-    private Integer id;
+    private String id;
 
     @UniqueMeal(message = "Such a meal already exists", groups = MealFlag.class)
     @NotBlank(message = "This field cannot be blank", groups = {MealFlag.class})
@@ -52,11 +52,11 @@ public class MealRequest {
 
     private int version;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

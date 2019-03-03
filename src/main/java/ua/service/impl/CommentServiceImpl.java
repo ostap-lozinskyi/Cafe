@@ -25,7 +25,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Integer saveComment(CommentRequest commentRequest) {
+    public String saveComment(CommentRequest commentRequest) {
         LOG.info("In 'saveComment' method");
         User user = userService.findCurrentUser();
         Comment comment = new Comment();
@@ -37,7 +37,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment findById(Integer id) {
+    public Comment findById(String id) {
         return repository.findCommentById(id);
     }
 

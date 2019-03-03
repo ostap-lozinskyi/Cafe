@@ -17,16 +17,20 @@ public interface PlaceRepository extends JpaRepository<Place, Integer> {
 	List<String> findAllPlacesCountOfPeople();
 	
 	@Query("SELECT p FROM Place p WHERE p.id=?1")
-	Place findOneRequest(Integer id);
+	Place findOneRequest(String id);
 	
 	@Query("SELECT p FROM Place p WHERE p.id=?1")
-	Place findPlaceById(Integer id);
+	Place findPlaceById(String id);
 	
 	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number, p.isFree) FROM Place p WHERE p.id=?1")
-	PlaceView findPlaceViewById(Integer id);
+	PlaceView findPlaceViewById(String id);
 	
 	@Query("SELECT new ua.model.view.PlaceView(p.id, p.countOfPeople, p.number, p.isFree) FROM Place p JOIN p.user u WHERE u.id=?1")
-	List<PlaceView> findPlaceIdByUserId (Integer id);
+	List<PlaceView> findPlaceIdByUserId (String id);
 	
 	boolean existsByNumber(Integer number);
+
+	void deleteById(String id);
+
+	Place findPlaceByNumber(String number);
 }

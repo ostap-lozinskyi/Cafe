@@ -36,7 +36,7 @@ public class IdOrderController {
     }
 
     @GetMapping
-    public String show(@PathVariable Integer id, Model model, @ModelAttribute("orderFilter") OrderFilter filter) {
+    public String show(@PathVariable String id, Model model, @ModelAttribute("orderFilter") OrderFilter filter) {
         model.addAttribute("meals", service.findAllMealsNames());
         model.addAttribute("orders", service.findOrderViewsForTable(id));
 
@@ -45,7 +45,7 @@ public class IdOrderController {
     }
 
     @PostMapping
-    public String save(@PathVariable Integer id, @ModelAttribute("order") @Validated(OrderFlag.class) OrderRequest request,
+    public String save(@PathVariable String id, @ModelAttribute("order") @Validated(OrderFlag.class) OrderRequest request,
                        @ModelAttribute("orderFilter") OrderFilter filter, Principal principal) {
         if (principal == null) {
             return "redirect:/login";

@@ -38,20 +38,16 @@ public class MealServiceImpl implements MealService {
 
     private final ComponentRepository componentRepository;
 
-    private final UserRepository userRepository;
-
     @Value("${cloudinary.url}")
     Cloudinary cloudinary = new Cloudinary();
 
     @Autowired
     public MealServiceImpl(MealRepository repository, MealViewRepository mealViewrepository,
-                           CuisineRepository cuisineRepository, ComponentRepository componentRepository,
-                           UserRepository userRepository) {
+                           CuisineRepository cuisineRepository, ComponentRepository componentRepository) {
         this.mealRepository = repository;
         this.mealViewRepository = mealViewrepository;
         this.cuisineRepository = cuisineRepository;
         this.componentRepository = componentRepository;
-        this.userRepository = userRepository;
     }
 
     @Override
@@ -88,7 +84,7 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public MealRequest findOneRequest(Integer id) {
+    public MealRequest findOneRequest(String id) {
         LOG.info("In 'findOneCommentRequest' method. Id = {}", id);
         Meal meal = mealRepository.findOneRequest(id);
         MealRequest mealRequest = MealRequest.of(meal);
@@ -97,14 +93,14 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public void deleteMeal(Integer id) {
+    public void deleteMeal(String id) {
         LOG.info("In 'deleteMeal method'. Id = {}", id);
         mealRepository.deleteById(id);
         LOG.info("Exit from 'deleteMeal' method");
     }
 
     @Override
-    public void updateMealRate(Integer id, Integer newRate) {
+    public void updateMealRate(String id, Integer newRate) {
         LOG.info("In 'updateMealRate method'. Id = {}, NewRate = {}", id, newRate);
         Meal meal = mealRepository.findMealById(id);
         meal.setVotesCount(meal.getVotesCount() + 1);
@@ -119,7 +115,7 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public void updateComments(Integer id, Comment comment) {
+    public void updateComments(String id, Comment comment) {
         LOG.info("In 'updateComments method'. Id = {}, Comment = {}", id, comment);
         Meal meal = mealRepository.findMealById(id);
         List<Comment> comments = meal.getComments();
@@ -130,12 +126,12 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public MealView findMealViewById(Integer id) {
+    public MealView findMealViewById(String id) {
         return mealRepository.findMealViewById(id);
     }
 
     @Override
-    public Meal findMealById(Integer id){
+    public Meal findMealById(String id) {
         return mealRepository.findMealById(id);
     }
 
@@ -153,7 +149,7 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public List<Comment> findCommentList(Integer id) {
+    public List<Comment> findCommentList(String id) {
         return mealRepository.findCommentList(id);
     }
 

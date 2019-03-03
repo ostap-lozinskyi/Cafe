@@ -131,12 +131,12 @@ public class UserServiceImpl extends CrudServiceImpl<User, Integer> implements U
     @Override
     public boolean findMealInUserOrders(Page<MealView> mealViews) {
         LOG.info("In 'findMealInUserOrders' method");
-        List<Integer> userMealsIds = findUserMealsIds();
-        List<Integer> mealViewIds = new ArrayList<>();
+        List<String> userMealsIds = findUserMealsIds();
+        List<String> mealViewIds = new ArrayList<>();
         for (MealView mealView : mealViews) {
             mealViewIds.add(mealView.getId());
         }
-        for (Integer userMealId : userMealsIds) {
+        for (String userMealId : userMealsIds) {
             if (mealViewIds.contains(userMealId)) {
                 return true;
             }
@@ -145,7 +145,7 @@ public class UserServiceImpl extends CrudServiceImpl<User, Integer> implements U
     }
 
     @Override
-    public List<Integer> findUserMealsIds() {
+    public List<String> findUserMealsIds() {
         LOG.info("In 'findUserMealsIds' method");
         User user = findCurrentUser();
         return userRepository.findUserMealsIds(user.getId());

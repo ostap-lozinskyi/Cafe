@@ -8,13 +8,10 @@ import javax.validation.constraints.Pattern;
 
 public class PlaceRequest {
 
-    private Integer id;
+    private String id;
 
     @UniquePlace(message = "Such a meal already exists", groups = PlaceFlag.class)
     @NotBlank(message = "This field cannot be blank", groups = {PlaceFlag.class})
-    @Pattern(regexp = "^[1-9][0-9]*| *$",
-            message = "The Number should be a number and can not begin with a zero symbol", groups = {
-            PlaceFlag.class})
     private String number;
 
     @NotBlank(message = "This field cannot be blank", groups = {PlaceFlag.class})
@@ -23,11 +20,11 @@ public class PlaceRequest {
             PlaceFlag.class})
     private String countOfPeople;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

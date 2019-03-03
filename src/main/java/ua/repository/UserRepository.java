@@ -15,12 +15,12 @@ public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecifi
 	boolean existsUserByEmail(String email);
 	
 	@Query("SELECT m.id FROM User u JOIN u.meals m WHERE u.id=?1")
-	List<Integer> findMealIdByUserId(Integer id);
+	List<Integer> findMealIdByUserId(String id);
 	
 	@Query("SELECT m.id FROM User u JOIN u.meals m WHERE u.id=?1")
-	List<Integer> findUserMealsIds(Integer userId);
+	List<String> findUserMealsIds(String userId);
 	
 	@Query("SELECT new ua.model.view.MealView(m.id, m.photoUrl, m.version, m.name, m.fullDescription, m.price, m.weight, c.name, m.rate) FROM User u JOIN u.meals m JOIN m.cuisine c WHERE u.id=?1")
-	List<Integer> findUserMealViews(Integer userId);
+	List<Integer> findUserMealViews(String userId);
 	
 }

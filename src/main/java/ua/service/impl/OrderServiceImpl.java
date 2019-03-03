@@ -59,17 +59,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PlaceView findPlaceViewById(Integer id) {
+    public PlaceView findPlaceViewById(String id) {
         return placeRepository.findPlaceViewById(id);
     }
 
     @Override
-    public Order findOrderById(Integer id) {
+    public Order findOrderById(String id) {
         return repository.findOrderById(id);
     }
 
     @Override
-    public List<Order> findOrderByPlaceId(Integer id) {
+    public List<Order> findOrderByPlaceId(String id) {
         return repository.findOrderByPlaceId(id);
     }
 
@@ -84,7 +84,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderView> findOrderViewsForTable(Integer tableId) {
+    public List<OrderView> findOrderViewsForTable(String tableId) {
         LOG.info("In 'findOrderViewsForTable' method. Id = {}", tableId);
         List<OrderView> ordersPage = repository.findOrderViewsForTable(tableId);
         for (OrderView orderView : ordersPage) {
@@ -94,7 +94,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<MealView> findMealViewsForOrder(Integer orderId) {
+    public List<MealView> findMealViewsForOrder(String orderId) {
         return mealRepository.findMealViewsForOrder(orderId);
     }
 
@@ -121,7 +121,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderRequest findOrderRequestByUserId(Integer userId) {
+    public OrderRequest findOrderRequestByUserId(String userId) {
         LOG.info("In 'findOrderRequestByUserId' method. UserId = {}", userId);
         Order order = repository.findRequestByUserId(userId);
         OrderRequest request = new OrderRequest();
@@ -136,7 +136,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrderStatus(Integer id, String newStatus) {
+    public void updateOrderStatus(String id, String newStatus) {
         LOG.info("In 'updateOrderStatus' method. Id = {}, NewStatus = {}", id, newStatus);
         Order order = repository.findOrderById(id);
         order.setStatus(newStatus);

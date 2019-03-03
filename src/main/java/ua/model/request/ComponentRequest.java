@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 //@UniqueComponent(message = "Such a Component already exists", groups = { ComponentFlag.class})
 public class ComponentRequest {
 
-    private Integer id;
+    private String id;
 
     @NotNull(message = "This field cannot be blank", groups = {ComponentFlag.class})
     private Ingredient ingredient;
@@ -24,11 +24,11 @@ public class ComponentRequest {
     @NotNull(message = "This field cannot be blank", groups = {ComponentFlag.class})
     private Ms ms;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

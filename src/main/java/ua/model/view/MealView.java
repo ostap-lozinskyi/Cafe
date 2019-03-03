@@ -7,7 +7,7 @@ import ua.entity.Comment;
 
 public class MealView {
 
-	private Integer id;
+	private String id;
 	
 	private String photoUrl;
 	
@@ -29,7 +29,7 @@ public class MealView {
 	
 	private List<Comment> comments;
 	
-	public MealView(Integer id, String photoUrl, int version, String name, String fullDescription, BigDecimal price,
+	public MealView(String id, String photoUrl, int version, String name, String fullDescription, BigDecimal price,
 			int weight, String cuisine, BigDecimal rate) {
 		this.id = id;
 		this.photoUrl = photoUrl;
@@ -42,11 +42,11 @@ public class MealView {
 		this.rate = rate;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

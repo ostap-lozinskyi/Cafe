@@ -15,11 +15,11 @@ public interface IngredientRepository extends JpaNameRepository<Ingredient>, Jpa
 	List<String> findAllIngredientNames();
 	
 	@Query("SELECT new ua.model.view.IngredientView(i.id, i.name) FROM Ingredient i WHERE i.id=?1")
-	IngredientView findIngredientViewById(Integer id);
+	IngredientView findIngredientViewById(String id);
 	
 	@Query("SELECT i FROM Ingredient i WHERE i.id=?1")
-	Ingredient findIngredientById(Integer id);
+	Ingredient findIngredientById(String id);
 	
 	@Query("SELECT c FROM Ingredient i JOIN i.comments c WHERE i.id=?1")
-	List<Comment> findCommentList(Integer id);
+	List<Comment> findCommentList(String id);
 }

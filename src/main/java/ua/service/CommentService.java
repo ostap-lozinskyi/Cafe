@@ -5,8 +5,8 @@ import ua.model.request.CommentRequest;
 
 public interface CommentService {
 
-    Integer saveComment(CommentRequest request);
+    String saveComment(CommentRequest request);
 
-    Comment findById(Integer id);
+    Comment findById(String id);
 
 }

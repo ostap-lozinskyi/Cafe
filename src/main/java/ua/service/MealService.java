@@ -28,20 +28,20 @@ public interface MealService {
 
     void saveMeal(MealRequest request);
 
-    MealRequest findOneRequest(Integer id);
+    MealRequest findOneRequest(String id);
 
-    void deleteMeal(Integer id);
+    void deleteMeal(String id);
 
-    void updateMealRate(Integer id, Integer newRate);
+    void updateMealRate(String id, Integer newRate);
 
-    void updateComments(Integer id, Comment comment);
+    void updateComments(String id, Comment comment);
 
-    MealView findMealViewById(Integer id);
+    MealView findMealViewById(String id);
 
-    Meal findMealById(Integer id);
+    Meal findMealById(String id);
 
     MealRequest uploadPhotoToCloudinary(MealRequest request, MultipartFile toUpload) throws IOException;
 
-    List<Comment> findCommentList(Integer id);
+    List<Comment> findCommentList(String id);
 
 }

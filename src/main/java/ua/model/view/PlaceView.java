@@ -2,7 +2,7 @@ package ua.model.view;
 
 public class PlaceView {
 	
-	private Integer id;
+	private String id;
 	
 	private int countOfPeople;
 
@@ -10,7 +10,7 @@ public class PlaceView {
 	
 	private boolean isFree;
 	
-	public PlaceView(Integer id, int countOfPeople, int number, boolean isFree) {
+	public PlaceView(String id, int countOfPeople, int number, boolean isFree) {
 		this.id = id;
 		this.countOfPeople = countOfPeople;
 		this.number = number;
@@ -21,11 +21,11 @@ public class PlaceView {
 		return "Table_"+number+ "_"+ "CountOfPeople_"+countOfPeople;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -52,12 +52,12 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
     }
 
     @Override
-    public IngredientView findIngredientViewById(Integer id) {
+    public IngredientView findIngredientViewById(String id) {
         return ingredientRepository.findIngredientViewById(id);
     }
 
     @Override
-    public List<ComponentView> findComponentViewByIngredientId(Integer id) {
+    public List<ComponentView> findComponentViewByIngredientId(String id) {
         return componentRepository.findComponentViewByIngredientId(id);
     }
 
@@ -70,11 +70,11 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
      * Searching meals with ingredient
      */
     @Override
-    public Page<MealView> searchMealsWithIngredient(Integer ingredientId, MealFilter mealFilter, Pageable pageable) {
+    public Page<MealView> searchMealsWithIngredient(String ingredientId, MealFilter mealFilter, Pageable pageable) {
         LOG.info("In 'searchMealsWithIngredient' method");
         List<ComponentView> componentsList = findComponentViewByIngredientId(ingredientId);
         if (!componentsList.isEmpty()) {
-            List<Integer> componentsIds = new ArrayList<>();
+            List<String> componentsIds = new ArrayList<>();
             for (ComponentView componentView : componentsList) {
                 componentsIds.add(componentView.getId());
             }
@@ -86,7 +86,7 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
     }
 
     @Override
-    public void updateCommentsList(Integer id, Comment newComment) {
+    public void updateCommentsList(String id, Comment newComment) {
         LOG.info("In 'updateCommentsList' method. Id = {}, NewComment = {}", id, newComment);
         Ingredient ingredient = ingredientRepository.findIngredientById(id);
         List<Comment> comments = ingredient.getComments();
@@ -97,7 +97,7 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, Integer> 
     }
 
     @Override
-    public List<Comment> findCommentList(Integer id) {
+    public List<Comment> findCommentList(String id) {
         return ingredientRepository.findCommentList(id);
     }
 

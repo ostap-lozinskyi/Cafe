@@ -28,7 +28,7 @@ public interface UserService extends CrudService<User, Integer> {
 
     boolean findMealInUserOrders(Page<MealView> mealViews);
 
-    List<Integer> findUserMealsIds();
+    List<String> findUserMealsIds();
 
     List<Integer> findUserMealViews();
 

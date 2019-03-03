@@ -19,22 +19,22 @@ public interface OrderService {
 
     List<PlaceView> findAllPlaceViews();
 
-    PlaceView findPlaceViewById(Integer id);
+    PlaceView findPlaceViewById(String id);
 
     Page<OrderView> findAll(Pageable pageable, OrderFilter filter);
 
-    List<OrderView> findOrderViewsForTable(Integer tableId);
+    List<OrderView> findOrderViewsForTable(String tableId);
 
-    List<MealView> findMealViewsForOrder(Integer orderId);
+    List<MealView> findMealViewsForOrder(String orderId);
 
-    Order findOrderById(Integer id);
+    Order findOrderById(String id);
 
-    List<Order> findOrderByPlaceId(Integer id);
+    List<Order> findOrderByPlaceId(String id);
 
     void saveOrder(OrderRequest request);
 
-    OrderRequest findOrderRequestByUserId(Integer userId);
+    OrderRequest findOrderRequestByUserId(String userId);
 
-    void updateOrderStatus(Integer id, String newStatus);
+    void updateOrderStatus(String id, String newStatus);
 
 }

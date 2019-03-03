@@ -21,13 +21,15 @@ public interface PlaceService {
 
     void savePlace(PlaceRequest request);
 
-    PlaceRequest findOnePlaceRequest(Integer id);
+    PlaceRequest findOnePlaceRequest(String id);
 
-    void deletePlace(Integer id);
+    void deletePlace(String id);
 
-    void updatePlaceUserId(Integer placeId);
+    void updatePlaceUserId(String placeId);
 
-    void makePlaceFree(Integer placeId);
+    void makePlaceFree(String placeId);
 
-    Place findPlaceById(Integer placeId);
+    Place findPlaceById(String placeId);
+
+    Place findPlaceByNumber(String number);
 }

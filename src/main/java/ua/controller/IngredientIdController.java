@@ -59,7 +59,7 @@ public class IngredientIdController {
      * Show Ingredient page
      */
     @GetMapping("/ingredient/{id}")
-    public String show(Model model, @PathVariable Integer id, @PageableDefault Pageable pageable,
+    public String show(Model model, @PathVariable String id, @PageableDefault Pageable pageable,
                        @ModelAttribute("mealFilter") MealFilter filter) {
         IngredientView ingredient = ingredientService.findIngredientViewById(id);
         ingredient.setComments(ingredientService.findCommentList(id));
@@ -79,7 +79,7 @@ public class IngredientIdController {
      * Verifying comment possibility
      */
     @PostMapping("/ingredient/{id}")
-    public String ingredientIdComment(@PathVariable Integer id, @ModelAttribute("comment") @Validated(CommentFlag.class)
+    public String ingredientIdComment(@PathVariable String id, @ModelAttribute("comment") @Validated(CommentFlag.class)
             CommentRequest commentRequest) {
         if (userService.findCurrentUser().getRole() == Role.ROLE_ADMIN) {
             saveComment(id, commentRequest);
@@ -100,8 +100,8 @@ public class IngredientIdController {
     /**
      * Saving comment
      */
-    private void saveComment(Integer id, CommentRequest commentRequest) {
-        Integer commentId = commentService.saveComment(commentRequest);
+    private void saveComment(String id, CommentRequest commentRequest) {
+        String commentId = commentService.saveComment(commentRequest);
         Comment comment = commentService.findById(commentId);
         ingredientService.updateCommentsList(id, comment);
     }

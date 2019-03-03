@@ -2,20 +2,20 @@ package ua.model.view;
 
 public class MsView {
 
-	private Integer id;
+	private String id;
 
 	private String name;
 
-	public MsView(Integer id, String name) {
+	public MsView(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

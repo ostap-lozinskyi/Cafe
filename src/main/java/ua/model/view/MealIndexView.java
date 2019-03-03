@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class MealIndexView {
 
-	private Integer id;
+	private String id;
 	
 	private String photoUrl;
 	
@@ -20,7 +20,7 @@ public class MealIndexView {
 	
 	private String shortDescription;
 	
-	public MealIndexView(Integer id, String photoUrl, Integer version, BigDecimal rate, BigDecimal price, Integer weight,
+	public MealIndexView(String id, String photoUrl, Integer version, BigDecimal rate, BigDecimal price, Integer weight,
 			String name, String shortDescription) {
 		super();
 		this.id = id;
@@ -33,11 +33,11 @@ public class MealIndexView {
 		this.shortDescription = shortDescription;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
