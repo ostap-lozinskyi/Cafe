@@ -90,7 +90,8 @@ public class MealServiceImpl implements MealService {
     @Override
     public MealRequest findOneRequest(String id) {
         LOG.info("In 'findOneCommentRequest' method. Id = {}", id);
-        Meal meal = mealRepository.findOneRequest(id);
+        Meal meal = mealRepository.findById(id)
+                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", id)));
         MealRequest mealRequest = MealRequest.of(meal);
         LOG.info("Exit from 'findOneCommentRequest' method. Request = {}", mealRequest);
         return mealRequest;
@@ -106,7 +107,7 @@ public class MealServiceImpl implements MealService {
     @Override
     public void updateMealRate(String id, Integer newRate) {
         LOG.info("In 'updateMealRate method'. Id = {}, NewRate = {}", id, newRate);
-        Meal meal = mealRepository.findMealById(id)
+        Meal meal = mealRepository.findById(id)
                 .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", id)));
         meal.setVotesCount(meal.getVotesCount() + 1);
         meal.setVotesAmount(meal.getVotesAmount() + newRate);
@@ -122,7 +123,7 @@ public class MealServiceImpl implements MealService {
     @Override
     public void updateComments(String id, Comment comment) {
         LOG.info("In 'updateComments method'. Id = {}, Comment = {}", id, comment);
-        Meal meal = mealRepository.findMealById(id)
+        Meal meal = mealRepository.findById(id)
                 .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", id)));
         List<Comment> comments = meal.getComments();
         comments.add(comment);
@@ -138,7 +139,7 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public Meal findMealById(String id) {
-        return mealRepository.findMealById(id)
+        return mealRepository.findById(id)
                 .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", id)));
     }
 

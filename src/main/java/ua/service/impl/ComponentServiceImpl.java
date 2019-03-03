@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ua.entity.Component;
+import ua.exception.CafeException;
 import ua.model.filter.ComponentFilter;
 import ua.model.request.ComponentRequest;
 import ua.model.view.ComponentView;
@@ -66,7 +67,8 @@ public class ComponentServiceImpl implements ComponentService {
     @Override
     public ComponentRequest findOneComponentRequest(String id) {
         LOG.info("In 'findOneComponentRequest' method. Id = {}", id);
-        Component component = repository.findOneRequest(id);
+        Component component = repository.findById(id)
+                .orElseThrow(() -> new CafeException(String.format("Component with id [%s} not found", id)));
         ComponentRequest request = new ComponentRequest();
         request.setAmount(String.valueOf(component.getAmount()));
         request.setId(component.getId());

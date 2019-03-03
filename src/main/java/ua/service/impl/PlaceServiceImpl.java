@@ -77,7 +77,8 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public PlaceRequest findOnePlaceRequest(String id) {
         LOG.info("In 'findOnePlaceRequest' method. Id = {}", id);
-        Place place = repository.findOneRequest(id);
+        Place place = repository.findById(id)
+                .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", id)));
         PlaceRequest request = new PlaceRequest();
         request.setCountOfPeople(String.valueOf(place.getCountOfPeople()));
         request.setId(place.getId());
@@ -96,7 +97,7 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public void updatePlaceUserId(String placeId) {
         LOG.info("In 'updatePlaceUserId' method. PlaceId = {}", placeId);
-        Place place = repository.findPlaceById(placeId)
+        Place place = repository.findById(placeId)
                 .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
         User user = userService.findCurrentUser();
         place.setUser(user);
@@ -108,7 +109,7 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public void makePlaceFree(String placeId) {
         LOG.info("In 'makePlaceFree' method. PlaceId = {}", placeId);
-        Place place = repository.findPlaceById(placeId)
+        Place place = repository.findById(placeId)
                 .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
         place.setFree(true);
         place.setUser(null);
@@ -118,7 +119,7 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Override
     public Place findPlaceById(String placeId) {
-        return repository.findPlaceById(placeId)
+        return repository.findById(placeId)
                 .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
     }
 

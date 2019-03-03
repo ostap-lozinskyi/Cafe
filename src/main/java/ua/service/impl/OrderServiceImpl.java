@@ -66,7 +66,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order findOrderById(String id) {
-        return repository.findOrderById(id)
+        return repository.findById(id)
                 .orElseThrow(() -> new CafeException(String.format("Order with id [%s} not found", id)));
     }
 
@@ -140,7 +140,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void updateOrderStatus(String id, String newStatus) {
         LOG.info("In 'updateOrderStatus' method. Id = {}, NewStatus = {}", id, newStatus);
-        Order order = repository.findOrderById(id)
+        Order order = repository.findById(id)
                 .orElseThrow(() -> new CafeException(String.format("Order with id [%s} not found", id)));
         order.setStatus(newStatus);
         repository.save(order);

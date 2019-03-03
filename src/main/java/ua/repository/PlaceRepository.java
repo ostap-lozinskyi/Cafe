@@ -16,11 +16,6 @@ public interface PlaceRepository extends JpaRepository<Place, String> {
     @Query("SELECT distinct p.countOfPeople FROM Place p")
     List<String> findAllPlacesCountOfPeople();
 
-    @Query("SELECT p FROM Place p WHERE p.id=?1")
-    Place findOneRequest(String id);
-
-    Optional<Place> findPlaceById(String id);
-
     @Query("SELECT new ua.model.view.PlaceView(p.id, p.name, p.countOfPeople, p.isFree) FROM Place p WHERE p.id=?1")
     PlaceView findPlaceViewById(String id);
 
@@ -29,7 +24,6 @@ public interface PlaceRepository extends JpaRepository<Place, String> {
 
     boolean existsByName(String name);
 
-    void deleteById(String id);
-
     Place findPlaceByName(String name);
+
 }
