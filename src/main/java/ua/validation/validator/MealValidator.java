@@ -11,10 +11,10 @@ import ua.validation.annotation.UniqueMeal;
 @Component
 public class MealValidator implements ConstraintValidator<UniqueMeal, String> {
 
-	private final MealRepository repository;
+	private final MealRepository mealRepository;
 
-	public MealValidator(MealRepository repository) {
-		this.repository = repository;
+	public MealValidator(MealRepository mealRepository) {
+		this.mealRepository = mealRepository;
 	}
 
 	@Override
@@ -22,8 +22,8 @@ public class MealValidator implements ConstraintValidator<UniqueMeal, String> {
 	}
 
 	@Override
-	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return !repository.existsByName(value);
+	public boolean isValid(String name, ConstraintValidatorContext context) {
+		return !mealRepository.existsByName(name);
 	}
 
 }

@@ -11,10 +11,10 @@ import ua.validation.annotation.UniqueIngredient;
 @Component
 public class IngredientValidator implements ConstraintValidator<UniqueIngredient, String> {
 
-	private final IngredientRepository repository;
+	private final IngredientRepository ingredientRepository;
 
-	public IngredientValidator(IngredientRepository repository) {
-		this.repository = repository;
+	public IngredientValidator(IngredientRepository ingredientRepository) {
+		this.ingredientRepository = ingredientRepository;
 	}
 
 	@Override
@@ -22,8 +22,8 @@ public class IngredientValidator implements ConstraintValidator<UniqueIngredient
 	}
 
 	@Override
-	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return !repository.existsByName(value);
+	public boolean isValid(String name, ConstraintValidatorContext context) {
+		return !ingredientRepository.existsByName(name);
 	}
 
 }

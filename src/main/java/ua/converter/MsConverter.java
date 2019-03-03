@@ -16,7 +16,7 @@ public class MsConverter implements Converter<String, Ms> {
 	}
 
 	@Override
-	public Ms convert(String source) {
-		return repository.findByName(source);
+	public Ms convert(String name) {
+		return repository.findByName(name);
 	}
 }

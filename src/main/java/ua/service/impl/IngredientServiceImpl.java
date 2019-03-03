@@ -89,7 +89,8 @@ public class IngredientServiceImpl extends CrudServiceImpl<Ingredient, String> i
     @Override
     public void updateCommentsList(String id, Comment newComment) {
         LOG.info("In 'updateCommentsList' method. Id = {}, NewComment = {}", id, newComment);
-        Ingredient ingredient = ingredientRepository.findIngredientById(id);
+        Ingredient ingredient = ingredientRepository.findById(id)
+                .orElseThrow(() -> new CafeException(String.format("Ingredient with id [%s} not found", id)));
         List<Comment> comments = ingredient.getComments();
         comments.add(newComment);
         ingredient.setComments(comments);

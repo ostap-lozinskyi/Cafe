@@ -16,8 +16,8 @@ public class IngredientConverter implements Converter<String, Ingredient> {
 	}
 
 	@Override
-	public Ingredient convert(String source) {
-		return repository.findByName(source);
+	public Ingredient convert(String name) {
+		return repository.findByName(name);
 	}
 
 }

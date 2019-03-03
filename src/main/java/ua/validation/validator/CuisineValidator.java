@@ -11,10 +11,10 @@ import ua.validation.annotation.UniqueCuisine;
 @Component
 public class CuisineValidator implements ConstraintValidator<UniqueCuisine, String> {
 
-	private final CuisineRepository repository;
+	private final CuisineRepository cuisineRepository;
 
-	public CuisineValidator(CuisineRepository repository) {
-		this.repository = repository;
+	public CuisineValidator(CuisineRepository cuisineRepository) {
+		this.cuisineRepository = cuisineRepository;
 	}
 
 	@Override
@@ -22,8 +22,8 @@ public class CuisineValidator implements ConstraintValidator<UniqueCuisine, Stri
 	}
 
 	@Override
-	public boolean isValid(String value, ConstraintValidatorContext context) {
-		return !repository.existsByName(value);
+	public boolean isValid(String name, ConstraintValidatorContext context) {
+		return !cuisineRepository.existsByName(name);
 	}
 
 }

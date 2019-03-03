@@ -3,6 +3,7 @@ package ua.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
@@ -11,7 +12,7 @@ import ua.entity.Meal;
 import ua.model.view.MealIndexView;
 import ua.model.view.MealView;
 
-public interface MealRepository extends JpaNameRepository<Meal>, JpaSpecificationExecutor<Meal> {
+public interface MealRepository extends JpaRepository<Meal, String>, JpaSpecificationExecutor<Meal> {
 	
 	@Query("SELECT m.name FROM Meal m")
 	List<String> findAllMealsNames();
@@ -37,4 +38,8 @@ public interface MealRepository extends JpaNameRepository<Meal>, JpaSpecificatio
 	List<Comment> findCommentList(String id);
 
 	void deleteById(String id);
+
+    boolean existsByName(String name);
+
+    Meal findByName(String name);
 }

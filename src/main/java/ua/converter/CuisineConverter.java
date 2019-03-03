@@ -16,8 +16,8 @@ public class CuisineConverter implements Converter<String, Cuisine> {
 	}
 
 	@Override
-	public Cuisine convert(String source) {
-		return repository.findByName(source);
+	public Cuisine convert(String name) {
+		return repository.findByName(name);
 	}
 
 }

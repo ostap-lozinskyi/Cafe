@@ -81,7 +81,8 @@ public class AdminMsController {
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable String id, Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") SimpleFilter filter) {
+    public String update(@PathVariable String id, Model model, @PageableDefault Pageable pageable,
+                         @ModelAttribute("filter") SimpleFilter filter) {
         model.addAttribute("ms", msService.findById(id));
         return show(model, pageable, filter);
     }

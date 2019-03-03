@@ -16,8 +16,8 @@ public class MealConverter implements Converter<String, Meal> {
 	}
 
 	@Override
-	public Meal convert(String source) {
-		return repository.findByName(source);
+	public Meal convert(String name) {
+		return repository.findByName(name);
 	}
 
 }
