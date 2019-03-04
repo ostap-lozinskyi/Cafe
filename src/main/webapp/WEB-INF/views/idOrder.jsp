@@ -88,7 +88,7 @@
 					</tr>
 					<c:if test="${empty orders}">
 		    			<tr>
-		    			<td colspan=3><h3 class="text-center">There are no orders in this table</h3></td>
+		    			<td colspan=3><h3 class="text-center">There are no orders yet in this table</h3></td>
 		    			</tr>
 					</c:if>
 					<c:forEach var="order" items="${orders}">

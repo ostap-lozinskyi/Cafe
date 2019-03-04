@@ -73,8 +73,7 @@
                 </tr>
                 <c:if test="${empty meals}">
                     <tr>
-                        <td colspan=7><h3 class="text-center">Meals with such
-                            parameters not found</h3></td>
+                        <td colspan=7><h3 class="text-center">This user didn't eat any meal yet</h3></td>
                     </tr>
                 </c:if>
                 <c:forEach var="meal" items="${meals}">

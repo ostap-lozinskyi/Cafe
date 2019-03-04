@@ -10,13 +10,13 @@ public class PlaceRequest {
 
     private String id;
 
-    @UniquePlace(message = "Such a meal already exists", groups = PlaceFlag.class)
+    @UniquePlace(message = "Such a place already exists", groups = PlaceFlag.class)
     @NotBlank(message = "This field cannot be blank", groups = {PlaceFlag.class})
     private String name;
 
     @NotBlank(message = "This field cannot be blank", groups = {PlaceFlag.class})
     @Pattern(regexp = "^[1-9][0-9]*| *$",
-            message = "The Count Of People should be a name and can not begin with a zero symbol", groups = {
+            message = "The Count Of People should be a number and can not begin with a zero symbol", groups = {
             PlaceFlag.class})
     private String countOfPeople;
 
