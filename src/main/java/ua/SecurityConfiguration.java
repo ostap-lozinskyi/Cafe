@@ -17,16 +17,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService service;
+    private final UserDetailsService userDetailsService;
 
-    public SecurityConfiguration(UserDetailsService service) {
-        this.service = service;
+    public SecurityConfiguration(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
     }
 
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
-                .userDetailsService(this.service)
+                .userDetailsService(this.userDetailsService)
                 .passwordEncoder(encoder());
     }
 
@@ -45,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
-                .deleteCookies("JSESSIONID", "Secret_cookei")
+                .deleteCookies("JSESSIONID", "Secret_cooke")
                 .and()
                 .authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
@@ -57,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .rememberMe()
                 .rememberMeParameter("rememberMe")
                 .key("my super secret key")
-                .rememberMeCookieName("Secret_cookei");
+                .rememberMeCookieName("Secret_cooke");
     }
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)

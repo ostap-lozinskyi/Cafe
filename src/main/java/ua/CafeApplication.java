@@ -1,9 +1,7 @@
 package ua;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,7 +14,6 @@ import ua.repository.UserRepository;
 import java.util.List;
 
 @SpringBootApplication
-@ImportAutoConfiguration(classes = WebMvcAutoConfiguration.class)
 public class CafeApplication implements WebMvcConfigurer {
 
     private static final String ADMIN = "admin";

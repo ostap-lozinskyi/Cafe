@@ -3,7 +3,7 @@ Such technologies are used:
 Spring_MVC,  
 Spring Social,  
 Spring_Security,  
-Cloudinary cloud service,  
+Cloudinary cloud userDetailsService,  
 JSP,JSTL. 
 
 Project description:  
@@ -16,5 +16,5 @@ Admin can change the status of order: ACCEPTED, IS BEING PREPARED, IS READY, IS 
 Validation is enabled for all forms.  
 There are pagination and search by the filter in all pages.  
 A client can upload his photo in user cabinet.  
-All photos (meals and clients) are uploaded on Cloudinary cloud service.  
+All photos (meals and clients) are uploaded on Cloudinary cloud userDetailsService.  
 There is an ability to login using Google or Facebook account.

@@ -1,7 +1,6 @@
 package ua.tag;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
@@ -22,7 +21,7 @@ public class SortTag extends SimpleTagSupport {
     private String innerHtml = "";
 
     @Override
-    public void doTag() throws JspException, IOException {
+    public void doTag() throws IOException {
         JspWriter out = getJspContext().getOut();
         PageContext pageContext = (PageContext) getJspContext();
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
@@ -52,12 +51,12 @@ public class SortTag extends SimpleTagSupport {
         out.println(sw.toString());
     }
 
-    public boolean isParamValuePresent(Map<String, String[]> map) {
+    private boolean isParamValuePresent(Map<String, String[]> map) {
         return map.entrySet().stream()
                 .filter(entry -> entry.getKey().equals(SORT))
                 .map(Map.Entry::getValue)
-                .flatMap((array) -> Arrays.stream(array))
-                .anyMatch((str) -> str.equals(paramValue));
+                .flatMap(Arrays::stream)
+                .anyMatch(str -> str.equals(paramValue));
     }
 
     public void setParamValue(String paramValue) {
