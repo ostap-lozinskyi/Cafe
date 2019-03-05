@@ -1,12 +1,12 @@
-package ua.model.view;
+package ua.dto;
 
-public class CuisineView {
+public class MsDTO {
 
 	private String id;
 
 	private String name;
 
-	public CuisineView(String id, String name) {
+	public MsDTO(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -26,4 +26,5 @@ public class CuisineView {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 }

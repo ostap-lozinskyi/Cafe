@@ -1,6 +1,6 @@
 package ua.service;
 
-import ua.entity.Comment;
+import ua.model.entity.Comment;
 import ua.model.request.CommentRequest;
 
 public interface CommentService {

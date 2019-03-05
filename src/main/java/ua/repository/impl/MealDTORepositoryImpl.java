@@ -1,35 +1,29 @@
 package ua.repository.impl;
 
-import static org.springframework.data.jpa.repository.query.QueryUtils.toOrders;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
-
-import ua.entity.Component;
-import ua.entity.Cuisine;
-import ua.entity.Meal;
-import ua.entity.Meal_;
+import ua.dto.MealDTO;
+import ua.dto.MealIndexDTO;
+import ua.model.entity.Component;
+import ua.model.entity.Cuisine;
+import ua.model.entity.Meal;
+import ua.model.entity.Meal_;
 import ua.model.filter.MealFilter;
-import ua.model.view.MealIndexView;
-import ua.model.view.MealView;
-import ua.repository.MealViewRepository;
+import ua.repository.MealDTORepository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.*;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.springframework.data.jpa.repository.query.QueryUtils.toOrders;
 
 @Repository
-public class MealViewRepositoryImpl implements MealViewRepository {
+public class MealDTORepositoryImpl implements MealDTORepository {
 
     private static final String WEIGHT = "weight";
     private static final String PRICE = "price";
@@ -37,16 +31,16 @@ public class MealViewRepositoryImpl implements MealViewRepository {
     private EntityManager entityManager;
 
     @Override
-    public Page<MealIndexView> findAllMealIndexView(MealFilter filter, Pageable pageable) {
+    public Page<MealIndexDTO> findAllMealIndexDTOs(MealFilter filter, Pageable pageable) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<MealIndexView> criteriaQuery = criteriaBuilder.createQuery(MealIndexView.class);
+        CriteriaQuery<MealIndexDTO> criteriaQuery = criteriaBuilder.createQuery(MealIndexDTO.class);
         Root<Meal> root = criteriaQuery.from(Meal.class);
         criteriaQuery.multiselect(root.get(Meal_.id), root.get("photoUrl"), root.get("version"), root.get("rate"),
                 root.get(PRICE), root.get(WEIGHT), root.get("name"), root.get("shortDescription"));
         Predicate predicate = new PredicateBuilder(criteriaBuilder, root, filter).toPredicate();
         if (predicate != null) criteriaQuery.where(predicate);
         criteriaQuery.orderBy(toOrders(pageable.getSort(), root, criteriaBuilder));
-        List<MealIndexView> content = getContent(criteriaQuery, pageable);
+        List<MealIndexDTO> content = getContent(criteriaQuery, pageable);
         CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
         Root<Meal> countRoot = countQuery.from(Meal.class);
         countQuery.select(criteriaBuilder.count(countRoot));
@@ -56,9 +50,9 @@ public class MealViewRepositoryImpl implements MealViewRepository {
     }
 
     @Override
-    public Page<MealView> findAllMealView(MealFilter filter, Pageable pageable) {
+    public Page<MealDTO> findAllMealDTOs(MealFilter filter, Pageable pageable) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<MealView> criteriaQuery = criteriaBuilder.createQuery(MealView.class).distinct(true);
+        CriteriaQuery<MealDTO> criteriaQuery = criteriaBuilder.createQuery(MealDTO.class).distinct(true);
         Root<Meal> root = criteriaQuery.from(Meal.class);
         Join<Meal, Cuisine> join = root.join(Meal_.cuisine);
         criteriaQuery.multiselect(root.get(Meal_.id), root.get("photoUrl"), root.get("version"), root.get("name"),
@@ -66,7 +60,7 @@ public class MealViewRepositoryImpl implements MealViewRepository {
         Predicate predicate = new PredicateBuilder(criteriaBuilder, root, filter).toPredicate();
         if (predicate != null) criteriaQuery.where(predicate);
         criteriaQuery.orderBy(toOrders(pageable.getSort(), root, criteriaBuilder));
-        List<MealView> content = getContent(criteriaQuery, pageable);
+        List<MealDTO> content = getContent(criteriaQuery, pageable);
         CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
         Root<Meal> countRoot = countQuery.from(Meal.class);
         countQuery.select(criteriaBuilder.count(countRoot));

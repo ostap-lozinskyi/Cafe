@@ -11,12 +11,12 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import ua.entity.Role;
-import ua.entity.User;
+import ua.model.entity.Role;
+import ua.model.entity.User;
 import ua.exception.UserNotFoundException;
 import ua.model.filter.UserFilter;
 import ua.model.request.RegistrationRequest;
-import ua.model.view.MealView;
+import ua.dto.MealDTO;
 import ua.repository.UserRepository;
 import ua.service.UserService;
 
@@ -133,15 +133,15 @@ public class UserServiceImpl implements UserService {
      * Searching Meal in User orders
      */
     @Override
-    public boolean findMealInUserOrders(Page<MealView> mealViews) {
+    public boolean findMealInUserOrders(Page<MealDTO> mealDTOs) {
         LOG.info("In 'findMealInUserOrders' method");
         List<String> userMealsIds = findUserMealsIds();
-        List<String> mealViewIds = new ArrayList<>();
-        for (MealView mealView : mealViews) {
-            mealViewIds.add(mealView.getId());
+        List<String> mealDTOsIds = new ArrayList<>();
+        for (MealDTO mealDTO : mealDTOs) {
+            mealDTOsIds.add(mealDTO.getId());
         }
         for (String userMealId : userMealsIds) {
-            if (mealViewIds.contains(userMealId)) {
+            if (mealDTOsIds.contains(userMealId)) {
                 return true;
             }
         }
@@ -156,10 +156,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Integer> findUserMealViews() {
-        LOG.info("In 'findUserMealViews' method");
+    public List<Integer> findUserMealDTOs() {
+        LOG.info("In 'findUserMealDTOs' method");
         User user = findCurrentUser();
-        return userRepository.findUserMealViews(user.getId());
+        return userRepository.findUserMealDTOs(user.getId());
     }
 
     @Override

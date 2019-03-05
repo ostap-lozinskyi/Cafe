@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
-import ua.entity.Role;
+import ua.model.entity.Role;
 import ua.model.request.RegistrationRequest;
 import ua.service.FacebookService;
 import ua.service.GoogleService;

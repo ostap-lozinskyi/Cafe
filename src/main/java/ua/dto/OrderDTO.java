@@ -1,9 +1,9 @@
-package ua.model.view;
+package ua.dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderView {
+public class OrderDTO {
 	
 	private String id;
 
@@ -11,20 +11,20 @@ public class OrderView {
 	
 	private String status;
 	
-	private List<MealView> mealViews = new ArrayList<>();
+	private List<MealDTO> mealDTOS = new ArrayList<>();
 	
-	public OrderView(String id, String place, String status) {
+	public OrderDTO(String id, String place, String status) {
 		this.id = id;
 		this.place = place;
 		this.status = status;
 	}
 	
-	public List<MealView> getMealViews() {
-		return mealViews;
+	public List<MealDTO> getMealDTOS() {
+		return mealDTOS;
 	}
 
-	public void setMealViews(List<MealView> mealViews) {
-		this.mealViews = mealViews;
+	public void setMealDTOS(List<MealDTO> mealDTOS) {
+		this.mealDTOS = mealDTOS;
 	}
 
 	public String getId() {

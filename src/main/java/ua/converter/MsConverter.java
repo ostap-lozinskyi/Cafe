@@ -3,7 +3,7 @@ package ua.converter;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import ua.entity.Ms;
+import ua.model.entity.Ms;
 import ua.repository.MsRepository;
 
 @Component

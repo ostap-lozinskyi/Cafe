@@ -16,7 +16,7 @@ import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Service;
 
-import ua.entity.Role;
+import ua.model.entity.Role;
 import ua.model.request.RegistrationRequest;
 import ua.service.FacebookService;
 import ua.service.UserService;
@@ -76,7 +76,7 @@ public class FacebookServiceImpl implements FacebookService{
 		String email = fbUser.getName();
 		String password = "1";
 		String photoUrl = "http://graph.facebook.com/" + fbUser.getId() + "/picture?width=300&height=300";
-		ua.entity.User user = userService.findUserByEmail(email);
+		ua.model.entity.User user = userService.findUserByEmail(email);
 		if (user == null) {
 			createNewUser(email, password, photoUrl);
 		}

@@ -3,11 +3,11 @@ package ua.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
-import ua.entity.Role;
-import ua.entity.User;
+import ua.dto.MealDTO;
+import ua.model.entity.Role;
+import ua.model.entity.User;
 import ua.model.filter.UserFilter;
 import ua.model.request.RegistrationRequest;
-import ua.model.view.MealView;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,11 +28,11 @@ public interface UserService {
 
     void uploadPhotoToCloudinary(MultipartFile toUpload) throws IOException;
 
-    boolean findMealInUserOrders(Page<MealView> mealViews);
+    boolean findMealInUserOrders(Page<MealDTO> mealDTOs);
 
     List<String> findUserMealsIds();
 
-    List<Integer> findUserMealViews();
+    List<Integer> findUserMealDTOs();
 
     User findCurrentUser();
 

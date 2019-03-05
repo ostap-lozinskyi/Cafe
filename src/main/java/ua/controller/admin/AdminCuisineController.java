@@ -10,7 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
-import ua.entity.Cuisine;
+import ua.model.entity.Cuisine;
 import ua.model.filter.SimpleFilter;
 import ua.service.CuisineService;
 import ua.validation.flag.CuisineFlag;

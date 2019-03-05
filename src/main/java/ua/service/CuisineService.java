@@ -2,7 +2,7 @@ package ua.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ua.entity.Cuisine;
+import ua.model.entity.Cuisine;
 import ua.model.filter.SimpleFilter;
 
 public interface CuisineService {

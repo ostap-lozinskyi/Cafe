@@ -3,13 +3,13 @@ package ua.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
-import ua.entity.Comment;
-import ua.entity.Meal;
+import ua.model.entity.Comment;
+import ua.model.entity.Meal;
 import ua.model.filter.MealFilter;
 import ua.model.request.MealRequest;
-import ua.model.view.ComponentView;
-import ua.model.view.MealIndexView;
-import ua.model.view.MealView;
+import ua.dto.ComponentDTO;
+import ua.dto.MealIndexDTO;
+import ua.dto.MealDTO;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,13 +18,13 @@ public interface MealService {
 
     List<String> findAllCuisinesNames();
 
-    List<ComponentView> findAllComponentsView();
+    List<ComponentDTO> findAllComponentsDTOs();
 
-    Page<MealIndexView> findAllMealIndexView(MealFilter filter, Pageable pageable);
+    Page<MealIndexDTO> findAllMealIndexDTOs(MealFilter filter, Pageable pageable);
 
-    List<MealIndexView> find5MealIndexViewsByRate();
+    List<MealIndexDTO> find5MealIndexDTOsByRate();
 
-    Page<MealView> findAllMealView(MealFilter filter, Pageable pageable);
+    Page<MealDTO> findAllMealDTOs(MealFilter filter, Pageable pageable);
 
     void saveMeal(MealRequest request);
 
@@ -36,7 +36,7 @@ public interface MealService {
 
     void updateComments(String id, Comment comment);
 
-    MealView findMealViewById(String id);
+    MealDTO findMealDTO(String id);
 
     Meal findMealById(String id);
 

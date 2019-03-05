@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ua.entity.Meal;
-import ua.entity.Order;
-import ua.entity.User;
+import ua.dto.MealDTO;
+import ua.model.entity.Meal;
+import ua.model.entity.Order;
+import ua.model.entity.User;
 import ua.exception.CafeException;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
-import ua.model.view.MealView;
-import ua.model.view.OrderView;
-import ua.model.view.PlaceView;
+import ua.dto.OrderDTO;
+import ua.dto.PlaceDTO;
 import ua.repository.*;
 import ua.service.OrderService;
 import ua.service.UserService;
@@ -26,18 +26,18 @@ import java.util.Objects;
 public class OrderServiceImpl implements OrderService {
     private static final Logger LOG = LoggerFactory.getLogger(OrderServiceImpl.class);
     private final OrderRepository repository;
-    private final OrderViewRepository orderViewRepository;
+    private final OrderDTORepository orderDTORepository;
     private final MealRepository mealRepository;
     private final PlaceRepository placeRepository;
     private final UserRepository userRepository;
     private final UserService userService;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository repository, OrderViewRepository orderViewRepository,
+    public OrderServiceImpl(OrderRepository repository, OrderDTORepository orderDTORepository,
                             MealRepository mealRepository, PlaceRepository placeRepository,
                             UserRepository userRepository, UserService userService) {
         this.repository = repository;
-        this.orderViewRepository = orderViewRepository;
+        this.orderDTORepository = orderDTORepository;
         this.mealRepository = mealRepository;
         this.placeRepository = placeRepository;
         this.userRepository = userRepository;
@@ -55,13 +55,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<PlaceView> findAllPlaceViews() {
-        return placeRepository.findAllPlaceViews();
+    public List<PlaceDTO> findAllPlaceDTOs() {
+        return placeRepository.findAllPlaceDTOs();
     }
 
     @Override
-    public PlaceView findPlaceViewById(String id) {
-        return placeRepository.findPlaceViewById(id);
+    public PlaceDTO findPlaceDTO(String id) {
+        return placeRepository.findPlaceDTO(id);
     }
 
     @Override
@@ -76,28 +76,28 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Page<OrderView> findAll(Pageable pageable, OrderFilter filter) {
+    public Page<OrderDTO> findAll(Pageable pageable, OrderFilter filter) {
         LOG.info("In 'findAll' method");
-        Page<OrderView> ordersPage = orderViewRepository.findAllView(filter, pageable);
-        for (OrderView orderView : ordersPage) {
-            orderView.setMealViews(findMealViewsForOrder(orderView.getId()));
+        Page<OrderDTO> ordersPage = orderDTORepository.findAllDTOs(filter, pageable);
+        for (OrderDTO orderDTO : ordersPage) {
+            orderDTO.setMealDTOS(findMealDTOsForOrder(orderDTO.getId()));
         }
         return ordersPage;
     }
 
     @Override
-    public List<OrderView> findOrderViewsForTable(String tableId) {
-        LOG.info("In 'findOrderViewsForTable' method. Id = {}", tableId);
-        List<OrderView> ordersPage = repository.findOrderViewsForTable(tableId);
-        for (OrderView orderView : ordersPage) {
-            orderView.setMealViews(findMealViewsForOrder(orderView.getId()));
+    public List<OrderDTO> findOrderDTOsForTable(String tableId) {
+        LOG.info("In 'findOrderDTOsForTable' method. Id = {}", tableId);
+        List<OrderDTO> ordersPage = repository.findOrderDTOsForTable(tableId);
+        for (OrderDTO orderDTO : ordersPage) {
+            orderDTO.setMealDTOS(findMealDTOsForOrder(orderDTO.getId()));
         }
         return ordersPage;
     }
 
     @Override
-    public List<MealView> findMealViewsForOrder(String orderId) {
-        return mealRepository.findMealViewsForOrder(orderId);
+    public List<MealDTO> findMealDTOsForOrder(String orderId) {
+        return mealRepository.findMealDTOsForOrder(orderId);
     }
 
     @Override

@@ -1,8 +1,8 @@
-package ua.model.view;
+package ua.dto;
 
 import java.math.BigDecimal;
 
-public class ComponentView {
+public class ComponentDTO {
 	
 	private String id;
 	
@@ -12,7 +12,7 @@ public class ComponentView {
 	
 	private String ms;
 	
-	public ComponentView(String id, BigDecimal amount, String ingredient, String ms) {
+	public ComponentDTO(String id, BigDecimal amount, String ingredient, String ms) {
 		super();
 		this.id = id;
 		this.amount = amount;

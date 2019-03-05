@@ -18,7 +18,7 @@ public class PlaceController {
 
     @GetMapping("/place")
     public String place(Model model) {
-        model.addAttribute("places", service.findAllPlaceViews());
+        model.addAttribute("places", service.findAllPlaceDTOs());
         model.addAttribute("myPlaces", service.findPlaceIdByUserId());
         return "place";
     }

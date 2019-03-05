@@ -50,10 +50,10 @@ public class AdminComponentController {
                        @ModelAttribute("componentFilter") ComponentFilter filter) {
         model.addAttribute("ingredients", service.findAllIngredients());
         model.addAttribute("mss", service.findAllMss());
-        model.addAttribute("components", service.findAllView(pageable, filter));
+        model.addAttribute("components", service.findAllDTOs(pageable, filter));
         model.addAttribute("error", error);
         error = "";
-        boolean hasContent = service.findAllView(pageable, filter).hasContent();
+        boolean hasContent = service.findAllDTOs(pageable, filter).hasContent();
         if (hasContent || pageable.getPageNumber() == 0)
             return "adminComponent";
         else
@@ -64,7 +64,7 @@ public class AdminComponentController {
     public String delete(@PathVariable String id, @PageableDefault Pageable pageable,
                          @ModelAttribute("componentFilter") ComponentFilter filter) {
         service.deleteById(id);
-        boolean hasContent = service.findAllView(pageable, filter).hasContent();
+        boolean hasContent = service.findAllDTOs(pageable, filter).hasContent();
         return REDIRECT_ADMIN_ADMIN_COMPONENT + buildParams(hasContent, pageable, Strings.EMPTY);
     }
 
@@ -95,7 +95,7 @@ public class AdminComponentController {
     public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
                          @ModelAttribute("componentFilter") ComponentFilter filter) {
         status.setComplete();
-        boolean hasContent = service.findAllView(pageable, filter).hasContent();
+        boolean hasContent = service.findAllDTOs(pageable, filter).hasContent();
         return REDIRECT_ADMIN_ADMIN_COMPONENT + buildParams(hasContent, pageable, Strings.EMPTY);
     }
 }

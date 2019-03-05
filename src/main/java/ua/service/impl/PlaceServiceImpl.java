@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ua.entity.Place;
-import ua.entity.User;
+import ua.model.entity.Place;
+import ua.model.entity.User;
 import ua.exception.CafeException;
 import ua.model.filter.PlaceFilter;
 import ua.model.request.PlaceRequest;
-import ua.model.view.PlaceView;
+import ua.dto.PlaceDTO;
 import ua.repository.PlaceRepository;
-import ua.repository.PlaceViewRepository;
+import ua.repository.PlaceDTORepository;
 import ua.service.PlaceService;
 import ua.service.UserService;
 
@@ -25,20 +25,20 @@ import java.util.Objects;
 public class PlaceServiceImpl implements PlaceService {
     private static final Logger LOG = LoggerFactory.getLogger(PlaceServiceImpl.class);
     private final PlaceRepository repository;
-    private final PlaceViewRepository placeViewRepository;
+    private final PlaceDTORepository placeDTORepository;
     private final UserService userService;
 
     @Autowired
-    public PlaceServiceImpl(PlaceRepository repository, PlaceViewRepository placeViewRepository,
+    public PlaceServiceImpl(PlaceRepository repository, PlaceDTORepository placeDTORepository,
                             UserService userService) {
         this.repository = repository;
-        this.placeViewRepository = placeViewRepository;
+        this.placeDTORepository = placeDTORepository;
         this.userService = userService;
     }
 
     @Override
-    public Page<PlaceView> findAllView(Pageable pageable, PlaceFilter filter) {
-        return placeViewRepository.findAllView(filter, pageable);
+    public Page<PlaceDTO> findAllDTOs(Pageable pageable, PlaceFilter filter) {
+        return placeDTORepository.findAllDTOs(filter, pageable);
     }
 
     @Override
@@ -47,12 +47,12 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public List<PlaceView> findAllPlaceViews() {
-        return repository.findAllPlaceViews();
+    public List<PlaceDTO> findAllPlaceDTOs() {
+        return repository.findAllPlaceDTOs();
     }
 
     @Override
-    public List<PlaceView> findPlaceIdByUserId() {
+    public List<PlaceDTO> findPlaceIdByUserId() {
         LOG.info("In 'findPlaceIdByUserId' method");
         User user = userService.findCurrentUser();
         if (Objects.nonNull(user)) {

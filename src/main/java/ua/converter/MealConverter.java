@@ -3,7 +3,7 @@ package ua.converter;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import ua.entity.Meal;
+import ua.model.entity.Meal;
 import ua.repository.MealRepository;
 
 @Component

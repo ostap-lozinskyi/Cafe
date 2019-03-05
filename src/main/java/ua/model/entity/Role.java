@@ -1,4 +1,4 @@
-package ua.entity;
+package ua.model.entity;
 
 public enum Role {
 

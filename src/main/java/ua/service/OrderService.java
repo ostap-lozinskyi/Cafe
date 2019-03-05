@@ -2,12 +2,12 @@ package ua.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ua.entity.Order;
+import ua.dto.MealDTO;
+import ua.model.entity.Order;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
-import ua.model.view.MealView;
-import ua.model.view.OrderView;
-import ua.model.view.PlaceView;
+import ua.dto.OrderDTO;
+import ua.dto.PlaceDTO;
 
 import java.util.List;
 
@@ -17,15 +17,15 @@ public interface OrderService {
 
     List<String> findStatusForSearch();
 
-    List<PlaceView> findAllPlaceViews();
+    List<PlaceDTO> findAllPlaceDTOs();
 
-    PlaceView findPlaceViewById(String id);
+    PlaceDTO findPlaceDTO(String id);
 
-    Page<OrderView> findAll(Pageable pageable, OrderFilter filter);
+    Page<OrderDTO> findAll(Pageable pageable, OrderFilter filter);
 
-    List<OrderView> findOrderViewsForTable(String tableId);
+    List<OrderDTO> findOrderDTOsForTable(String tableId);
 
-    List<MealView> findMealViewsForOrder(String orderId);
+    List<MealDTO> findMealDTOsForOrder(String orderId);
 
     Order findOrderById(String id);
 

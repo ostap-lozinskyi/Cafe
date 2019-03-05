@@ -7,7 +7,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ua.entity.Order;
+import ua.model.entity.Order;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.service.OrderService;
@@ -46,7 +46,7 @@ public class AdminOrderController {
     public String show(Model model, @PageableDefault Pageable pageable,
                        @ModelAttribute("orderFilter") OrderFilter filter) {
         model.addAttribute("meals", service.findAllMealsNames());
-        model.addAttribute("places", service.findAllPlaceViews());
+        model.addAttribute("places", service.findAllPlaceDTOs());
         model.addAttribute("orders", service.findAll(pageable, filter));
         model.addAttribute("statuses", service.findStatusForSearch());
         boolean hasContent = service.findAll(pageable, filter).hasContent();

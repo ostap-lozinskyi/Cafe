@@ -1,7 +1,7 @@
 package ua.model.request;
 
-import ua.entity.Ingredient;
-import ua.entity.Ms;
+import ua.model.entity.Ingredient;
+import ua.model.entity.Ms;
 import ua.validation.flag.ComponentFlag;
 
 import javax.validation.constraints.NotBlank;

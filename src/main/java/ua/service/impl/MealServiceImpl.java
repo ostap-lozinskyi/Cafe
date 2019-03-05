@@ -10,18 +10,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import ua.entity.Comment;
-import ua.entity.Meal;
+import ua.model.entity.Comment;
+import ua.model.entity.Meal;
 import ua.exception.CafeException;
 import ua.model.filter.MealFilter;
 import ua.model.request.MealRequest;
-import ua.model.view.ComponentView;
-import ua.model.view.MealIndexView;
-import ua.model.view.MealView;
+import ua.dto.ComponentDTO;
+import ua.dto.MealIndexDTO;
+import ua.dto.MealDTO;
 import ua.repository.ComponentRepository;
 import ua.repository.CuisineRepository;
 import ua.repository.MealRepository;
-import ua.repository.MealViewRepository;
+import ua.repository.MealDTORepository;
 import ua.service.MealService;
 
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class MealServiceImpl implements MealService {
 
     private final MealRepository mealRepository;
 
-    private final MealViewRepository mealViewRepository;
+    private final MealDTORepository mealDTORepository;
 
     private final CuisineRepository cuisineRepository;
 
@@ -46,10 +46,10 @@ public class MealServiceImpl implements MealService {
     Cloudinary cloudinary = new Cloudinary();
 
     @Autowired
-    public MealServiceImpl(MealRepository repository, MealViewRepository mealViewrepository,
+    public MealServiceImpl(MealRepository repository, MealDTORepository mealDTORepository,
                            CuisineRepository cuisineRepository, ComponentRepository componentRepository) {
         this.mealRepository = repository;
-        this.mealViewRepository = mealViewrepository;
+        this.mealDTORepository = mealDTORepository;
         this.cuisineRepository = cuisineRepository;
         this.componentRepository = componentRepository;
     }
@@ -60,23 +60,23 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public List<ComponentView> findAllComponentsView() {
-        return componentRepository.findAllComponentsView();
+    public List<ComponentDTO> findAllComponentsDTOs() {
+        return componentRepository.findAllComponentDTOs();
     }
 
     @Override
-    public Page<MealIndexView> findAllMealIndexView(MealFilter filter, Pageable pageable) {
-        return mealViewRepository.findAllMealIndexView(filter, pageable);
+    public Page<MealIndexDTO> findAllMealIndexDTOs(MealFilter filter, Pageable pageable) {
+        return mealDTORepository.findAllMealIndexDTOs(filter, pageable);
     }
 
     @Override
-    public List<MealIndexView> find5MealIndexViewsByRate() {
-        return mealRepository.find5MealIndexViewsByRate();
+    public List<MealIndexDTO> find5MealIndexDTOsByRate() {
+        return mealRepository.find5MealIndexDTOsByRate();
     }
 
     @Override
-    public Page<MealView> findAllMealView(MealFilter filter, Pageable pageable) {
-        return mealViewRepository.findAllMealView(filter, pageable);
+    public Page<MealDTO> findAllMealDTOs(MealFilter filter, Pageable pageable) {
+        return mealDTORepository.findAllMealDTOs(filter, pageable);
     }
 
     @Override
@@ -133,8 +133,8 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public MealView findMealViewById(String id) {
-        return mealRepository.findMealViewById(id);
+    public MealDTO findMealDTO(String id) {
+        return mealRepository.findMealDTO(id);
     }
 
     @Override

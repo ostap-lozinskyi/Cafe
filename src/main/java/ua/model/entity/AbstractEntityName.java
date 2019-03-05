@@ -1,4 +1,4 @@
-package ua.entity;
+package ua.model.entity;
 
 import ua.validation.annotation.UniqueCuisine;
 import ua.validation.annotation.UniqueIngredient;

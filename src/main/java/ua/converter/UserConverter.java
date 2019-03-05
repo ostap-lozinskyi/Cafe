@@ -4,7 +4,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import ua.entity.User;
+import ua.model.entity.User;
 import ua.repository.UserRepository;
 
 @Component

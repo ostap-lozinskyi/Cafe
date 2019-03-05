@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ua.entity.Comment;
+import ua.model.entity.Comment;
 import ua.model.request.CommentRequest;
-import ua.model.view.MealView;
+import ua.dto.MealDTO;
 import ua.service.CommentService;
 import ua.service.MealService;
 import ua.service.UserService;
@@ -42,7 +42,7 @@ public class MenuItemController {
      */
     @GetMapping
     public String show(Model model, @PathVariable String id) {
-        MealView meal = service.findMealViewById(id);
+        MealDTO meal = service.findMealDTO(id);
         meal.setComments(service.findCommentList(id));
         model.addAttribute("meal", meal);
         model.addAttribute("tasteMeal", error);

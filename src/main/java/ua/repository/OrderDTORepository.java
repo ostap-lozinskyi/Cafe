@@ -4,10 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.model.filter.OrderFilter;
-import ua.model.view.OrderView;
+import ua.dto.OrderDTO;
 
-public interface OrderViewRepository {
+public interface OrderDTORepository {
 
-	Page<OrderView> findAllView(OrderFilter filter, Pageable pageable);
+	Page<OrderDTO> findAllDTOs(OrderFilter filter, Pageable pageable);
 		
 }

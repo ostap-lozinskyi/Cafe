@@ -47,11 +47,11 @@ public class AdminPlaceController {
 
     @GetMapping
     public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("placeFilter") PlaceFilter filter) {
-        model.addAttribute("places", service.findAllView(pageable, filter));
+        model.addAttribute("places", service.findAllDTOs(pageable, filter));
         model.addAttribute("placesString", service.findAllPlacesCountOfPeople());
         model.addAttribute("error", error);
         error = "";
-        boolean hasContent = service.findAllView(pageable, filter).hasContent();
+        boolean hasContent = service.findAllDTOs(pageable, filter).hasContent();
         if (hasContent || pageable.getPageNumber() == 0)
             return "adminPlace";
         else
@@ -62,7 +62,7 @@ public class AdminPlaceController {
     public String delete(@PathVariable String id, @PageableDefault Pageable pageable,
                          @ModelAttribute("placeFilter") PlaceFilter filter) {
         service.deletePlace(id);
-        boolean hasContent = service.findAllView(pageable, filter).hasContent();
+        boolean hasContent = service.findAllDTOs(pageable, filter).hasContent();
         return REDIRECT_ADMIN_ADMIN_PLACE + buildParams(hasContent, pageable, Strings.EMPTY);
     }
 
@@ -93,7 +93,7 @@ public class AdminPlaceController {
     public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
                          @ModelAttribute("placeFilter") PlaceFilter filter) {
         status.setComplete();
-        boolean hasContent = service.findAllView(pageable, filter).hasContent();
+        boolean hasContent = service.findAllDTOs(pageable, filter).hasContent();
         return REDIRECT_ADMIN_ADMIN_PLACE + buildParams(hasContent, pageable, Strings.EMPTY);
     }
 

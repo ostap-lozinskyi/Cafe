@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import ua.model.filter.ComponentFilter;
 import ua.model.request.ComponentRequest;
-import ua.model.view.ComponentView;
+import ua.dto.ComponentDTO;
 
 public interface ComponentService {
 
@@ -15,7 +15,7 @@ public interface ComponentService {
 
 	List<String> findAllMss();
 
-	Page<ComponentView> findAllView(Pageable pageable, ComponentFilter filter);
+	Page<ComponentDTO> findAllDTOs(Pageable pageable, ComponentFilter filter);
 
 	void saveComponent(ComponentRequest request);
 

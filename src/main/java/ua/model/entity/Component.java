@@ -1,4 +1,4 @@
-package ua.entity;
+package ua.model.entity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

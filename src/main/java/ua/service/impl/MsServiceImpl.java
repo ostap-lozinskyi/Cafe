@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import ua.entity.Ms;
+import ua.model.entity.Ms;
 import ua.exception.CafeException;
 import ua.model.filter.SimpleFilter;
 import ua.repository.MsRepository;

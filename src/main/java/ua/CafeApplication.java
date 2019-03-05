@@ -1,6 +1,5 @@
 package ua;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,9 +9,8 @@ import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import ua.argument.resolver.UserMethodHandlerArgumentResolver;
-import ua.entity.Role;
-import ua.entity.User;
+import ua.model.entity.Role;
+import ua.model.entity.User;
 import ua.repository.UserRepository;
 
 import java.util.List;
@@ -28,9 +26,6 @@ public class CafeApplication implements WebMvcConfigurer {
         addAdmin(run);
     }
 
-    @Autowired
-    UserMethodHandlerArgumentResolver userResolver;
-
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
@@ -39,7 +34,7 @@ public class CafeApplication implements WebMvcConfigurer {
         argumentResolvers.add(resolver);
     }
 
-    static void addAdmin(ConfigurableApplicationContext run) {
+    private static void addAdmin(ConfigurableApplicationContext run) {
         UserRepository repository = run.getBean(UserRepository.class);
         User user = repository.findUserByEmail(ADMIN);
         if (user == null) {

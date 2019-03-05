@@ -95,7 +95,7 @@
 						<tr>
 							<td>
 								<div class="row">
-									<c:forEach var="orderedMeal" items="${order.mealViews}">
+									<c:forEach var="orderedMeal" items="${order.mealDTOS}">
 										<div class="col-2">
 											<div class="row">
 												<div class="col-12">

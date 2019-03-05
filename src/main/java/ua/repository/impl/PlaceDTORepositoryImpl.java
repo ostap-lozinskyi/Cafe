@@ -4,11 +4,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
-import ua.entity.Place;
-import ua.entity.Place_;
+import ua.dto.PlaceDTO;
+import ua.model.entity.Place;
+import ua.model.entity.Place_;
 import ua.model.filter.PlaceFilter;
-import ua.model.view.PlaceView;
-import ua.repository.PlaceViewRepository;
+import ua.repository.PlaceDTORepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,21 +22,21 @@ import java.util.List;
 import static org.springframework.data.jpa.repository.query.QueryUtils.toOrders;
 
 @Repository
-public class PlaceViewRepositoryImpl implements PlaceViewRepository {
+public class PlaceDTORepositoryImpl implements PlaceDTORepository {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public Page<PlaceView> findAllView(PlaceFilter filter, Pageable pageable) {
+    public Page<PlaceDTO> findAllDTOs(PlaceFilter filter, Pageable pageable) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<PlaceView> cq = cb.createQuery(PlaceView.class);
+        CriteriaQuery<PlaceDTO> cq = cb.createQuery(PlaceDTO.class);
         Root<Place> root = cq.from(Place.class);
         cq.multiselect(root.get(Place_.id), root.get("name"), root.get("countOfPeople"), root.get("isFree"));
         Predicate predicate = new PredicateBuilder(cb, root, filter).toPredicate();
         if (predicate != null) cq.where(predicate);
         cq.orderBy(toOrders(pageable.getSort(), root, cb));
-        List<PlaceView> content = em.createQuery(cq)
+        List<PlaceDTO> content = em.createQuery(cq)
                 .setFirstResult(pageable.getPageNumber() * pageable.getPageSize())
                 .setMaxResults(pageable.getPageSize())
                 .getResultList();

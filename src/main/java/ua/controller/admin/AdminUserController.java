@@ -10,7 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
-import ua.entity.Role;
+import ua.model.entity.Role;
 import ua.model.filter.UserFilter;
 import ua.model.request.FileRequest;
 import ua.model.request.RegistrationRequest;

@@ -17,32 +17,32 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 
-import ua.entity.Meal;
-import ua.entity.Order;
-import ua.entity.Order_;
-import ua.entity.Place;
+import ua.model.entity.Meal;
+import ua.model.entity.Order;
+import ua.model.entity.Order_;
+import ua.model.entity.Place;
 import ua.model.filter.OrderFilter;
-import ua.model.view.OrderView;
-import ua.repository.OrderViewRepository;
+import ua.dto.OrderDTO;
+import ua.repository.OrderDTORepository;
 
 @Repository
-public class OrderViewRepositoryImpl implements OrderViewRepository {
+public class OrderDTORepositoryImpl implements OrderDTORepository {
 
     private static final String STATUS = "status";
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public Page<OrderView> findAllView(OrderFilter filter, Pageable pageable) {
+    public Page<OrderDTO> findAllDTOs(OrderFilter filter, Pageable pageable) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<OrderView> cq = cb.createQuery(OrderView.class);
+        CriteriaQuery<OrderDTO> cq = cb.createQuery(OrderDTO.class);
         Root<Order> root = cq.from(Order.class);
         Join<Order, Place> joinPlace = root.join(Order_.place);
         cq.multiselect(root.get(Order_.id), joinPlace.get("name"), root.get(STATUS));
         Predicate predicate = new PredicateBuilder(cb, root, filter).toPredicate();
         if (predicate != null) cq.where(predicate);
         cq.orderBy(cb.asc(root.get(STATUS)));
-        List<OrderView> content = em.createQuery(cq)
+        List<OrderDTO> content = em.createQuery(cq)
                 .setFirstResult(pageable.getPageNumber() * pageable.getPageSize())
                 .setMaxResults(pageable.getPageSize())
                 .getResultList();

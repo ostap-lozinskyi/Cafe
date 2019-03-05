@@ -1,4 +1,4 @@
-package ua.entity;
+package ua.model.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;

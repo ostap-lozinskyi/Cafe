@@ -4,10 +4,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.model.filter.ComponentFilter;
-import ua.model.view.ComponentView;
+import ua.dto.ComponentDTO;
 
-public interface ComponentViewRepository {
+public interface ComponentDTORepository {
 
-	Page<ComponentView> findAllView(ComponentFilter filter, Pageable pageable);
+	Page<ComponentDTO> findAllDTOs(ComponentFilter filter, Pageable pageable);
 		
 }

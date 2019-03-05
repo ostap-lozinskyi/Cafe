@@ -1,11 +1,11 @@
-package ua.model.view;
+package ua.dto;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import ua.entity.Comment;
+import ua.model.entity.Comment;
 
-public class MealView {
+public class MealDTO {
 
 	private String id;
 	
@@ -29,8 +29,8 @@ public class MealView {
 	
 	private List<Comment> comments;
 	
-	public MealView(String id, String photoUrl, int version, String name, String fullDescription, BigDecimal price,
-			int weight, String cuisine, BigDecimal rate) {
+	public MealDTO(String id, String photoUrl, int version, String name, String fullDescription, BigDecimal price,
+				   int weight, String cuisine, BigDecimal rate) {
 		this.id = id;
 		this.photoUrl = photoUrl;
 		this.version = version;
@@ -132,7 +132,7 @@ public class MealView {
 
 	@Override
 	public String toString() {
-		return "MealView [id=" + id + ", photoUrl=" + photoUrl + ", version=" + version + ", rate=" + rate + ", name="
+		return "MealDTO [id=" + id + ", photoUrl=" + photoUrl + ", version=" + version + ", rate=" + rate + ", name="
 				+ name + ", fullDescription=" + fullDescription + ", price=" + price + ", components=" + components
 				+ ", weight=" + weight + ", cuisine=" + cuisine + "]";
 	}

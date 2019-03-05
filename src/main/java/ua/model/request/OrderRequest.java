@@ -1,7 +1,7 @@
 package ua.model.request;
 
-import ua.entity.Meal;
-import ua.entity.Place;
+import ua.model.entity.Meal;
+import ua.model.entity.Place;
 import ua.validation.flag.OrderFlag;
 
 import javax.validation.constraints.NotNull;

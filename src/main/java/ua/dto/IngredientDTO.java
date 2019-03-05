@@ -1,10 +1,10 @@
-package ua.model.view;
+package ua.dto;
 
 import java.util.List;
 
-import ua.entity.Comment;
+import ua.model.entity.Comment;
 
-public class IngredientView {
+public class IngredientDTO {
 	
 	private String id;
 
@@ -12,7 +12,7 @@ public class IngredientView {
 	
 	private List<Comment> comments;
 	
-	public IngredientView(String id, String name) {
+	public IngredientDTO(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}

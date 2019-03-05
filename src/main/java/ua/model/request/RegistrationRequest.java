@@ -1,6 +1,6 @@
 package ua.model.request;
 
-import ua.entity.Role;
+import ua.model.entity.Role;
 import ua.validation.annotation.PasswordsEqual;
 import ua.validation.annotation.UniqueUser;
 import ua.validation.flag.UserFlag;

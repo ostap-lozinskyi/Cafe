@@ -27,7 +27,7 @@ public class MenuController {
     @GetMapping("/menu")
     public String mealMenu(Model model, @ModelAttribute("mealFilter") MealFilter filter,
                            @PageableDefault Pageable pageable) {
-        model.addAttribute("meals", service.findAllMealIndexView(filter, pageable));
+        model.addAttribute("meals", service.findAllMealIndexDTOs(filter, pageable));
         model.addAttribute("cuisines", service.findAllCuisinesNames());
         return "menu";
     }

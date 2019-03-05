@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import ua.entity.User;
+import ua.model.entity.User;
 import ua.model.request.FileRequest;
 import ua.service.UserService;
 
@@ -32,7 +32,7 @@ public class UserCabinetController {
     public String userCabinet(Model model) {
         User user = userService.findCurrentUser();
         model.addAttribute("user", user);
-        model.addAttribute("meals", userService.findUserMealViews());
+        model.addAttribute("meals", userService.findUserMealDTOs());
         return "userCabinet";
     }
 

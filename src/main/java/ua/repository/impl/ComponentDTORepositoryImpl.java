@@ -1,33 +1,27 @@
 package ua.repository.impl;
 
-import static org.springframework.data.jpa.repository.query.QueryUtils.toOrders;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
-
-import ua.entity.Component;
-import ua.entity.Component_;
-import ua.entity.Ingredient;
-import ua.entity.Ms;
+import ua.dto.ComponentDTO;
+import ua.model.entity.Component;
+import ua.model.entity.Component_;
+import ua.model.entity.Ingredient;
+import ua.model.entity.Ms;
 import ua.model.filter.ComponentFilter;
-import ua.model.view.ComponentView;
-import ua.repository.ComponentViewRepository;
+import ua.repository.ComponentDTORepository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.springframework.data.jpa.repository.query.QueryUtils.toOrders;
 
 @Repository
-public class ComponentViewRepositoryImpl implements ComponentViewRepository {
+public class ComponentDTORepositoryImpl implements ComponentDTORepository {
 
     private static final String AMOUNT = "amount";
     private static final String NAME = "name";
@@ -35,9 +29,9 @@ public class ComponentViewRepositoryImpl implements ComponentViewRepository {
     private EntityManager entityManager;
 
     @Override
-    public Page<ComponentView> findAllView(ComponentFilter filter, Pageable pageable) {
+    public Page<ComponentDTO> findAllDTOs(ComponentFilter filter, Pageable pageable) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<ComponentView> cq = cb.createQuery(ComponentView.class);
+        CriteriaQuery<ComponentDTO> cq = cb.createQuery(ComponentDTO.class);
         Root<Component> root = cq.from(Component.class);
         Join<Component, Ms> joinMs = root.join(Component_.ms);
         Join<Component, Ingredient> joinIngredient = root.join(Component_.ingredient);
@@ -45,7 +39,7 @@ public class ComponentViewRepositoryImpl implements ComponentViewRepository {
         Predicate predicate = new PredicateBuilder(cb, root, filter).toPredicate();
         if (predicate != null) cq.where(predicate);
         cq.orderBy(toOrders(pageable.getSort(), root, cb));
-        List<ComponentView> content = entityManager.createQuery(cq)
+        List<ComponentDTO> content = entityManager.createQuery(cq)
                 .setFirstResult(pageable.getPageNumber() * pageable.getPageSize())
                 .setMaxResults(pageable.getPageSize())
                 .getResultList();

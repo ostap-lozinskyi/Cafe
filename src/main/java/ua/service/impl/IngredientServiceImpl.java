@@ -7,17 +7,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import ua.entity.Comment;
-import ua.entity.Ingredient;
+import ua.model.entity.Comment;
+import ua.model.entity.Ingredient;
 import ua.exception.CafeException;
 import ua.model.filter.MealFilter;
 import ua.model.filter.SimpleFilter;
-import ua.model.view.ComponentView;
-import ua.model.view.IngredientView;
-import ua.model.view.MealView;
+import ua.dto.ComponentDTO;
+import ua.dto.IngredientDTO;
+import ua.dto.MealDTO;
 import ua.repository.ComponentRepository;
 import ua.repository.IngredientRepository;
-import ua.repository.MealViewRepository;
+import ua.repository.MealDTORepository;
 import ua.service.IngredientService;
 
 import java.util.ArrayList;
@@ -28,14 +28,14 @@ public class IngredientServiceImpl implements IngredientService {
     private static final Logger LOG = LoggerFactory.getLogger(IngredientServiceImpl.class);
     private final IngredientRepository ingredientRepository;
     private final ComponentRepository componentRepository;
-    private final MealViewRepository mealViewRepository;
+    private final MealDTORepository mealDTORepository;
 
     @Autowired
     public IngredientServiceImpl(IngredientRepository ingredientRepository, ComponentRepository componentRepository,
-                                 MealViewRepository mealViewRepository) {
+                                 MealDTORepository mealDTORepository) {
         this.ingredientRepository = ingredientRepository;
         this.componentRepository = componentRepository;
-        this.mealViewRepository = mealViewRepository;
+        this.mealDTORepository = mealDTORepository;
     }
 
     @Override
@@ -52,34 +52,34 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public IngredientView findIngredientViewById(String id) {
-        return ingredientRepository.findIngredientViewById(id);
+    public IngredientDTO findIngredientDTO(String id) {
+        return ingredientRepository.findIngredientDTO(id);
     }
 
     @Override
-    public List<ComponentView> findComponentViewByIngredientId(String id) {
-        return componentRepository.findComponentViewByIngredientId(id);
+    public List<ComponentDTO> findComponentDTOByIngredientId(String id) {
+        return componentRepository.findComponentDTOsByIngredientId(id);
     }
 
     @Override
-    public Page<MealView> findAllMealView(MealFilter filter, Pageable pageable) {
-        return mealViewRepository.findAllMealView(filter, pageable);
+    public Page<MealDTO> findAllMealDTOs(MealFilter filter, Pageable pageable) {
+        return mealDTORepository.findAllMealDTOs(filter, pageable);
     }
 
     /**
      * Searching meals with ingredient
      */
     @Override
-    public Page<MealView> searchMealsWithIngredient(String ingredientId, MealFilter mealFilter, Pageable pageable) {
+    public Page<MealDTO> searchMealsWithIngredient(String ingredientId, MealFilter mealFilter, Pageable pageable) {
         LOG.info("In 'searchMealsWithIngredient' method");
-        List<ComponentView> componentsList = findComponentViewByIngredientId(ingredientId);
+        List<ComponentDTO> componentsList = findComponentDTOByIngredientId(ingredientId);
         if (!componentsList.isEmpty()) {
             List<String> componentsIds = new ArrayList<>();
-            for (ComponentView componentView : componentsList) {
-                componentsIds.add(componentView.getId());
+            for (ComponentDTO componentDTO : componentsList) {
+                componentsIds.add(componentDTO.getId());
             }
             mealFilter.setComponentsId(componentsIds);
-            return findAllMealView(mealFilter, pageable);
+            return findAllMealDTOs(mealFilter, pageable);
         } else {
             return null;
         }

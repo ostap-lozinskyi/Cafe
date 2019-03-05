@@ -10,7 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
-import ua.entity.Ingredient;
+import ua.model.entity.Ingredient;
 import ua.model.filter.SimpleFilter;
 import ua.service.IngredientService;
 import ua.validation.flag.IngredientFlag;

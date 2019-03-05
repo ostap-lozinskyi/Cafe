@@ -1,6 +1,6 @@
-package ua.model.view;
+package ua.dto;
 
-public class PlaceView {
+public class PlaceDTO {
 
     private String id;
 
@@ -10,7 +10,7 @@ public class PlaceView {
 
     private boolean isFree;
 
-    public PlaceView(String id, String name, int countOfPeople, boolean isFree) {
+    public PlaceDTO(String id, String name, int countOfPeople, boolean isFree) {
         this.id = id;
         this.name = name;
         this.countOfPeople = countOfPeople;

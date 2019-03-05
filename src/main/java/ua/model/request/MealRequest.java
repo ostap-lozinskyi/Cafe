@@ -1,8 +1,8 @@
 package ua.model.request;
 
-import ua.entity.Component;
-import ua.entity.Cuisine;
-import ua.entity.Meal;
+import ua.model.entity.Component;
+import ua.model.entity.Cuisine;
+import ua.model.entity.Meal;
 import ua.validation.annotation.UniqueMeal;
 import ua.validation.flag.MealFlag;
 

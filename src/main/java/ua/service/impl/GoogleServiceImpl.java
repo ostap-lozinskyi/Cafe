@@ -10,7 +10,7 @@ import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Service;
-import ua.entity.Role;
+import ua.model.entity.Role;
 import ua.model.request.RegistrationRequest;
 import ua.service.GoogleService;
 import ua.service.UserService;
@@ -73,7 +73,7 @@ public class GoogleServiceImpl implements GoogleService {
         Person person = google.plusOperations().getGoogleProfile();
         String email = person.getAccountEmail();
         String password = "1";
-        ua.entity.User user = userService.findUserByEmail(email);
+        ua.model.entity.User user = userService.findUserByEmail(email);
         if (user == null) {
             String photoUrl = person.getImageUrl();
             createNewUser(email, password, photoUrl);

@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import ua.entity.Comment;
-import ua.entity.Role;
+import ua.dto.MealDTO;
+import ua.model.entity.Comment;
+import ua.model.entity.Role;
 import ua.model.filter.MealFilter;
 import ua.model.request.CommentRequest;
-import ua.model.view.IngredientView;
-import ua.model.view.MealView;
+import ua.dto.IngredientDTO;
 import ua.service.CommentService;
 import ua.service.IngredientService;
 import ua.service.UserService;
@@ -34,7 +34,7 @@ public class IngredientIdController {
 
     private final UserService userService;
 
-    private Page<MealView> mealViews;
+    private Page<MealDTO> mealDTOs;
 
     private String error = "";
 
@@ -61,14 +61,14 @@ public class IngredientIdController {
     @GetMapping("/ingredient/{id}")
     public String show(Model model, @PathVariable String id, @PageableDefault Pageable pageable,
                        @ModelAttribute("mealFilter") MealFilter filter) {
-        IngredientView ingredient = ingredientService.findIngredientViewById(id);
+        IngredientDTO ingredient = ingredientService.findIngredientDTO(id);
         ingredient.setComments(ingredientService.findCommentList(id));
         model.addAttribute("ingredient", ingredient);
-        mealViews = ingredientService.searchMealsWithIngredient(id, filter, pageable);
-        model.addAttribute("meals", mealViews);
+        mealDTOs = ingredientService.searchMealsWithIngredient(id, filter, pageable);
+        model.addAttribute("meals", mealDTOs);
         model.addAttribute("tasteMeal", error);
         error = "";
-        boolean hasContent = ingredientService.findAllMealView(filter, pageable).hasContent();
+        boolean hasContent = ingredientService.findAllMealDTOs(filter, pageable).hasContent();
         if (hasContent || pageable.getPageNumber() == 0)
             return "ingredientId";
         else
@@ -85,8 +85,8 @@ public class IngredientIdController {
             saveComment(id, commentRequest);
             return REDIRECT_INGREDIENT_ID;
         }
-        if (mealViews != null) {
-            if (userService.findMealInUserOrders(mealViews)) {
+        if (mealDTOs != null) {
+            if (userService.findMealInUserOrders(mealDTOs)) {
                 saveComment(id, commentRequest);
             } else {
                 error = "Taste the ingredient before the evaluation";

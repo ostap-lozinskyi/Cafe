@@ -20,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) {
-		ua.entity.User entity = repository.findUserByEmail(username);
+		ua.model.entity.User entity = repository.findUserByEmail(username);
 		if(entity == null) throw new UsernameNotFoundException("User with email "+ username + " not exist");
 		return new User(username, entity.getPassword(), AuthorityUtils.createAuthorityList(entity.getRole().name()));
 	}

@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import ua.entity.Meal;
-import ua.entity.Place;
+import ua.model.entity.Meal;
+import ua.model.entity.Place;
 import ua.exception.CafeException;
 import ua.model.request.OrderRequest;
 import ua.service.MealService;
@@ -40,7 +40,7 @@ public class MainController {
         if (principal != null) {
             model.addAttribute("message", "Hello " + principal.getName());
         }
-        model.addAttribute("meals", mealService.find5MealIndexViewsByRate());
+        model.addAttribute("meals", mealService.find5MealIndexDTOsByRate());
         return "index";
     }
 

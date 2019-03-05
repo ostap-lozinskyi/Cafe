@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ua.entity.Place;
+import ua.model.entity.Place;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.service.OrderService;
@@ -38,9 +38,9 @@ public class IdOrderController {
     @GetMapping
     public String show(@PathVariable String id, Model model, @ModelAttribute("orderFilter") OrderFilter filter) {
         model.addAttribute("meals", service.findAllMealsNames());
-        model.addAttribute("orders", service.findOrderViewsForTable(id));
+        model.addAttribute("orders", service.findOrderDTOsForTable(id));
 
-        model.addAttribute("placeCurrent", service.findPlaceViewById(id));
+        model.addAttribute("placeCurrent", service.findPlaceDTO(id));
         return "idOrder";
     }
 

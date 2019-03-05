@@ -1,8 +1,8 @@
-package ua.model.view;
+package ua.dto;
 
 import java.math.BigDecimal;
 
-public class MealIndexView {
+public class MealIndexDTO {
 
 	private String id;
 	
@@ -20,8 +20,8 @@ public class MealIndexView {
 	
 	private String shortDescription;
 	
-	public MealIndexView(String id, String photoUrl, Integer version, BigDecimal rate, BigDecimal price, Integer weight,
-			String name, String shortDescription) {
+	public MealIndexDTO(String id, String photoUrl, Integer version, BigDecimal rate, BigDecimal price, Integer weight,
+						String name, String shortDescription) {
 		super();
 		this.id = id;
 		this.photoUrl = photoUrl;

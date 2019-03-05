@@ -19,7 +19,6 @@ import ua.validation.flag.MealFlag;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Objects;
 
 import static ua.controller.ControllerUtils.buildParams;
 
@@ -55,11 +54,11 @@ public class AdminMealController {
     @GetMapping
     public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("mealFilter") MealFilter filter) {
         model.addAttribute("cuisines", service.findAllCuisinesNames());
-        model.addAttribute("components", service.findAllComponentsView());
-        model.addAttribute("meals", service.findAllMealView(filter, pageable));
+        model.addAttribute("components", service.findAllComponentsDTOs());
+        model.addAttribute("meals", service.findAllMealDTOs(filter, pageable));
         model.addAttribute("error", error);
         error = "";
-        boolean hasContent = service.findAllMealIndexView(filter, pageable).hasContent();
+        boolean hasContent = service.findAllMealIndexDTOs(filter, pageable).hasContent();
         if (hasContent || pageable.getPageNumber() == 0)
             return "adminMeal";
         else
@@ -70,7 +69,7 @@ public class AdminMealController {
     public String delete(@PathVariable String id, @PageableDefault Pageable pageable,
                          @ModelAttribute("mealFilter") MealFilter filter) {
         service.deleteMeal(id);
-        boolean hasContent = service.findAllMealIndexView(filter, pageable).hasContent();
+        boolean hasContent = service.findAllMealIndexDTOs(filter, pageable).hasContent();
         return REDIRECT_ADMIN_ADMIN_MEAL + buildParams(hasContent, pageable, filter.getSearch());
     }
 
@@ -113,7 +112,7 @@ public class AdminMealController {
     public String cancel(SessionStatus status, @PageableDefault Pageable pageable,
                          @ModelAttribute("mealFilter") MealFilter filter) {
         status.setComplete();
-        boolean hasContent = service.findAllMealIndexView(filter, pageable).hasContent();
+        boolean hasContent = service.findAllMealIndexDTOs(filter, pageable).hasContent();
         return REDIRECT_ADMIN_ADMIN_MEAL + buildParams(hasContent, pageable, filter.getSearch());
     }
 }
