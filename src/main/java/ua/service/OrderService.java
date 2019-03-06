@@ -3,11 +3,11 @@ package ua.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import ua.dto.MealDTO;
+import ua.dto.OrderDTO;
+import ua.dto.PlaceDTO;
 import ua.model.entity.Order;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
-import ua.dto.OrderDTO;
-import ua.dto.PlaceDTO;
 
 import java.util.List;
 
@@ -34,6 +34,8 @@ public interface OrderService {
     void saveOrder(OrderRequest request);
 
     OrderRequest findOrderRequestByUserId(String userId);
+
+    OrderDTO findOrderDTOForUser(String userId);
 
     void updateOrderStatus(String id, String newStatus);
 

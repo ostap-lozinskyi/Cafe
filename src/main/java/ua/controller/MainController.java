@@ -5,16 +5,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import ua.exception.CafeException;
 import ua.model.entity.Meal;
 import ua.model.entity.Place;
-import ua.exception.CafeException;
+import ua.model.entity.User;
 import ua.model.request.OrderRequest;
 import ua.service.MealService;
 import ua.service.OrderService;
 import ua.service.PlaceService;
 import ua.service.UserService;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,9 +36,11 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String index(Model model, Principal principal) {
-        if (principal != null) {
-            model.addAttribute("message", "Hello " + principal.getName());
+    public String index(Model model) {
+        User user = userService.findCurrentUser();
+        if (Objects.nonNull(user)) {
+            model.addAttribute("message", "Hello " + user.getEmail());
+            model.addAttribute("selectedMeals", orderService.findOrderDTOForUser(user.getId()));
         }
         model.addAttribute("meals", mealService.find5MealIndexDTOsByRate());
         return "index";

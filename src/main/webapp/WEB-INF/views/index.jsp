@@ -21,8 +21,10 @@
 
         gtag('config', 'UA-118033320-4');
     </script>
+
     <link href="/resources/css/index.css" rel="stylesheet">
     <script src="/resources/js/jquery.js"></script>
+    <script src="/resources/js/basket.js"></script>
 </head>
 
 <body>
@@ -68,13 +70,33 @@
                             <button class="transparentButton">Logout</button>
                         </form:form>
                     </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <!-- Trigger/Open The Modal -->
+                        <button id="myBtn" class="transparentButton">Basket</button>
+
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Selected meals:</p>
+                                <c:forEach var="selectedMeal" items="${selectedMeals.mealDTOS}">
+                                    <img src="${selectedMeal.photoUrl}?version=${selectedMeal.version}"
+                                         style="height: 50px">
+                                    ${selectedMeal.name}
+                                </c:forEach>
+                            </div>
+
+                        </div>
+                    </sec:authorize>
                 </div>
             </div>
         </div>
         <div class="buttonContainerWrapper">
             <div class="buttonContainer">
-                <a href="/menu" class="button buttonLeft">Menu</a><a href="/place"
-                                                                     class="button buttonRight">Tables</a>
+                <a href="/menu" class="centralButton buttonLeft">Menu</a><a href="/place"
+                                                                            class="centralButton buttonRight">Tables</a>
             </div>
         </div>
     </div>

@@ -7,14 +7,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ua.dto.MealDTO;
+import ua.dto.OrderDTO;
+import ua.dto.PlaceDTO;
+import ua.exception.CafeException;
 import ua.model.entity.Meal;
 import ua.model.entity.Order;
 import ua.model.entity.User;
-import ua.exception.CafeException;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
-import ua.dto.OrderDTO;
-import ua.dto.PlaceDTO;
 import ua.repository.*;
 import ua.service.OrderService;
 import ua.service.UserService;
@@ -135,6 +135,15 @@ public class OrderServiceImpl implements OrderService {
         }
         LOG.info("Exit from 'findOrderRequestByUserId' method");
         return request;
+    }
+
+    @Override
+    public OrderDTO findOrderDTOForUser(String userId) {
+        LOG.info("In 'findOrderDTOForUser' method. UserId = {}", userId);
+        OrderDTO orderDTO = repository.findOrderDTOForUser(userId);
+        orderDTO.setMealDTOS(findMealDTOsForOrder(orderDTO.getId()));
+        LOG.info("Exit from 'findOrderDTOForUser' method. OrderDTO = {}", orderDTO);
+        return orderDTO;
     }
 
     @Override

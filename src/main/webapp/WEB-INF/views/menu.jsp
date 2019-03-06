@@ -146,10 +146,18 @@
                     </div>
                     <div class="itemOrderRow">
                         <sec:authorize access="isAnonymous()">
-                            <a href="/login" class="btnCafe ">Order</a>
+                            <a href="/login">
+                                <button type="button" class="btnCafe">
+                                    Order
+                                </button>
+                            </a>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
-                            <a href="/place" class="btnCafe ">Order</a>
+                            <a href="/addMealToOrder/${meal.id}">
+                                <button type="button" class="btnCafe">
+                                    Order
+                                </button>
+                            </a>
                         </sec:authorize>
                     </div>
                 </div>
