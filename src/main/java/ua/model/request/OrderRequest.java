@@ -1,6 +1,7 @@
 package ua.model.request;
 
 import ua.model.entity.Meal;
+import ua.model.entity.OrderStatus;
 import ua.model.entity.Place;
 import ua.validation.flag.OrderFlag;
 
@@ -19,7 +20,7 @@ public class OrderRequest {
     @NotNull(message = "This field cannot be blank", groups = {OrderFlag.class})
     private List<Meal> meals = new ArrayList<>();
 
-    private String status;
+    private OrderStatus status;
 
     public String getId() {
         return id;
@@ -53,11 +54,11 @@ public class OrderRequest {
         this.meals = meals;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 

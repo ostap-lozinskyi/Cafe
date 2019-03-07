@@ -72,20 +72,32 @@
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <!-- Trigger/Open The Modal -->
-                        <button id="myBtn" class="transparentButton">Basket</button>
+                        <button id="openBasket" class="transparentButton">Basket</button>
 
                         <!-- The Modal -->
-                        <div id="myModal" class="modal">
+                        <div id="basketModal" class="basketModal">
 
                             <!-- Modal content -->
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p>Selected meals:</p>
-                                <c:forEach var="selectedMeal" items="${selectedMeals.mealDTOS}">
-                                    <img src="${selectedMeal.photoUrl}?version=${selectedMeal.version}"
-                                         style="height: 50px">
-                                    ${selectedMeal.name}
-                                </c:forEach>
+                            <div class="basketModal-content">
+                                <span class="basketClose">&times;</span>
+                                <h1>Selected meals:</h1>
+                                <div class="basketMeals">
+                                    <c:forEach var="selectedMeal" items="${selectedMeals.mealDTOS}">
+                                        <div class="basketMeal">
+                                            <div>
+                                                <img src="${selectedMeal.photoUrl}?version=${selectedMeal.version}"
+                                                     class="basketMealPhoto">
+                                            </div>
+                                            <div><h2>${selectedMeal.name}</h2></div>
+                                            <div class="basketPrice">${selectedMeal.price}</div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                                <a href="/addMealToOrder/${meal.id}">
+                                    <button type="button" class="btnCafe">
+                                        Confirm order
+                                    </button>
+                                </a>
                             </div>
 
                         </div>

@@ -1,5 +1,7 @@
 package ua.model.filter;
 
+import ua.model.entity.OrderStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class OrderFilter {
 	
 	private List<String> placeName = new ArrayList<>();
 	
-	private List<String> status = new ArrayList<>();
+	private List<OrderStatus> status = new ArrayList<>();
 
 	public List<String> getMealName() {
 		return mealName;
@@ -27,11 +29,11 @@ public class OrderFilter {
 		this.placeName = placeName;
 	}
 
-	public List<String> getStatus() {
+	public List<OrderStatus> getStatus() {
 		return status;
 	}
 
-	public void setStatus(List<String> status) {
+	public void setStatus(List<OrderStatus> status) {
 		this.status = status;
 	}
 

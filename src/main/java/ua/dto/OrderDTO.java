@@ -1,54 +1,56 @@
 package ua.dto;
 
+import ua.model.entity.OrderStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDTO {
-	
-	private String id;
 
-	private String place;
-	
-	private String status;
-	
-	private List<MealDTO> mealDTOS = new ArrayList<>();
-	
-	public OrderDTO(String id, String place, String status) {
-		this.id = id;
-		this.place = place;
-		this.status = status;
-	}
-	
-	public List<MealDTO> getMealDTOS() {
-		return mealDTOS;
-	}
+    private String id;
 
-	public void setMealDTOS(List<MealDTO> mealDTOS) {
-		this.mealDTOS = mealDTOS;
-	}
+    private String place;
 
-	public String getId() {
-		return id;
-	}
+    private OrderStatus status;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    private List<MealDTO> mealDTOS = new ArrayList<>();
 
-	public String getPlace() {
-		return place;
-	}
+    public OrderDTO(String id, String place, OrderStatus status) {
+        this.id = id;
+        this.place = place;
+        this.status = status;
+    }
 
-	public void setPlace(String place) {
-		this.place = place;
-	}
+    public List<MealDTO> getMealDTOS() {
+        return mealDTOS;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setMealDTOS(List<MealDTO> mealDTOS) {
+        this.mealDTOS = mealDTOS;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
 
 }

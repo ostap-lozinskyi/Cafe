@@ -73,7 +73,7 @@
                         <div class="modal fade" id="exampleModalCenter${place.name}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
+                                <div class="placeModal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Table #${place.name} is free for now</h5>
                                     </div>
@@ -105,7 +105,7 @@
                         <div class="modal fade" id="exampleModalCenter${place.name}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
+                                <div class="placeModal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Table #${place.name} is free for now</h5>
                                     </div>
@@ -137,7 +137,7 @@
                         <div class="modal fade" id="exampleModalCenter${place.name}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
+                                <div class="placeModal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Table #${place.name} is free for now</h5>
                                     </div>

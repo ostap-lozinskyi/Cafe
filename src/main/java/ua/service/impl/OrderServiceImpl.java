@@ -10,9 +10,7 @@ import ua.dto.MealDTO;
 import ua.dto.OrderDTO;
 import ua.dto.PlaceDTO;
 import ua.exception.CafeException;
-import ua.model.entity.Meal;
-import ua.model.entity.Order;
-import ua.model.entity.User;
+import ua.model.entity.*;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.repository.*;
@@ -31,6 +29,7 @@ public class OrderServiceImpl implements OrderService {
     private final PlaceRepository placeRepository;
     private final UserRepository userRepository;
     private final UserService userService;
+
 
     @Autowired
     public OrderServiceImpl(OrderRepository repository, OrderDTORepository orderDTORepository,
@@ -125,7 +124,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderRequest findOrderRequestByUserId(String userId) {
         LOG.info("In 'findOrderRequestByUserId' method. UserId = {}", userId);
-        Order order = repository.findRequestByUserId(userId);
+        Order order = repository.findOrderByUserIdAndStatusMealsSelected(userId);
         OrderRequest request = new OrderRequest();
         if (Objects.nonNull(order)) {
             request.setId(order.getId());
@@ -141,7 +140,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDTO findOrderDTOForUser(String userId) {
         LOG.info("In 'findOrderDTOForUser' method. UserId = {}", userId);
         OrderDTO orderDTO = repository.findOrderDTOForUser(userId);
-        if(Objects.nonNull(orderDTO)) {
+        if (Objects.nonNull(orderDTO)) {
             orderDTO.setMealDTOS(findMealDTOsForOrder(orderDTO.getId()));
         }
         LOG.info("Exit from 'findOrderDTOForUser' method. OrderDTO = {}", orderDTO);
@@ -153,8 +152,30 @@ public class OrderServiceImpl implements OrderService {
         LOG.info("In 'updateOrderStatus' method. Id = {}, NewStatus = {}", id, newStatus);
         Order order = repository.findById(id)
                 .orElseThrow(() -> new CafeException(String.format("Order with id [%s} not found", id)));
-        order.setStatus(newStatus);
+        order.setStatus(OrderStatus.valueOf(newStatus));
         repository.save(order);
         LOG.info("Exit from 'updateOrderStatus' method");
+    }
+
+    @Override
+    public void addMealToOrder(String mealId) {
+        String userId = userService.findCurrentUser().getId();
+        OrderRequest orderRequest = findOrderRequestByUserId(userId);
+
+        Meal newOrderedMeal = mealRepository.findById(mealId)
+                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", mealId)));
+        List<Meal> alreadyOrderedMeals = orderRequest.getMeals();
+        alreadyOrderedMeals.add(newOrderedMeal);
+        orderRequest.setMeals(alreadyOrderedMeals);
+
+        orderRequest.setUserId(userId);
+        orderRequest.setStatus(OrderStatus.MEALS_SELECTED);
+
+        Place place = placeRepository.findPlaceByName("Remote");
+        if (Objects.isNull(place)) {
+            throw new CafeException("Place with name 'Remote' not found");
+        }
+        orderRequest.setPlace(place);
+        saveOrder(orderRequest);
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ua.model.entity.OrderStatus;
 import ua.model.entity.Place;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
@@ -53,7 +54,7 @@ public class IdOrderController {
         Place place = new Place();
         place.setId(id);
         request.setPlace(place);
-        request.setStatus("Accepted");
+        request.setStatus(OrderStatus.ACCEPTED);
         if (!request.getMeals().isEmpty())
             service.saveOrder(request);
         return "redirect:/place/{id}/order";

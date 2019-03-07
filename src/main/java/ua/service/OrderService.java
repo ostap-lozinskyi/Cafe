@@ -39,4 +39,5 @@ public interface OrderService {
 
     void updateOrderStatus(String id, String newStatus);
 
+    void addMealToOrder(String mealId);
 }

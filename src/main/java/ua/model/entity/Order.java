@@ -16,7 +16,7 @@ public class Order extends AbstractEntity {
     @ManyToMany
     private List<Meal> meals = new ArrayList<>();
 
-    private String status;
+    private OrderStatus status;
 
     public Order() {
     }
@@ -50,11 +50,11 @@ public class Order extends AbstractEntity {
         this.place = place;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 

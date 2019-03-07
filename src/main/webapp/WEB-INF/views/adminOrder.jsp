@@ -157,15 +157,15 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item"
-                                               href="/admin/adminOrder/updateStatus/${order.id}/Accepted<custom:allParams/>">Accepted</a>
+                                               href="/admin/adminOrder/updateStatus/${order.id}/ACCEPTED<custom:allParams/>">Accepted</a>
                                             <a class="dropdown-item"
-                                               href="/admin/adminOrder/updateStatus/${order.id}/Is being prepared<custom:allParams/>">Is
+                                               href="/admin/adminOrder/updateStatus/${order.id}/IS_BEING_PREPARED<custom:allParams/>">Is
                                                 being prepared</a>
                                             <a class="dropdown-item"
-                                               href="/admin/adminOrder/updateStatus/${order.id}/Is ready<custom:allParams/>">Is
+                                               href="/admin/adminOrder/updateStatus/${order.id}/IS_READY<custom:allParams/>">Is
                                                 ready</a>
                                             <a class="dropdown-item"
-                                               href="/admin/adminOrder/updateStatus/${order.id}/Is paid<custom:allParams/>">Is
+                                               href="/admin/adminOrder/updateStatus/${order.id}/IS_PAID<custom:allParams/>">Is
                                                 paid</a>
                                         </div>
                                     </div>
