@@ -19,6 +19,7 @@ import ua.service.UserService;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -124,9 +125,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderRequest findOrderRequestByUserId(String userId) {
         LOG.info("In 'findOrderRequestByUserId' method. UserId = {}", userId);
-        Order order = repository.findOrderByUserIdAndStatusMealsSelected(userId);
+        Optional<Order> orderOptional = repository.findOrderByUserIdAndStatusMealsSelected(userId);
         OrderRequest request = new OrderRequest();
-        if (Objects.nonNull(order)) {
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
             request.setId(order.getId());
             request.setUserId(order.getUserId());
             request.setPlace(order.getPlace());
@@ -148,13 +150,26 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrderStatus(String id, String newStatus) {
+    public void updateOrderStatus(String id, OrderStatus newStatus) {
         LOG.info("In 'updateOrderStatus' method. Id = {}, NewStatus = {}", id, newStatus);
         Order order = repository.findById(id)
                 .orElseThrow(() -> new CafeException(String.format("Order with id [%s} not found", id)));
-        order.setStatus(OrderStatus.valueOf(newStatus));
+        order.setStatus(newStatus);
         repository.save(order);
         LOG.info("Exit from 'updateOrderStatus' method");
+    }
+
+    @Override
+    public void updateCurrentOrderStatus(OrderStatus newStatus) {
+        LOG.info("In 'updateCurrentOrderStatus' method. NewStatus = {}", newStatus);
+        User user = userService.findCurrentUser();
+        Optional<Order> orderOptional = repository.findOrderByUserIdAndStatusMealsSelected(user.getId());
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            order.setStatus(newStatus);
+            repository.save(order);
+        }
+        LOG.info("Exit from 'updateCurrentOrderStatus' method");
     }
 
     @Override

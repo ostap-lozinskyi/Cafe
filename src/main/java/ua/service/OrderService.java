@@ -6,6 +6,7 @@ import ua.dto.MealDTO;
 import ua.dto.OrderDTO;
 import ua.dto.PlaceDTO;
 import ua.model.entity.Order;
+import ua.model.entity.OrderStatus;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 
@@ -37,7 +38,9 @@ public interface OrderService {
 
     OrderDTO findOrderDTOForUser(String userId);
 
-    void updateOrderStatus(String id, String newStatus);
+    void updateOrderStatus(String id, OrderStatus newStatus);
+
+    void updateCurrentOrderStatus(OrderStatus newStatus);
 
     void addMealToOrder(String mealId);
 }

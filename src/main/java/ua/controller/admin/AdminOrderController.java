@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.model.entity.Order;
+import ua.model.entity.OrderStatus;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.service.OrderService;
@@ -53,18 +54,18 @@ public class AdminOrderController {
         if (hasContent || pageable.getPageNumber() == 0)
             return "adminOrder";
         else
-            return "redirect:/admin/adminOrder" + buildParams(hasContent, pageable, Strings.EMPTY);
+            return "redirect:/admin/adminOrder" + buildParams(false, pageable, Strings.EMPTY);
     }
 
     @GetMapping("/updateStatus/{id}/{status}")
-    public String update(@PathVariable String id, @PathVariable String status,
-                         @PageableDefault Pageable pageable, @ModelAttribute("orderFilter") OrderFilter filter) {
+    public String updateStatus(@PathVariable String id, @PathVariable String status,
+                               @PageableDefault Pageable pageable, @ModelAttribute("orderFilter") OrderFilter filter) {
         String placeId = service.findOrderById(id).getPlace().getId();
-        service.updateOrderStatus(id, status);
+        service.updateOrderStatus(id, OrderStatus.valueOf(status));
         List<Order> tableOrders = service.findOrderByPlaceId(placeId);
         boolean hasUnpaidOrders = false;
         for (Order order : tableOrders) {
-            if (!"Is paid".equals(order.getStatus())) {
+            if (!OrderStatus.IS_PAID.equals(order.getStatus())) {
                 hasUnpaidOrders = true;
             }
         }

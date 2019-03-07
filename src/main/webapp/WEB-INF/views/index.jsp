@@ -93,7 +93,7 @@
                                         </div>
                                     </c:forEach>
                                 </div>
-                                <a href="/addMealToOrder/${meal.id}">
+                                <a href="/setStatusAccepted">
                                     <button type="button" class="btnCafe">
                                         Confirm order
                                     </button>

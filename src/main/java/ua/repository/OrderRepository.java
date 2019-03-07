@@ -6,6 +6,7 @@ import ua.dto.OrderDTO;
 import ua.model.entity.Order;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order, String> {
 
@@ -22,6 +23,6 @@ public interface OrderRepository extends JpaRepository<Order, String> {
     List<Order> findOrderByPlaceId(String id);
 
     @Query(value = "SELECT o FROM Order o JOIN o.place p WHERE o.userId=?1 AND o.status='MEALS_SELECTED'")
-    Order findOrderByUserIdAndStatusMealsSelected(String userId);
+    Optional<Order> findOrderByUserIdAndStatusMealsSelected(String userId);
 
 }
