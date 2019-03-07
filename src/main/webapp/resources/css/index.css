@@ -720,7 +720,7 @@ footer {
 }
 
 /* The Modal (background) */
-.basketModal {
+.cartModal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -734,7 +734,7 @@ footer {
 }
 
 /* Modal Content/Box */
-.basketModal-content {
+.cartModal-content {
     background: url(/resources/img/backgroundImage2.jpg);
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
@@ -743,38 +743,38 @@ footer {
 }
 
 /* The Close Button */
-.basketClose {
+.cartClose {
     color: #361b08;
     float: right;
     font-size: 50px;
     font-weight: bold;
 }
 
-.basketClose:hover,
-.basketClose:focus {
+.cartClose:hover,
+.cartClose:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-.basketMeals {
+.cartMeals {
     display: flex;
     flex-direction: column;
 }
 
-.basketMeal {
+.cartMeal {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-.basketMealPhoto {
+.cartMealPhoto {
     width: 180px;
     margin: 20px;
 }
 
-.basketPrice {
+.cartPrice {
     font-size: 50px;
     font-weight: bold;
     color: #361b08;

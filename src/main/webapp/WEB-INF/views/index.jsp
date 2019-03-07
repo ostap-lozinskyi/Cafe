@@ -24,7 +24,7 @@
 
     <link href="/resources/css/index.css" rel="stylesheet">
     <script src="/resources/js/jquery.js"></script>
-    <script src="/resources/js/basket.js"></script>
+    <script src="/resources/js/cart.js"></script>
 </head>
 
 <body>
@@ -72,24 +72,24 @@
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <!-- Trigger/Open The Modal -->
-                        <button id="openBasket" class="transparentButton">Basket</button>
+                        <button id="openCart" class="transparentButton">Cart</button>
 
                         <!-- The Modal -->
-                        <div id="basketModal" class="basketModal">
+                        <div id="cartModal" class="cartModal">
 
                             <!-- Modal content -->
-                            <div class="basketModal-content">
-                                <span class="basketClose">&times;</span>
+                            <div class="cartModal-content">
+                                <span class="cartClose">&times;</span>
                                 <h1>Selected meals:</h1>
-                                <div class="basketMeals">
+                                <div class="cartMeals">
                                     <c:forEach var="selectedMeal" items="${selectedMeals.mealDTOS}">
-                                        <div class="basketMeal">
+                                        <div class="cartMeal">
                                             <div>
                                                 <img src="${selectedMeal.photoUrl}?version=${selectedMeal.version}"
-                                                     class="basketMealPhoto">
+                                                     class="cartMealPhoto">
                                             </div>
                                             <div><h2>${selectedMeal.name}</h2></div>
-                                            <div class="basketPrice">${selectedMeal.price}</div>
+                                            <div class="cartPrice">${selectedMeal.price}</div>
                                         </div>
                                     </c:forEach>
                                 </div>

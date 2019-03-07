@@ -1,11 +1,11 @@
 $(document).ready(function () {
 // Get the modal
-    var modal = document.getElementById('basketModal');
+    var modal = document.getElementById('cartModal');
 // Get the button that opens the modal
-    var btn = document.getElementById("openBasket");
+    var btn = document.getElementById("openCart");
 
 // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("basketClose")[0];
+    var span = document.getElementsByClassName("cartClose")[0];
 
 // When the user clicks on the button, open the modal
     btn.onclick = function () {
