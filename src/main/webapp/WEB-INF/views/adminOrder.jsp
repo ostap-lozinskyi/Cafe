@@ -150,7 +150,7 @@
                                 </td>
                                 <td>${order.status}</td>
                                 <td class="text-center">
-                                    <div class="dropdown">
+                                    <div class="searchMealDropdown">
                                         <button class="btn btn-outline-warning dropdown-toggle" type="button"
                                                 id="dropdownMenuButton" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">Update Status
