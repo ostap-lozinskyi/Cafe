@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="/resources/css/rateStars.css" type="text/css"/>
     <script src="/resources/js/jquery.js"></script>
     <link href="/resources/css/index.css" rel="stylesheet">
-    <script src="/resources/js/cart.js"></script>
+    <script src="/resources/js/cartModal.js"></script>
     <title>Menu</title>
 </head>
 <body style="background: url(/resources/img/backgroundImage2.jpg)">

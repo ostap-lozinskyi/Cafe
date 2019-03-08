@@ -213,4 +213,19 @@ public class OrderServiceImpl implements OrderService {
         }
         LOG.info("Exit from 'removeMealFromCurrentOrder' method");
     }
+
+    @Override
+    public void setPlace(String placeId) {
+        LOG.info("In 'setPlace' method. PlaceId = {}", placeId);
+        User user = userService.findCurrentUser();
+        Optional<Order> orderOptional = repository.findOrderByUserIdAndStatusMealsSelected(user.getId());
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            Place place = placeRepository.findById(placeId)
+                    .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
+            order.setPlace(place);
+            repository.save(order);
+        }
+        LOG.info("Exit from 'setPlace' method");
+    }
 }

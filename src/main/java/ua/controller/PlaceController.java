@@ -9,23 +9,23 @@ import ua.service.PlaceService;
 @Controller
 public class PlaceController {
 
-    private final PlaceService service;
+    private final PlaceService placeService;
 
 
-    public PlaceController(PlaceService service) {
-        this.service = service;
+    public PlaceController(PlaceService placeService) {
+        this.placeService = placeService;
     }
 
     @GetMapping("/place")
     public String place(Model model) {
-        model.addAttribute("places", service.findAllPlaceDTOs());
-        model.addAttribute("myPlaces", service.findPlaceIdByUserId());
+        model.addAttribute("places", placeService.findAllPlaceDTOs());
+        model.addAttribute("myPlaces", placeService.findPlaceIdByUserId());
         return "place";
     }
 
     @GetMapping("/place/setUser/{id}")
     public String setUser(@PathVariable String id) {
-        service.updatePlaceUserId(id);
+        placeService.updatePlaceUserId(id);
         return "redirect:/place/{id}/order";
     }
 }

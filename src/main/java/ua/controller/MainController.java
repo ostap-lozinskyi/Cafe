@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import ua.model.entity.OrderStatus;
 import ua.model.entity.User;
 import ua.service.MealService;
 import ua.service.OrderService;
@@ -46,12 +45,6 @@ public class MainController {
     @GetMapping("/addMealToOrder/{mealId}")
     public String addMealToOrder(@PathVariable String mealId) {
         orderService.addMealToOrder(mealId);
-        return "redirect:/";
-    }
-
-    @GetMapping("/setStatusAccepted")
-    public String acceptOrder() {
-        orderService.updateCurrentOrderStatus(OrderStatus.ACCEPTED);
         return "redirect:/";
     }
 

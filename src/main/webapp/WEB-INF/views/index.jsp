@@ -24,7 +24,7 @@
 
     <link href="/resources/css/index.css" rel="stylesheet">
     <script src="/resources/js/jquery.js"></script>
-    <script src="/resources/js/cart.js"></script>
+    <script src="/resources/js/cartModal.js"></script>
 </head>
 
 <body>
@@ -107,7 +107,7 @@
                                         </div>
                                     </c:forEach>
                                 </div>
-                                <a href="/setStatusAccepted">
+                                <a href="/order">
                                     <button type="button" class="btnCafe">
                                         Confirm order
                                     </button>

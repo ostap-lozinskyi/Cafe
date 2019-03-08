@@ -45,4 +45,6 @@ public interface OrderService {
     void addMealToOrder(String mealId);
 
     void removeMealFromCurrentOrder(String mealId);
+
+    void setPlace(String placeId);
 }
