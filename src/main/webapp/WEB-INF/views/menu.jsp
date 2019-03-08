@@ -38,6 +38,7 @@
             crossorigin="anonymous"></script>
 
     <link href="/resources/css/index.css" rel="stylesheet">
+    <script src="/resources/js/cart.js"></script>
     <title>Menu</title>
 </head>
 <body style="background: url(/resources/img/backgroundImage2.jpg)">
@@ -59,7 +60,7 @@
             aria-expanded="false" aria-controls="firstCollapse">
         Search meal
     </a>
-    <a class="headerButton" href="/place">
+    <a id="openCart" class="headerButton">
         <c:if test="${empty selectedMeals}">
             <img class="footerCartIcon" src="/resources/img/cart.png">
         </c:if>
@@ -67,8 +68,40 @@
             <img class="footerCartIcon" src="/resources/img/cartFilled.png">
         </c:if>
     </a>
-
 </header>
+<!-- The Modal -->
+<div id="cartModal" class="cartModal">
+
+    <!-- Modal content -->
+    <div class="cartModal-content">
+        <span class="cartClose">&times;</span>
+        <h1>Selected meals:</h1>
+        <div class="cartMeals">
+            <c:forEach var="selectedMeal" items="${selectedMeals.mealDTOS}">
+                <div class="cartMeal">
+                    <div>
+                        <img src="${selectedMeal.photoUrl}?version=${selectedMeal.version}"
+                             class="cartMealPhoto">
+                    </div>
+                    <div><h2>${selectedMeal.name}</h2></div>
+                    <div class="cartRightRow">
+                        <div>
+                            <a href="/removeMealFromOrder/${selectedMeal.id}">
+                                <h2>Remove</h2>
+                            </a>
+                        </div>
+                        <div class="cartPrice">${selectedMeal.price}</div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <a href="/setStatusAccepted">
+            <button type="button" class="btnCafe">
+                Confirm order
+            </button>
+        </a>
+    </div>
+</div>
 <div class="container">
     <div class="collapse" id="firstCollapse">
         <div class="card card-body">
