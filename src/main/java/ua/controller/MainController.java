@@ -32,7 +32,7 @@ public class MainController {
         User user = userService.findCurrentUser();
         if (Objects.nonNull(user)) {
             model.addAttribute("message", "Hello " + user.getEmail());
-            model.addAttribute("selectedMeals", orderService.findOrderDTOForUser(user.getId()));
+            model.addAttribute("selectedMeals", orderService.findOrderDTOForCurrentUser());
         }
         model.addAttribute("meals", mealService.find5MealIndexDTOsByRate());
         return "index";

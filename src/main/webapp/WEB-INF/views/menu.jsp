@@ -59,6 +59,15 @@
             aria-expanded="false" aria-controls="firstCollapse">
         Search meal
     </a>
+    <a class="headerButton" href="/place">
+        <c:if test="${empty selectedMeals}">
+            <img class="footerCartIcon" src="/resources/img/cart.png">
+        </c:if>
+        <c:if test="${!empty selectedMeals}">
+            <img class="footerCartIcon" src="/resources/img/cartFilled.png">
+        </c:if>
+    </a>
+
 </header>
 <div class="container">
     <div class="collapse" id="firstCollapse">

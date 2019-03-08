@@ -36,7 +36,7 @@ public interface OrderService {
 
     OrderRequest findOrderRequestByUserId(String userId);
 
-    OrderDTO findOrderDTOForUser(String userId);
+    OrderDTO findOrderDTOForCurrentUser();
 
     void updateOrderStatus(String id, OrderStatus newStatus);
 

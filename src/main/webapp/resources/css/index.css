@@ -780,6 +780,15 @@ footer {
     color: #361b08;
 }
 
+.cartIcon {
+    width: 50px;
+}
+
+.footerCartIcon {
+    width: 35px;
+    margin-top: -4px;
+}
+
 @media screen and (max-width: 1200px) {
     .headerRow {
         flex-direction: column;

@@ -72,7 +72,14 @@
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <!-- Trigger/Open The Modal -->
-                        <button id="openCart" class="transparentButton">Cart</button>
+                        <button id="openCart" class="transparentButton">
+                            <c:if test="${empty selectedMeals}">
+                                <img class="cartIcon" src="/resources/img/cart.png">
+                            </c:if>
+                            <c:if test="${!empty selectedMeals}">
+                                <img class="cartIcon" src="/resources/img/cartFilled.png">
+                            </c:if>
+                        </button>
 
                         <!-- The Modal -->
                         <div id="cartModal" class="cartModal">

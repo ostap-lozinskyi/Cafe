@@ -14,11 +14,11 @@ import ua.service.OrderService;
 @Controller
 public class MenuController {
 
-    private final MealService service;
+    private final MealService mealService;
     private final OrderService orderService;
 
-    public MenuController(MealService service, OrderService orderService) {
-        this.service = service;
+    public MenuController(MealService mealService, OrderService orderService) {
+        this.mealService = mealService;
         this.orderService = orderService;
     }
 
@@ -30,8 +30,9 @@ public class MenuController {
     @GetMapping("/menu")
     public String mealMenu(Model model, @ModelAttribute("mealFilter") MealFilter filter,
                            @PageableDefault Pageable pageable) {
-        model.addAttribute("meals", service.findAllMealIndexDTOs(filter, pageable));
-        model.addAttribute("cuisines", service.findAllCuisinesNames());
+        model.addAttribute("meals", mealService.findAllMealIndexDTOs(filter, pageable));
+        model.addAttribute("cuisines", mealService.findAllCuisinesNames());
+        model.addAttribute("selectedMeals", orderService.findOrderDTOForCurrentUser());
         return "menu";
     }
 

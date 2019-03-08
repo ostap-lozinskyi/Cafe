@@ -139,14 +139,18 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDTO findOrderDTOForUser(String userId) {
-        LOG.info("In 'findOrderDTOForUser' method. UserId = {}", userId);
-        OrderDTO orderDTO = repository.findOrderDTOForUser(userId);
-        if (Objects.nonNull(orderDTO)) {
-            orderDTO.setMealDTOS(findMealDTOsForOrder(orderDTO.getId()));
+    public OrderDTO findOrderDTOForCurrentUser() {
+        LOG.info("In 'findOrderDTOForCurrentUser' method");
+        User user = userService.findCurrentUser();
+        if (Objects.nonNull(user)){
+            OrderDTO orderDTO = repository.findOrderDTOForUser(user.getId());
+            if (Objects.nonNull(orderDTO)) {
+                orderDTO.setMealDTOS(findMealDTOsForOrder(orderDTO.getId()));
+            }
+            LOG.info("Exit from 'findOrderDTOForCurrentUser' method. OrderDTO = {}", orderDTO);
+            return orderDTO;
         }
-        LOG.info("Exit from 'findOrderDTOForUser' method. OrderDTO = {}", orderDTO);
-        return orderDTO;
+        return null;
     }
 
     @Override
