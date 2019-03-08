@@ -20,8 +20,6 @@
         gtag('config', 'UA-118033320-4');
     </script>
 
-    <script src="/resources/js/jquery.js"></script>
-    <script src="/resources/js/placeModal.js"></script>
     <link href="/resources/css/index.css" rel="stylesheet">
     <title>Order</title>
 </head>
@@ -137,6 +135,9 @@
             </div>
         </div>
     </div>
+</div>
+<div>
+    Table:${selectedMeals.place}
 </div>
 <div>
     <a href="/order/setStatusAccepted">

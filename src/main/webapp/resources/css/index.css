@@ -556,7 +556,7 @@ footer {
 .phoneLink {
     font-size: 1.65rem;
     line-height: 1;
-    letter-spacing: 1.8px;
+    letter-spacing: 2px;
     color: white;
     text-decoration: none;
 }
@@ -666,9 +666,6 @@ footer {
 }
 
 
-
-
-
 .selectButton {
     background-color: transparent;
     height: 38px;
@@ -707,46 +704,16 @@ footer {
 }
 
 /* ------------------------------------------ Place modal -----------------------------------------------------------*/
-/* The Modal (background) */
-.placeModal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 100; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
 
-/* Modal Content/Box */
 .placeModal-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
     background: white;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.placeClose {
-    color: #361b08;
-    float: right;
-    font-size: 50px;
-    font-weight: bold;
-}
-
-.placeClose:hover,
-.placeClose:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 /* ------------------------------------------ END Place modal -------------------------------------------------------*/
-
 
 
 /* ------------------------------------------ Cart ------------------------------------------------------------------*/
@@ -823,6 +790,7 @@ footer {
 .cartRightRow {
     flex-direction: column;
 }
+
 /* --------------------------------------- END Cart -----------------------------------------------------------------*/
 
 
@@ -862,7 +830,7 @@ footer {
     flex-direction: row;
 }
 
-.searchMealLeftRow{
+.searchMealLeftRow {
     width: 50%;
 }
 
@@ -875,12 +843,12 @@ footer {
     margin-bottom: 10px;
 }
 
-.searchItem input{
+.searchItem input {
     width: 110px;
     height: 30px;
 }
 
-.searchCheckbox input{
+.searchCheckbox input {
     margin: 5px 5px 15px 5px;
 }
 

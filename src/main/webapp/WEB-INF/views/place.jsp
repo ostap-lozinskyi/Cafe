@@ -21,16 +21,19 @@
         gtag('config', 'UA-118033320-4');
     </script>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
             crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-            integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+          crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 
     <link href="/resources/css/index.css" rel="stylesheet">
@@ -70,7 +73,7 @@
                                 ${place.name}
                         </button>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter${place.name}" tabindex="-1" role="dialog"
+                        <div class="modal" id="exampleModalCenter${place.name}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="placeModal-content">
@@ -84,7 +87,7 @@
                                         <a class="placeButton" href="/login">Order</a>
                                     </sec:authorize>
                                     <sec:authorize access="isAuthenticated()">
-                                        <a class="placeButton" href="/place/setUser/${place.id}">Order</a>
+                                        <a class="placeButton" href="/order">Order</a>
                                     </sec:authorize>
                                 </div>
                             </div>
@@ -116,7 +119,7 @@
                                         <a class="placeButton" href="/login">Order</a>
                                     </sec:authorize>
                                     <sec:authorize access="isAuthenticated()">
-                                        <a class="placeButton" href="/place/setUser/${place.id}">Order</a>
+                                        <a class="placeButton" href="/order">Order</a>
                                     </sec:authorize>
                                 </div>
                             </div>
@@ -148,7 +151,7 @@
                                         <a class="placeButton" href="/login">Order</a>
                                     </sec:authorize>
                                     <sec:authorize access="isAuthenticated()">
-                                        <a class="placeButton" href="/place/setUser/${place.id}">Order</a>
+                                        <a class="placeButton" href="/order">Order</a>
                                     </sec:authorize>
                                 </div>
                             </div>

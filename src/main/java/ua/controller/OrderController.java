@@ -3,17 +3,12 @@ package ua.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ua.model.entity.OrderStatus;
-import ua.model.entity.Place;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.service.OrderService;
 import ua.service.PlaceService;
-import ua.validation.flag.OrderFlag;
-
-import java.security.Principal;
 
 @Controller
 @RequestMapping("/order")
@@ -56,6 +51,6 @@ public class OrderController {
     @GetMapping("/setPlace/{placeId}")
     public String setPlace(@PathVariable String placeId) {
         orderService.setPlace(placeId);
-        return "redirect:/";
+        return "redirect:/order";
     }
 }
