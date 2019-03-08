@@ -20,6 +20,7 @@ import ua.service.UserService;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -196,5 +197,20 @@ public class OrderServiceImpl implements OrderService {
         }
         orderRequest.setPlace(place);
         saveOrder(orderRequest);
+    }
+
+    @Override
+    public void removeMealFromCurrentOrder(String mealId) {
+        LOG.info("In 'removeMealFromCurrentOrder' method. MealId = {}", mealId);
+        User user = userService.findCurrentUser();
+        Optional<Order> orderOptional = repository.findOrderByUserIdAndStatusMealsSelected(user.getId());
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            List<Meal> filteredMeals = order.getMeals().stream()
+                    .filter(meal -> !mealId.equals(meal.getId())).collect(Collectors.toList());
+            order.setMeals(filteredMeals);
+            repository.save(order);
+        }
+        LOG.info("Exit from 'removeMealFromCurrentOrder' method");
     }
 }

@@ -789,6 +789,10 @@ footer {
     margin-top: -4px;
 }
 
+.cartRightRow {
+    flex-direction: column;
+}
+
 @media screen and (max-width: 1200px) {
     .headerRow {
         flex-direction: column;

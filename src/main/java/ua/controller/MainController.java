@@ -55,4 +55,10 @@ public class MainController {
         return "redirect:/";
     }
 
+    @GetMapping("/removeMealFromOrder/{mealId}")
+    public String removeMealFromOrder(@PathVariable String mealId) {
+        orderService.removeMealFromCurrentOrder(mealId);
+        return "redirect:/";
+    }
+
 }

@@ -73,10 +73,10 @@
                     <sec:authorize access="isAuthenticated()">
                         <!-- Trigger/Open The Modal -->
                         <button id="openCart" class="transparentButton">
-                            <c:if test="${empty selectedMeals}">
+                            <c:if test="${empty selectedMeals.mealDTOS}">
                                 <img class="cartIcon" src="/resources/img/cart.png">
                             </c:if>
-                            <c:if test="${!empty selectedMeals}">
+                            <c:if test="${!empty selectedMeals.mealDTOS}">
                                 <img class="cartIcon" src="/resources/img/cartFilled.png">
                             </c:if>
                         </button>
@@ -96,7 +96,14 @@
                                                      class="cartMealPhoto">
                                             </div>
                                             <div><h2>${selectedMeal.name}</h2></div>
-                                            <div class="cartPrice">${selectedMeal.price}</div>
+                                            <div class="cartRightRow">
+                                                <div>
+                                                    <a href="/removeMealFromOrder/${selectedMeal.id}">
+                                                        <h2>Remove</h2>
+                                                    </a>
+                                                </div>
+                                                <div class="cartPrice">${selectedMeal.price}</div>
+                                            </div>
                                         </div>
                                     </c:forEach>
                                 </div>
