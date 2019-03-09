@@ -87,7 +87,7 @@
                             <!-- Modal content -->
                             <div class="cartModal-content">
                                 <span class="cartClose">&times;</span>
-                                <h1>Selected meals:</h1>
+                                <p class="menuHeadline">Selected meals:</p>
                                 <div class="cartMeals">
                                     <c:forEach var="selectedMeal" items="${selectedMeals.mealDTOS}">
                                         <div class="cartMeal">
@@ -95,11 +95,11 @@
                                                 <img src="${selectedMeal.photoUrl}?version=${selectedMeal.version}"
                                                      class="cartMealPhoto">
                                             </div>
-                                            <div><h2>${selectedMeal.name}</h2></div>
+                                            <div class="cartMealName">${selectedMeal.name}</div>
                                             <div class="cartRightRow">
                                                 <div>
                                                     <a href="/removeMealFromOrder/${selectedMeal.id}">
-                                                        <h2>Remove</h2>
+                                                        Remove
                                                     </a>
                                                 </div>
                                                 <div class="cartPrice">${selectedMeal.price}</div>
@@ -107,11 +107,19 @@
                                         </div>
                                     </c:forEach>
                                 </div>
-                                <a href="/order">
-                                    <button type="button" class="btnCafe">
-                                        Confirm order
-                                    </button>
-                                </a>
+                                <c:if test="${empty selectedMeals.mealDTOS}">
+                                    <p class="cartPrice">Please select meals</p>
+                                </c:if>
+                                <div>
+                                    <p class="cartPrice">Total price: ${totalPrice}</p>
+                                </div>
+                                <c:if test="${!empty selectedMeals.mealDTOS}">
+                                    <a href="/order">
+                                        <button type="button" class="btnCafe">
+                                            Confirm order
+                                        </button>
+                                    </a>
+                                </c:if>
                             </div>
                         </div>
                     </sec:authorize>

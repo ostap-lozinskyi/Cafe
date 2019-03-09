@@ -21,6 +21,8 @@
     </script>
 
     <link href="/resources/css/index.css" rel="stylesheet">
+    <script src="/resources/js/jquery.js"></script>
+    <script src="/resources/js/radioButton.js"></script>
     <title>Order</title>
 </head>
 <body style="background: url(/resources/img/backgroundImage2.jpg)">
@@ -96,7 +98,7 @@
 <div class="placeRow">
     <div class="placesList">
         <h1>Free tables</h1>
-        <form:form action="/order/acceptOrder" method="POST" modelAttribute="order" >
+        <form:form action="/order/acceptOrder" method="POST" modelAttribute="order">
             <custom:hiddenInputs excludeParams="name, _csrf"/>
             <%--<div class="row">--%>
             <%--<div class="col-10 ml-auto" style="color: red;">--%>
@@ -109,8 +111,8 @@
                         <h3>For 2 person</h3>
                         <c:forEach var="place" items="${places}">
                             <c:if test="${place.free && place.countOfPeople == 2}">
-                                <label  class="radio-inline">
-                                    <input type="radio" name="place" id="customer"  value="${place.id}"/>${place.name}
+                                <label class="radio-inline">
+                                    <input type="radio" name="place" id="customer" value="${place.id}"/>${place.name}
                                 </label>
                             </c:if>
                         </c:forEach>
@@ -119,8 +121,8 @@
                         <h3>For 4 person</h3>
                         <c:forEach var="place" items="${places}">
                             <c:if test="${place.free && place.countOfPeople == 4}">
-                                <label  class="radio-inline">
-                                    <input type="radio" name="place" id="customer"  value="${place.id}"/>${place.name}
+                                <label class="radio-inline">
+                                    <input type="radio" name="place" id="customer" value="${place.id}"/>${place.name}
                                 </label>
                             </c:if>
                         </c:forEach>
@@ -129,8 +131,8 @@
                         <h3>For 6 person</h3>
                         <c:forEach var="place" items="${places}">
                             <c:if test="${place.free && place.countOfPeople == 6}">
-                                <label  class="radio-inline">
-                                    <input type="radio" name="place" id="customer"  value="${place.id}"/>${place.name}
+                                <label class="radio-inline">
+                                    <input type="radio" name="place" id="customer" value="${place.id}"/>${place.name}
                                 </label>
                             </c:if>
                         </c:forEach>

@@ -10,6 +10,7 @@ import ua.model.entity.OrderStatus;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface OrderService {
@@ -37,6 +38,8 @@ public interface OrderService {
     OrderRequest findOrderRequestByUserId(String userId);
 
     OrderDTO findOrderDTOForCurrentUser();
+
+    BigDecimal countTotalOrderPrice();
 
     void updateOrderStatus(String id, OrderStatus newStatus);
 

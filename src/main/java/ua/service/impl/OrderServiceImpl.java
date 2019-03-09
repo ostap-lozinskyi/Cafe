@@ -17,6 +17,7 @@ import ua.repository.*;
 import ua.service.OrderService;
 import ua.service.UserService;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -152,6 +153,19 @@ public class OrderServiceImpl implements OrderService {
             return orderDTO;
         }
         return null;
+    }
+
+    @Override
+    public BigDecimal countTotalOrderPrice() {
+        OrderDTO orderDTO = findOrderDTOForCurrentUser();
+        BigDecimal total = new BigDecimal(0);
+        if (Objects.nonNull(orderDTO)) {
+            List<MealDTO> mealsDTOs = orderDTO.getMealDTOS();
+            for (MealDTO mealDTO : mealsDTOs) {
+                total = total.add(mealDTO.getPrice());
+            }
+        }
+        return total;
     }
 
     @Override

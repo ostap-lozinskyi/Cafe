@@ -718,8 +718,17 @@ footer {
     margin: 12px;
 }
 
+.freePlaceItem input {
+    display: none;
+}
+
 .freePlaceItem label:hover {
     background: rgba(255, 255, 255, 0.7);
+}
+
+.freePlaceItem .checked {
+    background: rgba(255, 255, 255, 0.8);
+    color: #76ad00;
 }
 
 
@@ -756,8 +765,9 @@ footer {
     background: url(/resources/img/backgroundImage2.jpg);
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
+    width: 500px; /* Could be more or less, depending on screen size */
+    min-height: 300px;
+    box-shadow: 10px 10px 10px #361b08;
 }
 
 /* The Close Button */
@@ -793,9 +803,15 @@ footer {
 }
 
 .cartPrice {
-    font-size: 50px;
+    font-size: 30px;
     font-weight: bold;
     color: #361b08;
+}
+
+.cartMealName {
+    font-size: 30px;
+    color: #361b08;
+    font-weight: bold;
 }
 
 .cartIcon {
@@ -809,6 +825,7 @@ footer {
 
 .cartRightRow {
     flex-direction: column;
+    text-align: end;
 }
 
 /* --------------------------------------- END Cart -----------------------------------------------------------------*/
