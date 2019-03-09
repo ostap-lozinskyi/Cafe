@@ -96,55 +96,56 @@
 <div class="placeRow">
     <div class="placesList">
         <h1>Free tables</h1>
-        <div class="freePlacesList">
-            <div class="freePlaceItem">
-                <h3>For 2 person</h3>
-                <c:forEach var="place" items="${places}">
-                    <c:if test="${place.free && place.countOfPeople == 2}">
-                        <a href="/order/setPlace/${place.id}">
-                            <button class="placeButton">
-                                    ${place.name}
-                            </button>
-                        </a>
-                    </c:if>
-                </c:forEach>
+        <form:form action="/order/acceptOrder" method="POST" modelAttribute="order" >
+            <custom:hiddenInputs excludeParams="name, _csrf"/>
+            <%--<div class="row">--%>
+            <%--<div class="col-10 ml-auto" style="color: red;">--%>
+            <%--<form:errors path="name"/>--%>
+            <%--</div>--%>
+            <%--</div>--%>
+            <div class="form-group">
+                <div class="freePlacesList">
+                    <div class="freePlaceItem">
+                        <h3>For 2 person</h3>
+                        <c:forEach var="place" items="${places}">
+                            <c:if test="${place.free && place.countOfPeople == 2}">
+                                <label  class="radio-inline">
+                                    <input type="radio" name="place" id="customer"  value="${place.id}"/>${place.name}
+                                </label>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                    <div class="freePlaceItem">
+                        <h3>For 4 person</h3>
+                        <c:forEach var="place" items="${places}">
+                            <c:if test="${place.free && place.countOfPeople == 4}">
+                                <label  class="radio-inline">
+                                    <input type="radio" name="place" id="customer"  value="${place.id}"/>${place.name}
+                                </label>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                    <div class="freePlaceItem">
+                        <h3>For 6 person</h3>
+                        <c:forEach var="place" items="${places}">
+                            <c:if test="${place.free && place.countOfPeople == 6}">
+                                <label  class="radio-inline">
+                                    <input type="radio" name="place" id="customer"  value="${place.id}"/>${place.name}
+                                </label>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                </div>
             </div>
-            <div class="freePlaceItem">
-                <h3>For 4 person</h3>
-                <c:forEach var="place" items="${places}">
-                    <c:if test="${place.free && place.countOfPeople == 4}">
-                        <a href="/order/setPlace/${place.id}">
-                            <button class="placeButton">
-                                    ${place.name}
-                            </button>
-                        </a>
-                    </c:if>
-                </c:forEach>
+            <div class="form-group">
+                <button class="btnCafe">
+                    Confirm order
+                </button>
+                    <%--<a href="/admin/adminCuisine/cancel<custom:allParams/>"--%>
+                    <%--class="btn btn-sm btn-outline-warning">Cancel</a>--%>
             </div>
-            <div class="freePlaceItem">
-                <h3>For 6 person</h3>
-                <c:forEach var="place" items="${places}">
-                    <c:if test="${place.free && place.countOfPeople == 6}">
-                        <a href="/order/setPlace/${place.id}">
-                            <button class="placeButton">
-                                    ${place.name}
-                            </button>
-                        </a>
-                    </c:if>
-                </c:forEach>
-            </div>
-        </div>
+        </form:form>
     </div>
-</div>
-<div>
-    Table:${selectedMeals.place}
-</div>
-<div>
-    <a href="/order/setStatusAccepted">
-        <button type="button" class="btnCafe">
-            Confirm order
-        </button>
-    </a>
 </div>
 <footer class="fixed-bottom">
     <div class="footerFirstRow">

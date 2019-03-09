@@ -143,7 +143,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDTO findOrderDTOForCurrentUser() {
         LOG.info("In 'findOrderDTOForCurrentUser' method");
         User user = userService.findCurrentUser();
-        if (Objects.nonNull(user)){
+        if (Objects.nonNull(user)) {
             OrderDTO orderDTO = repository.findOrderDTOForUser(user.getId());
             if (Objects.nonNull(orderDTO)) {
                 orderDTO.setMealDTOS(findMealDTOsForOrder(orderDTO.getId()));
@@ -165,16 +165,20 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateCurrentOrderStatus(OrderStatus newStatus) {
-        LOG.info("In 'updateCurrentOrderStatus' method. NewStatus = {}", newStatus);
+    public void acceptOrder(String placeId) {
+        LOG.info("In 'acceptOrder' method. PlaceId = {}", placeId);
         User user = userService.findCurrentUser();
         Optional<Order> orderOptional = repository.findOrderByUserIdAndStatusMealsSelected(user.getId());
         if (orderOptional.isPresent()) {
             Order order = orderOptional.get();
-            order.setStatus(newStatus);
+            order.setStatus(OrderStatus.ACCEPTED);
+
+            Place place = placeRepository.findById(placeId)
+                    .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
+            order.setPlace(place);
             repository.save(order);
         }
-        LOG.info("Exit from 'updateCurrentOrderStatus' method");
+        LOG.info("Exit from 'acceptOrder' method");
     }
 
     @Override

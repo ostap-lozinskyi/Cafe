@@ -40,7 +40,7 @@ public interface OrderService {
 
     void updateOrderStatus(String id, OrderStatus newStatus);
 
-    void updateCurrentOrderStatus(OrderStatus newStatus);
+    void acceptOrder(String placeId);
 
     void addMealToOrder(String mealId);
 

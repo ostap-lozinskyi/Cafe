@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ua.model.entity.OrderStatus;
 import ua.model.filter.OrderFilter;
 import ua.model.request.OrderRequest;
 import ua.service.OrderService;
@@ -42,15 +41,9 @@ public class OrderController {
         return "order";
     }
 
-    @GetMapping("/setStatusAccepted")
-    public String acceptOrder() {
-        orderService.updateCurrentOrderStatus(OrderStatus.ACCEPTED);
+    @PostMapping("/acceptOrder")
+    public String acceptOrder(@RequestParam("place") String placeId) {
+        orderService.acceptOrder(placeId);
         return "redirect:/";
-    }
-
-    @GetMapping("/setPlace/{placeId}")
-    public String setPlace(@PathVariable String placeId) {
-        orderService.setPlace(placeId);
-        return "redirect:/order";
     }
 }

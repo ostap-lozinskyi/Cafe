@@ -703,6 +703,26 @@ footer {
     align-items: center;
 }
 
+.freePlaceItem label {
+    width: 120px;
+    border: 1px solid #361b08;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 1.5625rem;
+    box-shadow: none;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: Segoe UI, Arial, sans-serif;
+    color: #361b08;
+    text-align: center;
+    text-decoration: none;
+    margin: 12px;
+}
+
+.freePlaceItem label:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+
 /* ------------------------------------------ Place modal -----------------------------------------------------------*/
 
 .placeModal-content {
