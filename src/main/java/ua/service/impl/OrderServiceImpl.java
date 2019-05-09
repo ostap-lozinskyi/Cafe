@@ -69,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order findOrderById(String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Order with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Order with id [%s] not found", id)));
     }
 
     @Override
@@ -172,7 +172,7 @@ public class OrderServiceImpl implements OrderService {
     public void updateOrderStatus(String id, OrderStatus newStatus) {
         LOG.info("In 'updateOrderStatus' method. Id = {}, NewStatus = {}", id, newStatus);
         Order order = repository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Order with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Order with id [%s] not found", id)));
         order.setStatus(newStatus);
         repository.save(order);
         LOG.info("Exit from 'updateOrderStatus' method");
@@ -188,7 +188,7 @@ public class OrderServiceImpl implements OrderService {
             order.setStatus(OrderStatus.ACCEPTED);
 
             Place place = placeRepository.findById(placeId)
-                    .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
+                    .orElseThrow(() -> new CafeException(String.format("Place with id [%s] not found", placeId)));
             order.setPlace(place);
             repository.save(order);
         }
@@ -201,7 +201,7 @@ public class OrderServiceImpl implements OrderService {
         OrderRequest orderRequest = findOrderRequestByUserId(userId);
 
         Meal newOrderedMeal = mealRepository.findById(mealId)
-                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", mealId)));
+                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s] not found", mealId)));
         List<Meal> alreadyOrderedMeals = orderRequest.getMeals();
         alreadyOrderedMeals.add(newOrderedMeal);
         orderRequest.setMeals(alreadyOrderedMeals);
@@ -240,7 +240,7 @@ public class OrderServiceImpl implements OrderService {
         if (orderOptional.isPresent()) {
             Order order = orderOptional.get();
             Place place = placeRepository.findById(placeId)
-                    .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
+                    .orElseThrow(() -> new CafeException(String.format("Place with id [%s] not found", placeId)));
             order.setPlace(place);
             repository.save(order);
         }

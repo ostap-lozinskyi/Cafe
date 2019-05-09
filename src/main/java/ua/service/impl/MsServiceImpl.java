@@ -41,7 +41,7 @@ public class MsServiceImpl implements MsService {
     @Override
     public Ms findById(String id) {
         return msRepository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Ms with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Ms with id [%s] not found", id)));
     }
 
     @Override

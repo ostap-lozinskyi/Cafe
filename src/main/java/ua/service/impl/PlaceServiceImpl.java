@@ -78,7 +78,7 @@ public class PlaceServiceImpl implements PlaceService {
     public PlaceRequest findOnePlaceRequest(String id) {
         LOG.info("In 'findOnePlaceRequest' method. Id = {}", id);
         Place place = repository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Place with id [%s] not found", id)));
         PlaceRequest request = new PlaceRequest();
         request.setCountOfPeople(String.valueOf(place.getCountOfPeople()));
         request.setId(place.getId());
@@ -98,7 +98,7 @@ public class PlaceServiceImpl implements PlaceService {
     public void updatePlaceUserId(String placeId) {
         LOG.info("In 'updatePlaceUserId' method. PlaceId = {}", placeId);
         Place place = repository.findById(placeId)
-                .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
+                .orElseThrow(() -> new CafeException(String.format("Place with id [%s] not found", placeId)));
         User user = userService.findCurrentUser();
         place.setUser(user);
         place.setFree(false);
@@ -110,7 +110,7 @@ public class PlaceServiceImpl implements PlaceService {
     public void makePlaceFree(String placeId) {
         LOG.info("In 'makePlaceFree' method. PlaceId = {}", placeId);
         Place place = repository.findById(placeId)
-                .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
+                .orElseThrow(() -> new CafeException(String.format("Place with id [%s] not found", placeId)));
         place.setFree(true);
         place.setUser(null);
         repository.save(place);
@@ -120,7 +120,7 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public Place findPlaceById(String placeId) {
         return repository.findById(placeId)
-                .orElseThrow(() -> new CafeException(String.format("Place with id [%s} not found", placeId)));
+                .orElseThrow(() -> new CafeException(String.format("Place with id [%s] not found", placeId)));
     }
 
     @Override

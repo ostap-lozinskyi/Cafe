@@ -40,7 +40,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment findById(String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Comment with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Comment with id [%s] not found", id)));
     }
 
 }

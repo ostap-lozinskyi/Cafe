@@ -91,7 +91,7 @@ public class MealServiceImpl implements MealService {
     public MealRequest findOneRequest(String id) {
         LOG.info("In 'findOneCommentRequest' method. Id = {}", id);
         Meal meal = mealRepository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s] not found", id)));
         MealRequest mealRequest = MealRequest.of(meal);
         LOG.info("Exit from 'findOneCommentRequest' method. Request = {}", mealRequest);
         return mealRequest;
@@ -108,7 +108,7 @@ public class MealServiceImpl implements MealService {
     public void updateMealRate(String id, Integer newRate) {
         LOG.info("In 'updateMealRate method'. Id = {}, NewRate = {}", id, newRate);
         Meal meal = mealRepository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s] not found", id)));
         meal.setVotesCount(meal.getVotesCount() + 1);
         meal.setVotesAmount(meal.getVotesAmount() + newRate);
         mealRepository.save(meal);
@@ -124,7 +124,7 @@ public class MealServiceImpl implements MealService {
     public void updateComments(String id, Comment comment) {
         LOG.info("In 'updateComments method'. Id = {}, Comment = {}", id, comment);
         Meal meal = mealRepository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s] not found", id)));
         List<Comment> comments = meal.getComments();
         comments.add(comment);
         meal.setComments(comments);
@@ -140,7 +140,7 @@ public class MealServiceImpl implements MealService {
     @Override
     public Meal findMealById(String id) {
         return mealRepository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Meal with id [%s] not found", id)));
     }
 
     public MealRequest uploadPhotoToCloudinary(MealRequest mealRequest, MultipartFile toUpload) throws IOException {

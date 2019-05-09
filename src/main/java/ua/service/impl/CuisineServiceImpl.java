@@ -43,7 +43,7 @@ public class CuisineServiceImpl implements CuisineService {
     @Override
     public Cuisine findById(String id) {
         return cuisineRepository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Cuisine with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Cuisine with id [%s] not found", id)));
     }
 
     @Override

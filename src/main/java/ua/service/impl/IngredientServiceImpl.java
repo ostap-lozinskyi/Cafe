@@ -89,7 +89,7 @@ public class IngredientServiceImpl implements IngredientService {
     public void updateCommentsList(String id, Comment newComment) {
         LOG.info("In 'updateCommentsList' method. Id = {}, NewComment = {}", id, newComment);
         Ingredient ingredient = ingredientRepository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Ingredient with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Ingredient with id [%s] not found", id)));
         List<Comment> comments = ingredient.getComments();
         comments.add(newComment);
         ingredient.setComments(comments);
@@ -110,7 +110,7 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public Ingredient findById(String id) {
         return ingredientRepository.findById(id)
-                .orElseThrow(() -> new CafeException(String.format("Ingredient with id [%s} not found", id)));
+                .orElseThrow(() -> new CafeException(String.format("Ingredient with id [%s] not found", id)));
     }
 
     @Override
