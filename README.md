@@ -1,4 +1,4 @@
-**Spring Boot Web Application for a cafe.**<br/>
+#Spring Boot Web Application for a cafe.#<br/>
 With this application, you can reserve a table, make orders, rate meals, search and sort meals by different parameters.<br/>
 
 You can see a test version of this project on http://cafeostap.ml/<br/>
@@ -6,7 +6,7 @@ login: admin<br/>
 password: admin<br/>
 source code: https://github.com/ostap-lozinskyi/Cafe<br/>
 
-Such technologies are used:<br/>
+**Such technologies are used:**<br/>
 Spring Boot,<br/>
 Spring Social,<br/>
 Spring Security,<br/>
