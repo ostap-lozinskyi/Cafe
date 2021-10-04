@@ -1,10 +1,6 @@
 ***Spring Boot Web Application for a cafe.***<br/>
 With this application, you can reserve a table, make orders, rate meals, search and sort meals by different parameters.<br/>
 
-You can see a test version of this project on http://www.cafesambir.ml/<br/>
-login: admin<br/>
-password: admin<br/>
-
 ***Such technologies are used:***<br/>
 Spring Boot,<br/>
 Spring Social,<br/>
